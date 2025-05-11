@@ -27,13 +27,14 @@ const ScrollToTop = () => {
   };
 
   return (
-    <div className={`fixed bottom-8 right-8 z-50 transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+    <div className={`fixed bottom-8 right-8 z-50 transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}>
       <Button
         onClick={scrollToTop}
         size="icon"
-        className="rounded-full shadow-lg"
+        className="rounded-full shadow-lg hover:shadow-primary/20 hover:scale-110 transition-all duration-300 bg-primary text-primary-foreground"
       >
-        <ArrowUp size={20} />
+        <ArrowUp size={18} />
+        <span className="sr-only">Scroll to top</span>
       </Button>
     </div>
   );

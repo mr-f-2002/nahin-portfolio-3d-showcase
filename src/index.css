@@ -89,7 +89,7 @@
   }
   
   .section-heading {
-    @apply text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-8 text-foreground;
+    @apply text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-8 text-foreground relative inline-block after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-16 after:h-1 after:bg-primary after:rounded-full;
   }
   
   .section-subheading {
@@ -105,10 +105,11 @@
   }
 }
 
+/* Enhanced animations */
 .animate-on-scroll {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .animate-on-scroll.active {
@@ -136,10 +137,57 @@
   transition-delay: 500ms;
 }
 
+/* Added animations */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease forwards;
+}
+
 canvas {
   position: fixed !important;
   top: 0;
   left: 0;
   pointer-events: none;
   z-index: -1;
+}
+
+/* Modern card effect */
+.modern-card {
+  @apply bg-card/80 backdrop-blur-sm border border-white/5 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/20;
+}
+
+/* Shimmer effect */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shimmer 6s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) rotate(30deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(30deg);
+  }
 }

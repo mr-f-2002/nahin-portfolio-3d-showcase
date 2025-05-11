@@ -21,19 +21,23 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen">
-      {/* 3D Background */}
-      <ThreeDBackground />
+    <div className="min-h-screen relative overflow-hidden">
+      {/* 3D Background with reduced opacity for subtlety */}
+      <div className="opacity-60">
+        <ThreeDBackground />
+      </div>
       
       {/* Main Content */}
-      <Navbar />
-      <Hero />
-      <About />
-      <Portfolio />
-      <Experience />
-      <Contact />
-      <Footer />
-      <ScrollToTop />
+      <div className="relative z-10">
+        <Navbar />
+        <Hero />
+        <About />
+        <Portfolio />
+        <Experience />
+        <Contact />
+        <Footer />
+        <ScrollToTop />
+      </div>
     </div>
   );
 };

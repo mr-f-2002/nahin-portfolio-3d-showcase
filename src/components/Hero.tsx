@@ -32,49 +32,65 @@ const Hero = () => {
     <section 
       id="home" 
       ref={heroRef}
-      className="min-h-screen flex flex-col justify-center pt-20 pb-16 px-4 animate-on-scroll"
+      className="relative min-h-screen flex flex-col justify-center pt-20 pb-16 px-4 overflow-hidden animate-on-scroll"
     >
-      <div className="container mx-auto max-w-6xl">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="order-2 md:order-1">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4 text-foreground">
-              <span className="block mb-2">Hi, I'm</span>
-              <span className="text-primary">Nahin F Siddiqui</span>
+      {/* Decorative background elements */}
+      <div className="absolute -right-20 top-20 w-72 h-72 bg-primary/5 rounded-full filter blur-3xl"></div>
+      <div className="absolute -left-20 bottom-20 w-80 h-80 bg-accent/5 rounded-full filter blur-3xl"></div>
+      
+      <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="grid md:grid-cols-5 gap-12 items-center">
+          <div className="md:col-span-3 order-2 md:order-1">
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary mb-6">
+              Computer Science Engineer
+            </span>
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 text-foreground">
+              <span className="block mb-3">Hi, I'm</span>
+              <span className="text-primary relative">
+                Nahin F Siddiqui
+                <span className="absolute -bottom-2 left-0 w-1/3 h-1 bg-primary rounded-full"></span>
+              </span>
             </h1>
             
-            <h2 className="text-xl md:text-2xl mb-6 text-muted-foreground">
+            <h2 className="text-xl md:text-2xl mb-8 text-muted-foreground">
               Computer Science Engineer & ML Enthusiast
             </h2>
             
-            <p className="mb-8 text-lg max-w-lg">
+            <p className="mb-10 text-lg max-w-lg">
               A passionate CSE graduate with a focus on academic excellence, 
               machine learning, and software development. Building innovative 
               solutions through code and research.
             </p>
             
-            <div className="flex space-x-4">
-              <Button asChild>
+            <div className="flex flex-wrap gap-4">
+              <Button className="rounded-full px-6" asChild>
                 <a href="#portfolio">
                   View My Work <ArrowRight size={16} className="ml-2" />
                 </a>
               </Button>
               
-              <Button variant="outline" asChild>
+              <Button variant="outline" className="rounded-full px-6" asChild>
                 <a href="#contact">Contact Me</a>
               </Button>
             </div>
           </div>
           
-          <div className="order-1 md:order-2 flex justify-center">
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary">
-              {/* This is where we would add Nahin's photo. Using a placeholder for now */}
-              <div className="w-full h-full bg-secondary flex items-center justify-center">
-                <span className="text-3xl font-bold text-primary">NFS</span>
+          <div className="md:col-span-2 order-1 md:order-2 flex justify-center">
+            <div className="relative">
+              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20 p-1">
+                {/* This is where we would add Nahin's photo. Using a placeholder for now */}
+                <div className="w-full h-full bg-secondary rounded-full flex items-center justify-center relative overflow-hidden">
+                  <span className="text-4xl font-bold text-primary">NFS</span>
+                  {/* Animated gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/5 to-accent/10 animate-spin opacity-70" style={{ animationDuration: '10s' }}></div>
+                </div>
               </div>
               
               {/* Decorative elements */}
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-accent rounded-full opacity-20 animate-pulse"></div>
-              <div className="absolute -top-6 -left-6 w-16 h-16 bg-primary rounded-full opacity-20 animate-float"></div>
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-accent rounded-full opacity-20 animate-pulse"></div>
+              <div className="absolute -top-4 -left-4 w-20 h-20 bg-primary rounded-full opacity-20 animate-float"></div>
+              <div className="absolute top-1/2 -right-8 w-16 h-16 bg-secondary rounded-full opacity-30 animate-float" style={{ animationDelay: '1s' }}></div>
             </div>
           </div>
         </div>
