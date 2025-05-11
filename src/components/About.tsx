@@ -1,5 +1,8 @@
 
 import { useEffect, useRef } from 'react';
+import { Card, CardContent } from "@/components/ui/card";
+import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const About = () => {
   const aboutRef = useRef<HTMLElement>(null);
@@ -80,6 +83,25 @@ const About = () => {
       skills: ["MySQL", "MongoDB", "Git", "Docker", "Firebase"]
     }
   ];
+
+  const whoIAmFlashcards = [
+    {
+      title: "Academic Excellence",
+      content: "Computer Science and Engineering graduate with CGPA of 3.9/4.0, passionate about learning and implementing innovative methods."
+    },
+    {
+      title: "Research Interests",
+      content: "Focused on resource provisioning and forecasting in cloud environments, applying innovative methods to solve real-world problems."
+    },
+    {
+      title: "Technical Focus",
+      content: "Specialized in machine learning, software development, and cloud computing with a strong foundation in both theoretical concepts and practical skills."
+    },
+    {
+      title: "Career Goals",
+      content: "Driven to create unique products that make a difference while expanding knowledge in machine learning and cloud computing."
+    }
+  ];
   
   return (
     <section 
@@ -92,35 +114,32 @@ const About = () => {
         
         {/* Updated layout - separate rows for Who I Am and Education/Skills */}
         <div className="flex flex-col gap-8 mb-16">
-          {/* Who I Am - Now in its own row with full width */}
+          {/* Who I Am - Now with flashcards */}
           <div ref={addToRefs} className="w-full animate-on-scroll animate-delay-100">
             <div className="p-6 bg-card rounded-lg shadow-md modern-card shimmer">
-              <h3 className="section-subheading border-b border-primary/20 pb-3 mb-4">Who I Am</h3>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <p className="mb-6 text-lg">
-                    I'm a Computer Science and Engineering graduate with a passion for academic 
-                    excellence, machine learning, and software development. My academic journey has 
-                    equipped me with a strong foundation in both theoretical concepts and practical skills.
-                  </p>
-                  <p className="mb-6">
-                    With a CGPA of 3.9, I've demonstrated a commitment to learning and mastering complex 
-                    technical concepts. My research focuses on resource provisioning and forecasting in 
-                    cloud environments, where I apply innovative methods to solve real-world problems.
-                  </p>
-                </div>
-                <div>
-                  <p className="mb-6">
-                    I'm driven by the desire to implement innovative methods and create unique products 
-                    that can make a difference. Whether it's developing software applications or conducting 
-                    research, I approach each project with enthusiasm and dedication.
-                  </p>
-                  <p>
-                    My goal is to continue expanding my knowledge and skills in the field of computer science,
-                    particularly in machine learning and cloud computing, while contributing to meaningful
-                    projects that have a positive impact.
-                  </p>
-                </div>
+              <h3 className="section-subheading border-b border-primary/20 pb-3 mb-6">Who I Am</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {whoIAmFlashcards.map((card, index) => (
+                  <div 
+                    key={index}
+                    className="flashcard-container transform transition-all duration-500 hover:scale-105"
+                    style={{ animationDelay: `${index * 150}ms` }}
+                  >
+                    <HoverCard>
+                      <HoverCardTrigger asChild>
+                        <Card className="h-full bg-background/80 hover:bg-background cursor-pointer border-primary/10 hover:border-primary/30 transition-all">
+                          <CardContent className="p-6 flex items-center justify-center text-center h-40">
+                            <h4 className="font-bold text-primary">{card.title}</h4>
+                          </CardContent>
+                        </Card>
+                      </HoverCardTrigger>
+                      <HoverCardContent className="w-80 p-4 bg-popover/95 backdrop-blur-sm text-popover-foreground">
+                        <h4 className="text-lg font-semibold mb-2 text-primary">{card.title}</h4>
+                        <p>{card.content}</p>
+                      </HoverCardContent>
+                    </HoverCard>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
