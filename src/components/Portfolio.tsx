@@ -52,22 +52,22 @@ const Portfolio = () => {
       image: "placeholder",
       link: "https://github.com/mr-f-2002/Med-Planner"
     },
-    // {
-    //   id: 5,
-    //   title: "Bangla Document Topic Modeler",
-    //   description: "A machine learning model to identify topics from Bangla articles.",
-    //   technologies: ["Python", "BARTopic", "ML"],
-    //   image: "placeholder"
-    // },
     {
       id: 5,
+      title: "Bangla Document Topic Modeler",
+      description: "A machine learning model to identify topics from Bangla articles.",
+      technologies: ["Python", "BARTopic", "ML"],
+      image: "placeholder"
+    },
+    {
+      id: 6,
       title: "Fitify",
       description: "A health-tracking mobile app with personalized fitness recommendations.",
       technologies: ["React-native", "Firebase"],
       image: "placeholder"
     },
     {
-      id: 6,
+      id: 7,
       title: "Event Planner",
       description: "A python based simple daily dashboard that keeps track of todo, daily work progress and reminders",
       technologies: ["Python", "Tkinter"],
