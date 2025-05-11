@@ -65,6 +65,14 @@ const Portfolio = () => {
       description: "A health-tracking mobile app with personalized fitness recommendations.",
       technologies: ["React-native", "Firebase"],
       image: "placeholder"
+    },
+    {
+      id: 7,
+      title: "Event Planner",
+      description: "A python based simple daily dashboard that keeps track of todo, daily work progress and reminders",
+      technologies: ["Python", "Tkinter"],
+      image: "placeholder"
+      link: "https://github.com/mr-f-2002/event-planner-dashboard.git"
     }
   ];
   
