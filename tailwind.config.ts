@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,15 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Custom palette for Nahin's portfolio
+				portfolio: {
+					dark: '#1A1D23',
+					light: '#F8F9FA',
+					accent: '#FFA500',
+					muted: '#6C757D',
+					card: '#22252C',
+					highlight: '#FFD700'
 				}
 			},
 			borderRadius: {
@@ -70,25 +80,41 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				fadeIn: {
+					'0%': { opacity: '0', transform: 'translateY(20px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				float: {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
+				},
+				spin: {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' },
+				},
+				pulseScale: {
+					'0%, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.05)' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				fadeIn: 'fadeIn 0.8s ease-out forwards',
+				float: 'float 6s ease-in-out infinite',
+				spin: 'spin 20s linear infinite',
+				pulseScale: 'pulseScale 3s ease-in-out infinite',
+			},
+			fontFamily: {
+				sans: ['Inter', 'sans-serif'],
+				display: ['Poppins', 'sans-serif']
 			}
 		}
 	},
