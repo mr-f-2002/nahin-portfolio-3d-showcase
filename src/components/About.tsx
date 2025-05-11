@@ -117,7 +117,7 @@ const About = () => {
   {/* Who I Am - Now as Tree View */}
   <div ref={addToRefs} className="w-full animate-on-scroll animate-delay-100">
     <div className="p-6 bg-card rounded-lg shadow-md modern-card shimmer">
-      <h3 className="section-subheading border-b border-primary/20 pb-3 mb-6">Who I Am</h3>
+      <h3 className="section-subheading border-b border-primary/20 pb-3 mb-6">Who I Am to you all ?</h3>
 
       <div className="flex flex-col space-y-6">
         {whoIAmFlashcards.map((card, index) => (
