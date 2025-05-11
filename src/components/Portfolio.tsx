@@ -26,7 +26,7 @@ const Portfolio = () => {
       description: "An anonymous blogging platform with embedded study tools for students.",
       technologies: ["Java", "FXML", "JavaFX", "MySQL"],
       image: "placeholder",
-      link: "https://github.com/mr-f-2002/libtaRepos"
+      link: "https://github.com/mr-f-2002/libraRepos.git"
     },
     {
       id: 2,
