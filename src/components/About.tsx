@@ -114,35 +114,29 @@ const About = () => {
         
         {/* Updated layout - separate rows for Who I Am and Education/Skills */}
         <div className="flex flex-col gap-8 mb-16">
-          {/* Who I Am - Now with flashcards */}
-          <div ref={addToRefs} className="w-full animate-on-scroll animate-delay-100">
-            <div className="p-6 bg-card rounded-lg shadow-md modern-card shimmer">
-              <h3 className="section-subheading border-b border-primary/20 pb-3 mb-6">Who I Am</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {whoIAmFlashcards.map((card, index) => (
-                  <div 
-                    key={index}
-                    className="flashcard-container transform transition-all duration-500 hover:scale-105"
-                    style={{ animationDelay: `${index * 150}ms` }}
-                  >
-                    <HoverCard>
-                      <HoverCardTrigger asChild>
-                        <Card className="h-full bg-background/80 hover:bg-background cursor-pointer border-primary/10 hover:border-primary/30 transition-all">
-                          <CardContent className="p-6 flex items-center justify-center text-center h-40">
-                            <h4 className="font-bold text-primary">{card.title}</h4>
-                          </CardContent>
-                        </Card>
-                      </HoverCardTrigger>
-                      <HoverCardContent className="w-80 p-4 bg-popover/95 backdrop-blur-sm text-popover-foreground">
-                        <h4 className="text-lg font-semibold mb-2 text-primary">{card.title}</h4>
-                        <p>{card.content}</p>
-                      </HoverCardContent>
-                    </HoverCard>
-                  </div>
-                ))}
-              </div>
-            </div>
+  {/* Who I Am - Now as Tree View */}
+  <div ref={addToRefs} className="w-full animate-on-scroll animate-delay-100">
+    <div className="p-6 bg-card rounded-lg shadow-md modern-card shimmer">
+      <h3 className="section-subheading border-b border-primary/20 pb-3 mb-6">Who I Am</h3>
+
+      <div className="flex flex-col space-y-6">
+        {whoIAmFlashcards.map((card, index) => (
+          <div
+            key={index}
+            className="relative pl-6 border-l border-primary/20 group"
+            style={{ animationDelay: `${index * 150}ms` }}
+          >
+            <div className="absolute left-0 top-2 w-3 h-3 bg-primary rounded-full"></div>
+
+            <h4 className="text-lg font-semibold text-primary mb-1">{card.title}</h4>
+            <p className="text-muted-foreground">{card.content}</p>
           </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</div>
           
           {/* Education - Now in its own row */}
           <div ref={addToRefs} className="w-full animate-on-scroll animate-delay-200">
