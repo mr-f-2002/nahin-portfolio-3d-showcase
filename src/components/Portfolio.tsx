@@ -140,7 +140,7 @@ const Portfolio = () => {
               <Card className="h-full flex flex-col card-hover overflow-hidden">
                 <div className="h-48 bg-secondary flex items-center justify-center rounded-none">
                   {/* Placeholder for project image */}
-                  <div className="text-6xl text-primary font-bold opacity-30">
+                  {/* <div className="text-6xl text-primary font-bold opacity-30"> */}
                     <div className="w-full h-full bg-secondary relative overflow-hidden">
                       <img
                         src={project.image}
@@ -148,7 +148,7 @@ const Portfolio = () => {
                         className="w-full h-full object-cover rounded-none"
                       />
                     </div>
-                  </div>
+                  {/* </div> */}
                 </div>
                 <CardHeader>
                   <CardTitle>{project.title}</CardTitle>
