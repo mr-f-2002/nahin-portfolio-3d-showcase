@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -15,7 +15,6 @@ type Project = {
 };
 
 const Portfolio = () => {
-  const [activeFilter, setActiveFilter] = useState<string>("all");
   const portfolioRef = useRef<HTMLElement>(null);
   const elementsRef = useRef<HTMLDivElement[]>([]);
   
@@ -122,35 +121,6 @@ const Portfolio = () => {
     }
   };
   
-  const filters = [
-    "all", 
-    "web", 
-    "mobile", 
-    "ml", 
-    "desktop"
-  ];
-  
-  const getFilteredProjects = () => {
-    if (activeFilter === "all") return projects;
-    
-    return projects.filter(project => {
-      const tech = project.technologies.map(t => t.toLowerCase());
-      
-      switch (activeFilter) {
-        case "web":
-          return tech.some(t => ["javascript", "react", "html", "css", "nodejs", "expressjs"].includes(t));
-        case "mobile":
-          return tech.some(t => ["kotlin", "react-native", "firebase"].includes(t));
-        case "ml":
-          return tech.some(t => ["python", "bartopic", "ml"].includes(t));
-        case "desktop":
-          return tech.some(t => ["java", "javafx", "c++", "sfml"].includes(t));
-        default:
-          return true;
-      }
-    });
-  };
-  
   return (
     <section 
       id="portfolio" 
@@ -160,21 +130,8 @@ const Portfolio = () => {
       <div className="container mx-auto max-w-6xl">
         <h2 className="section-heading">My Projects</h2>
         
-        <div ref={addToRefs} className="flex flex-wrap justify-center gap-4 mb-12 animate-on-scroll animate-delay-100">
-          {filters.map((filter) => (
-            <Button
-              key={filter}
-              variant={activeFilter === filter ? "default" : "outline"}
-              onClick={() => setActiveFilter(filter)}
-              className="capitalize"
-            >
-              {filter}
-            </Button>
-          ))}
-        </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {getFilteredProjects().map((project, index) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+          {projects.map((project, index) => (
             <div 
               key={project.id} 
               ref={addToRefs}

@@ -16,8 +16,24 @@ const Index = () => {
     // Setup scroll animation when component mounts
     const cleanup = setupScrollAnimation();
     
-    // Cleanup function to remove observers
-    return cleanup;
+    // Add CSS to hide scrollbar
+    const style = document.createElement('style');
+    style.textContent = `
+      body::-webkit-scrollbar {
+        display: none;
+      }
+      body {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // Cleanup function to remove observers and style
+    return () => {
+      cleanup();
+      document.head.removeChild(style);
+    };
   }, []);
 
   return (
