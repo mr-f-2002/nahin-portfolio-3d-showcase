@@ -22,7 +22,7 @@ const Portfolio = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: "Libra (libtaRepos)",
+      title: "Libra",
       description: "An anonymous blogging platform with embedded study tools for students.",
       technologies: ["Java", "FXML", "JavaFX", "MySQL"],
       image: "placeholder",
@@ -30,7 +30,7 @@ const Portfolio = () => {
     },
     {
       id: 2,
-      title: "ShopSmart (Shop-Smart)",
+      title: "ShopSmart",
       description: "An e-commerce website with location-based filtering and search.",
       technologies: ["JavaScript", "ExpressJS", "NodeJS", "MySQL"],
       image: "placeholder",
@@ -38,7 +38,7 @@ const Portfolio = () => {
     },
     {
       id: 3,
-      title: "PoorCAD (Poor-Cad)",
+      title: "PoorCAD",
       description: "A simple drawing app with multiple shapes and pen tools.",
       technologies: ["C++", "SFML"],
       image: "placeholder",
@@ -46,7 +46,7 @@ const Portfolio = () => {
     },
     {
       id: 4,
-      title: "Med Planner (Med-Planner)",
+      title: "Med Planner",
       description: "A mobile app for tracking medicine schedules.",
       technologies: ["Kotlin"],
       image: "placeholder",
