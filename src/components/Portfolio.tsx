@@ -24,7 +24,7 @@ const Portfolio = () => {
       title: "Libra",
       description: "An anonymous blogging platform with embedded study tools for students.",
       technologies: ["Java", "FXML", "JavaFX", "MySQL"],
-      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
+      image: "https://i.postimg.cc/3Nf0v7fP/poorcad.png",
       link: "https://github.com/mr-f-2002/libraRepos.git"
     },
     {
@@ -32,7 +32,7 @@ const Portfolio = () => {
       title: "ShopSmart",
       description: "An e-commerce website with location-based filtering and search.",
       technologies: ["JavaScript", "ExpressJS", "NodeJS", "MySQL"],
-      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
+      image: "https://i.postimg.cc/3Nf0v7fP/poorcad.png",
       link: "https://github.com/mr-f-2002/Shop-Smart"
     },
     {
@@ -40,7 +40,7 @@ const Portfolio = () => {
       title: "PoorCAD",
       description: "A simple drawing app with multiple shapes and pen tools.",
       technologies: ["C++", "SFML"],
-      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
+      image: "https://i.postimg.cc/3Nf0v7fP/poorcad.png",
       link: "https://github.com/mr-f-2002/Poor-Cad"
     },
     {
@@ -48,7 +48,7 @@ const Portfolio = () => {
       title: "Med Planner",
       description: "A mobile app for tracking medicine schedules.",
       technologies: ["Kotlin"],
-      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
+      image: "https://i.postimg.cc/3Nf0v7fP/poorcad.png",
       link: "https://github.com/mr-f-2002/Med-Planner"
     },
     {
@@ -56,14 +56,14 @@ const Portfolio = () => {
       title: "Bangla Document Topic Modeler",
       description: "A machine learning model to identify topics from Bangla articles.",
       technologies: ["Python", "BARTopic", "ML"],
-      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png"
+      image: "https://i.postimg.cc/3Nf0v7fP/poorcad.png"
     },
     {
       id: 6,
       title: "Fitify",
       description: "A health-tracking mobile app with personalized fitness recommendations.",
       technologies: ["React-native", "Firebase"],
-      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
+      image: "https://i.postimg.cc/3Nf0v7fP/poorcad.png",
       link: "https://github.com/mr-f-2002/Fitify.git"
     },
     {
@@ -71,7 +71,7 @@ const Portfolio = () => {
       title: "Event Planner",
       description: "A python based simple daily dashboard that keeps track of todo, daily work progress and reminders",
       technologies: ["Python", "Tkinter"],
-      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
+      image: "https://i.postimg.cc/3Nf0v7fP/poorcad.png",
       link: "https://github.com/mr-f-2002/event-planner-dashboard.git"
     },
     {
@@ -79,7 +79,7 @@ const Portfolio = () => {
       title: "Crop Recommender",
       description: "An intelligent ML based crop recommendation system to predict most suitable crop based on environmental conditions like soil nutrients, temperature, humidity, pH, and rainfall",
       technologies: ["Jupyter Notebook", "HTML", "CSS", "Python", "JavaScript"],
-      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
+      image: "https://i.postimg.cc/3Nf0v7fP/poorcad.png",
       link: "https://github.com/mr-f-2002/Crop-Recommender.git"
     }
   ];
