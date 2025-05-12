@@ -79,13 +79,22 @@ const Hero = () => {
           <div className="md:col-span-2 order-1 md:order-2 flex justify-center">
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20 p-1">
-                {/* This is where we would add Nahin's photo. Using a placeholder for now */}
-                <div className="w-full h-full bg-secondary rounded-full flex items-center justify-center relative overflow-hidden">
-                  <span className="text-4xl font-bold text-primary">NFS</span>
+                {/* Nahin's Photo */}
+                <div className="w-full h-full bg-secondary rounded-full relative overflow-hidden">
+                  <img
+                    src="/path-to-nahin-photo.jpg" // Replace this with actual path
+                    alt="Nahin"
+                    className="w-full h-full object-cover rounded-full"
+                  />
                   {/* Animated gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/5 to-accent/10 animate-spin opacity-70" style={{ animationDuration: '10s' }}></div>
+                  <div
+                    className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/5 to-accent/10 animate-spin opacity-70"
+                    style={{ animationDuration: '10s' }}
+                  ></div>
                 </div>
               </div>
+            </div>
+
               
               {/* Decorative elements */}
               <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-accent rounded-full opacity-20 animate-pulse"></div>
