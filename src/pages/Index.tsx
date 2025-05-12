@@ -9,7 +9,6 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import ThreeDBackground from "@/components/ThreeDBackground";
-import ProgressCharacter from "@/components/ProgressCharacter";
 import { setupScrollAnimation } from "@/utils/scrollObserver";
 
 const Index = () => {
@@ -27,9 +26,6 @@ const Index = () => {
       <div className="opacity-60">
         <ThreeDBackground />
       </div>
-      
-      {/* Progress Character */}
-      <ProgressCharacter />
       
       {/* Main Content */}
       <div className="relative z-10">
