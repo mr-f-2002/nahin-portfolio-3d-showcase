@@ -91,7 +91,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      value: "+8801924-509192",
+      value: "01924-509192",
       link: "tel:+8801924509192"
     },
     {
@@ -103,7 +103,7 @@ const Contact = () => {
     {
       icon: Linkedin,
       title: "Linkedin",
-      value: "nahin-f-siddiqui-a11871270",
+      value: "nahin-f-siddiqui",
       link: "https://www.linkedin.com/in/nahin-f-siddiqui-a11871270/"
     }
   ];
