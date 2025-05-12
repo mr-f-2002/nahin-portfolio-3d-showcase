@@ -78,7 +78,7 @@ const Portfolio = () => {
     {
       id: 8,
       title: "Crop Recommender",
-      description: "An intelligent crop recommendation system tailored for small-scale farmers. Leveraging machine learning, it predicts the most suitable crop based on environmental conditions like soil nutrients, temperature, humidity, pH, and rainfall",
+      description: "An intelligent ML based crop recommendation system to predict most suitable crop based on environmental conditions like soil nutrients, temperature, humidity, pH, and rainfall",
       technologies: ["Jupyter Notebook", "HTML", "CSS", "Python", "JavaScript"],
       image: "placeholder",
       link: "https://github.com/mr-f-2002/Crop-Recommender.git"
