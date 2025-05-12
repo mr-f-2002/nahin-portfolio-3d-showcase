@@ -47,7 +47,7 @@ const Experience = () => {
       id: 1,
       role: "AI Engineering Intern",
       company: "Kernel Technologies Limited",
-      period: "June 2023 - August 2023",
+      period: "June 2024 - September 2024",
       description: "Developed an AI-powered viva system for medical students using Retrieval Augmented Generation (RAG) for textbook-based viva questions and feedback.",
       responsibilities: [
         "Implemented RAG models to generate context-relevant questions from medical textbooks",
