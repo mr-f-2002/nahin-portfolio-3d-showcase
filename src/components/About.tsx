@@ -54,7 +54,7 @@ const About = () => {
     {
       degree: "Higher Secondary School Certificate (HSC)",
       institution: "Gurudayal Govt. College",
-      year: "2019 - 2021",
+      year: "2019 - 2020",
       achievements: ["GPA: 5.00/5.00"]
     },
     {
