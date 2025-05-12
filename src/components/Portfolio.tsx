@@ -24,7 +24,7 @@ const Portfolio = () => {
       title: "Libra",
       description: "An anonymous blogging platform with embedded study tools for students.",
       technologies: ["Java", "FXML", "JavaFX", "MySQL"],
-      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
+      image: "https://i.postimg.cc/wBmHFrD6/libra.png",
       link: "https://github.com/mr-f-2002/libraRepos.git"
     },
     {
@@ -32,7 +32,7 @@ const Portfolio = () => {
       title: "ShopSmart",
       description: "An e-commerce website with location-based filtering and search.",
       technologies: ["JavaScript", "ExpressJS", "NodeJS", "MySQL"],
-      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
+      image: "https://i.postimg.cc/zX2rNNjz/shopsmart.png",
       link: "https://github.com/mr-f-2002/Shop-Smart"
     },
     {
@@ -48,7 +48,7 @@ const Portfolio = () => {
       title: "Med Planner",
       description: "A mobile app for tracking medicine schedules.",
       technologies: ["Kotlin"],
-      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
+      image: "https://i.postimg.cc/rFPvbJVz/medplaner.png",
       link: "https://github.com/mr-f-2002/Med-Planner"
     },
     {
