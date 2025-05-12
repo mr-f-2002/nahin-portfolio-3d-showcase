@@ -64,7 +64,8 @@ const Portfolio = () => {
       title: "Fitify",
       description: "A health-tracking mobile app with personalized fitness recommendations.",
       technologies: ["React-native", "Firebase"],
-      image: "placeholder"
+      image: "placeholder",
+      link: "https://github.com/mr-f-2002/Fitify.git"
     },
     {
       id: 7,
@@ -73,6 +74,14 @@ const Portfolio = () => {
       technologies: ["Python", "Tkinter"],
       image: "placeholder",
       link: "https://github.com/mr-f-2002/event-planner-dashboard.git"
+    },
+    {
+      id: 8,
+      title: "Crop Recommender",
+      description: "An intelligent crop recommendation system tailored for small-scale farmers. Leveraging machine learning, it predicts the most suitable crop based on environmental conditions like soil nutrients, temperature, humidity, pH, and rainfall",
+      technologies: ["Jupyter Notebook", "HTML", "CSS", "Python", "JavaScript"],
+      image: "placeholder",
+      link: "https://github.com/mr-f-2002/Crop-Recommender.git"
     }
   ];
   
