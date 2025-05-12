@@ -138,7 +138,7 @@ const Portfolio = () => {
               className={`animate-on-scroll animate-delay-${(index % 3 + 1) * 100}`}
             >
               <Card className="h-full flex flex-col card-hover overflow-hidden">
-                <div className="h-48 bg-secondary flex items-center justify-center rounded-none">
+                <div className="h-full bg-secondary flex items-center justify-center rounded-none">
                   {/* Placeholder for project image */}
                   <div className="text-6xl text-primary font-bold opacity-30">
                     <div className="w-full h-full bg-secondary relative overflow-hidden">
