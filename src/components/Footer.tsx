@@ -12,7 +12,7 @@ const Footer = () => {
     },
     {
       icon: Linkedin,
-      href: "#",
+      href: "https://www.linkedin.com/in/nahin-f-siddiqui-a11871270/",
       label: "LinkedIn"
     },
     {
