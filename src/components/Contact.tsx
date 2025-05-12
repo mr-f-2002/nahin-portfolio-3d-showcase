@@ -117,7 +117,7 @@ const Contact = () => {
       <div className="container mx-auto max-w-6xl">
         <h2 className="section-heading">Get In Touch</h2>
         
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-1 gap-12">
           <div ref={addToRefs} className="animate-on-scroll animate-delay-100">
             <h3 className="section-subheading">Contact Information</h3>
             <p className="mb-8">
