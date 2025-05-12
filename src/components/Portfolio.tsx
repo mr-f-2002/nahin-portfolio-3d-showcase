@@ -140,7 +140,7 @@ const Portfolio = () => {
               <Card className="h-full flex flex-col card-hover overflow-hidden">
                 <div className="h-48 bg-secondary flex items-center justify-center rounded-5">
                   {/* Placeholder for project image */}
-                    <div className="w-full h-full bg-secondary relative overflow-hidden p-1 rounded-5">
+                    <div className="w-full h-full bg-secondary relative overflow-hidden m-1 rounded-5">
                       <img
                         src={project.image}
                         alt={project.title}
