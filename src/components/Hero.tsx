@@ -82,7 +82,7 @@ const Hero = () => {
                 {/* Nahin's Photo */}
                 <div className="w-full h-full bg-secondary rounded-full relative overflow-hidden">
                   <img
-                    src="/path-to-nahin-photo.jpg" // Replace this with actual path
+                    src="./nahin.jpg" // Replace this with actual path
                     alt="Nahin"
                     className="w-full h-full object-cover rounded-full"
                   />
