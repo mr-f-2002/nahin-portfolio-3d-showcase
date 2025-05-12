@@ -141,7 +141,7 @@ const Portfolio = () => {
                 <div className="h-48 bg-secondary flex items-center justify-center">
                   {/* Placeholder for project image */}
                   <div className="text-6xl text-primary font-bold opacity-30">
-                    <div className="w-full h-full bg-secondary rounded-full relative overflow-hidden">
+                    <div className="w-full h-full bg-secondary relative overflow-hidden">
                       <img
                         src={project.image}
                         alt={project.title}
