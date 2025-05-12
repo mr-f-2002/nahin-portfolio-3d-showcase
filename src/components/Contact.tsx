@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
-import { Mail, Phone, Github } from 'lucide-react';
+import { Mail, Phone, Github, Linkedin } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
@@ -99,6 +99,12 @@ const Contact = () => {
       title: "GitHub",
       value: "mr-f-2002",
       link: "https://github.com/mr-f-2002"
+    },
+    {
+      icon: Linkedin,
+      title: "Linkedin",
+      value: "nahin-f-siddiqui-a11871270",
+      link: "https://www.linkedin.com/in/nahin-f-siddiqui-a11871270/"
     }
   ];
   
