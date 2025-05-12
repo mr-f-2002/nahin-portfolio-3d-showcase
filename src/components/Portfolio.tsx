@@ -71,7 +71,7 @@ const Portfolio = () => {
       title: "Event Planner",
       description: "A python based simple daily dashboard that keeps track of todo, daily work progress and reminders",
       technologies: ["Python", "Tkinter"],
-      image: "placeholder",
+      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
       link: "https://github.com/mr-f-2002/event-planner-dashboard.git"
     },
     {
@@ -79,7 +79,7 @@ const Portfolio = () => {
       title: "Crop Recommender",
       description: "An intelligent ML based crop recommendation system to predict most suitable crop based on environmental conditions like soil nutrients, temperature, humidity, pH, and rainfall",
       technologies: ["Jupyter Notebook", "HTML", "CSS", "Python", "JavaScript"],
-      image: "placeholder",
+      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
       link: "https://github.com/mr-f-2002/Crop-Recommender.git"
     }
   ];
@@ -145,7 +145,7 @@ const Portfolio = () => {
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-full object-cover rounded-full"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                   </div>
