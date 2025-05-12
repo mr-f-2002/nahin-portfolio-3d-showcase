@@ -151,7 +151,7 @@ const Contact = () => {
             </div>
           </div>
           
-          <div ref={addToRefs} className="animate-on-scroll animate-delay-200">
+          {/* <div ref={addToRefs} className="animate-on-scroll animate-delay-200">
             <h3 className="section-subheading">Send Me a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -202,7 +202,8 @@ const Contact = () => {
                 {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
-          </div>
+          </div> */}
+
         </div>
       </div>
     </section>
