@@ -40,7 +40,7 @@ const Portfolio = () => {
       title: "PoorCAD",
       description: "A simple drawing app with multiple shapes and pen tools.",
       technologies: ["C++", "SFML"],
-      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
+      image: "placeholder",
       link: "https://github.com/mr-f-2002/Poor-Cad"
     },
     {
