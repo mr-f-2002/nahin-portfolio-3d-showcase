@@ -79,10 +79,10 @@ const Hero = () => {
           <div className="md:col-span-2 order-1 md:order-2 flex justify-center">
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20 p-1">
-                {/* Nahin's Photo */}
+                {/* Updated Nahin's Photo with the provided URL */}
                 <div className="w-full h-full bg-secondary rounded-full relative overflow-hidden">
                   <img
-                    src="./nahin.jpg" // Replace this with actual path
+                    src="https://i.postimg.cc/J09HPQX2/nahin.webp"
                     alt="Nahin"
                     className="w-full h-full object-cover rounded-full"
                   />
@@ -93,8 +93,6 @@ const Hero = () => {
                   ></div>
                 </div>
               </div>
-            </div>
-
               
               {/* Decorative elements */}
               <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-accent rounded-full opacity-20 animate-pulse"></div>
