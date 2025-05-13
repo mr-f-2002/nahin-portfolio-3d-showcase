@@ -30,6 +30,14 @@ const Portfolio = () => {
     },
     {
       id: 2,
+      title: "Crop Recommender",
+      description: "An intelligent ML based crop recommendation system to predict most suitable crop based on environmental conditions like soil nutrients, temperature, humidity, pH, and rainfall",
+      technologies: ["Jupyter Notebook", "HTML", "CSS", "Python", "JavaScript"],
+      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
+      link: "https://github.com/mr-f-2002/Crop-Recommender.git"
+    },
+    {
+      id: 3,
       title: "ShopSmart",
       description: "An e-commerce website with location-based filtering and search.",
       technologies: ["JavaScript", "ExpressJS", "NodeJS", "MySQL"],
@@ -37,30 +45,7 @@ const Portfolio = () => {
       link: "https://github.com/mr-f-2002/Shop-Smart"
     },
     {
-      id: 3,
-      title: "PoorCAD",
-      description: "A simple drawing app with multiple shapes and pen tools.",
-      technologies: ["C++", "SFML"],
-      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
-      link: "https://github.com/mr-f-2002/Poor-Cad"
-    },
-    {
       id: 4,
-      title: "Med Planner",
-      description: "A mobile app for tracking medicine schedules.",
-      technologies: ["Kotlin"],
-      image: "https://i.postimg.cc/rFPvbJVz/medplaner.png",
-      link: "https://github.com/mr-f-2002/Med-Planner"
-    },
-    {
-      id: 5,
-      title: "Bangla Document Topic Modeler",
-      description: "A machine learning model to identify topics from Bangla articles.",
-      technologies: ["Python", "BARTopic", "ML"],
-      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png"
-    },
-    {
-      id: 6,
       title: "Fitify",
       description: "A health-tracking mobile app with personalized fitness recommendations.",
       technologies: ["React-native", "Firebase"],
@@ -68,24 +53,40 @@ const Portfolio = () => {
       link: "https://github.com/mr-f-2002/Fitify.git"
     },
     {
+      id: 5,
+      title: "Med Planner",
+      description: "A mobile app for tracking medicine schedules.",
+      technologies: ["Kotlin"],
+      image: "https://i.postimg.cc/rFPvbJVz/medplaner.png",
+      link: "https://github.com/mr-f-2002/Med-Planner"
+    },
+    {
+      id: 6,
+      title: "PoorCAD",
+      description: "A simple drawing app with multiple shapes and pen tools.",
+      technologies: ["C++", "SFML"],
+      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
+      link: "https://github.com/mr-f-2002/Poor-Cad"
+    },
+    {
       id: 7,
-      title: "Event Planner",
+      title: "Bangla Document Topic Modeler",
+      description: "A machine learning model to identify topics from Bangla articles.",
+      technologies: ["Python", "BARTopic", "ML"],
+      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png"
+    },
+    {
+      id: 8,
+      title: "Daily Dashboard",
       description: "A python based simple daily dashboard that keeps track of todo, daily work progress and reminders",
       technologies: ["Python", "Tkinter"],
       image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
       link: "https://github.com/mr-f-2002/event-planner-dashboard.git"
     },
-    {
-      id: 8,
-      title: "Crop Recommender",
-      description: "An intelligent ML based crop recommendation system to predict most suitable crop based on environmental conditions like soil nutrients, temperature, humidity, pH, and rainfall",
-      technologies: ["Jupyter Notebook", "HTML", "CSS", "Python", "JavaScript"],
-      image: "https://i.postimg.cc/XqVkgHvb/poorcad-2.png",
-      link: "https://github.com/mr-f-2002/Crop-Recommender.git"
-    }
+    
   ];
 
-  const initialProjectCount = 4;
+  const initialProjectCount = 3;
   const displayedProjects = showAll ? projects : projects.slice(0, initialProjectCount);
 
   useEffect(() => {
