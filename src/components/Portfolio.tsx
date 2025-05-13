@@ -1,9 +1,9 @@
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 
 type Project = {
   id: number;
@@ -17,6 +17,7 @@ type Project = {
 const Portfolio = () => {
   const portfolioRef = useRef<HTMLElement>(null);
   const elementsRef = useRef<HTMLDivElement[]>([]);
+  const [showAll, setShowAll] = useState(false);
 
   const projects: Project[] = [
     {
@@ -84,6 +85,9 @@ const Portfolio = () => {
     }
   ];
 
+  const initialProjectCount = 4;
+  const displayedProjects = showAll ? projects : projects.slice(0, initialProjectCount);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -131,7 +135,7 @@ const Portfolio = () => {
         <h2 className="section-heading">My Projects</h2>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-          {projects.map((project, index) => (
+          {displayedProjects.map((project, index) => (
             <div
               key={project.id}
               ref={addToRefs}
@@ -139,14 +143,13 @@ const Portfolio = () => {
             >
               <Card className="h-full flex flex-col card-hover overflow-hidden">
                 <div className="h-48 bg-secondary flex items-center justify-center">
-                  {/* Placeholder for project image */}
-                    <div className="w-full h-full bg-secondary relative overflow-hidden p-1">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover rounded-none"
-                      />
-                    </div>
+                  <div className="w-full h-full bg-secondary relative overflow-hidden p-1">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover rounded-none"
+                    />
+                  </div>
                 </div>
                 <CardHeader>
                   <CardTitle>{project.title}</CardTitle>
@@ -176,6 +179,18 @@ const Portfolio = () => {
             </div>
           ))}
         </div>
+        
+        {!showAll && projects.length > initialProjectCount && (
+          <div className="flex justify-center mt-10">
+            <Button 
+              variant="outline" 
+              onClick={() => setShowAll(true)}
+              className="flex items-center gap-2 text-primary border-primary hover:bg-primary/10"
+            >
+              See All Projects <ChevronDown size={16} />
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

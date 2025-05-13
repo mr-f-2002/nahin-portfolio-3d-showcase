@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
@@ -136,6 +135,14 @@ const About = () => {
       content: "Driven to create unique products that make a difference while expanding knowledge in machine learning and cloud computing."
     }
   ];
+
+  const researchInterests = [
+    "Cloud Computing Resource Optimization",
+    "Natural Language Processing in Education",
+    "Retrieval Augmented Generation",
+    "Machine Learning for Healthcare",
+    "Bangla Language Processing"
+  ];
   
   return (
     <section 
@@ -212,6 +219,32 @@ const About = () => {
           </div>
         </div>
           
+        {/* Research Interests - Moved from Experience section */}
+        <div ref={addToRefs} className="w-full animate-on-scroll animate-delay-250">
+          <div className="p-6 bg-card rounded-lg shadow-md modern-card shimmer">
+            <h3 className="section-subheading border-b border-primary/20 pb-3 mb-6">Research Interests</h3>
+            <div className="space-y-4">
+              <ul className="space-y-4">
+                {researchInterests.map((interest, index) => (
+                  <li key={index} className="flex items-start p-3 bg-secondary/30 rounded-lg hover:bg-secondary/50 transition-all duration-300">
+                    <span className="text-primary text-lg mr-2">•</span>
+                    <span className="font-medium">{interest}</span>
+                  </li>
+                ))}
+              </ul>
+              
+              <div className="mt-8 p-4 bg-primary/10 rounded-lg border border-primary/20">
+                <h4 className="font-semibold mb-4 text-primary">Research Focus</h4>
+                <p>
+                  My research primarily focuses on optimizing resource provisioning in cloud environments
+                  and applying AI techniques to solve complex educational and linguistic problems,
+                  with a special interest in Bangla language processing.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Skills - Now in its own row */}
         <div ref={addToRefs} className="w-full animate-on-scroll animate-delay-300">
           <div className="p-6 bg-card rounded-lg shadow-md modern-card shimmer">

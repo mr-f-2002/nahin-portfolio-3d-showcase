@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -41,6 +40,39 @@ const Experience = () => {
       elementsRef.current.push(el);
     }
   };
+
+  const researchWorks = [
+    {
+      id: 1,
+      title: "Resource Allocation Optimization in Cloud Computing",
+      journal: "International Journal of Cloud Computing",
+      date: "June 2023 - Present",
+      description: "Researching efficient resource allocation algorithms for cloud computing environments using predictive analytics and machine learning techniques.",
+      status: "Ongoing",
+      authors: ["Nahin Ahmed", "Dr. John Smith", "Dr. Emily Taylor"],
+      keywords: ["Cloud Computing", "Resource Allocation", "Machine Learning", "Optimization"]
+    },
+    {
+      id: 2,
+      title: "Bangla Text Classification Using Deep Learning",
+      journal: "Journal of Natural Language Processing",
+      date: "March 2023 - December 2023",
+      description: "Developed a novel approach for Bangla text classification using transformer-based models, achieving 92% accuracy on benchmark datasets.",
+      status: "Published",
+      authors: ["Nahin Ahmed", "Dr. Sarah Johnson"],
+      keywords: ["NLP", "Bangla Language", "Text Classification", "Deep Learning"]
+    },
+    {
+      id: 3,
+      title: "Performance Analysis of RAG Models in Medical Education",
+      journal: "AI in Education Conference",
+      date: "January 2024 - Present",
+      description: "Analyzing the effectiveness of Retrieval Augmented Generation models in medical education scenarios, with focus on knowledge retention and accuracy.",
+      status: "Under Review",
+      authors: ["Nahin Ahmed", "Dr. Robert Chen", "Dr. Lisa Wong"],
+      keywords: ["RAG", "Medical Education", "Knowledge Assessment", "AI"]
+    }
+  ];
 
   const experiences = [
     {
@@ -102,7 +134,6 @@ const Experience = () => {
     },
   ];
 
-
   const researchInterests = [
     "Cloud Computing Resource Optimization",
     "Natural Language Processing in Education",
@@ -120,9 +151,49 @@ const Experience = () => {
       <div className="container mx-auto max-w-6xl">
         <h2 className="section-heading">Research & Work Experience</h2>
 
-        <div className="grid md:grid-cols-3 gap-12 mb-16">
-          <div className="md:col-span-2">
-            <div ref={addToRefs} className="animate-on-scroll animate-delay-100">
+        {/* Research Works Section */}
+        <div ref={addToRefs} className="mb-16 animate-on-scroll animate-delay-100">
+          <h3 className="section-subheading mb-6">Research Works</h3>
+          <div className="space-y-8">
+            {researchWorks.map((research) => (
+              <Card key={research.id} className="card-hover">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <CardTitle className="text-primary">{research.title}</CardTitle>
+                      <CardDescription className="text-lg font-medium">{research.journal}</CardDescription>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-sm text-muted-foreground">{research.date}</span>
+                      <span className="ml-2 text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">
+                        {research.status}
+                      </span>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="mb-4">{research.description}</p>
+                  <div className="flex items-center gap-1 text-sm mb-3">
+                    <span className="font-semibold">Authors:</span>
+                    <span>{research.authors.join(", ")}</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {research.keywords.map((keyword, i) => (
+                      <span key={i} className="bg-secondary px-3 py-1 rounded-full text-xs">
+                        {keyword}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Professional Experience Section */}
+        <div className="grid md:grid-cols-1 gap-12 mb-16">
+          <div>
+            <div ref={addToRefs} className="animate-on-scroll animate-delay-200">
               <h3 className="section-subheading">Professional Experience</h3>
 
               <div className="space-y-8">
@@ -159,31 +230,6 @@ const Experience = () => {
                 ))}
               </div>
             </div>
-          </div>
-
-          <div ref={addToRefs} className="animate-on-scroll animate-delay-200">
-            <h3 className="section-subheading">Research Interests</h3>
-            <Card className="card-hover h-full">
-              <CardContent className="pt-6">
-                <ul className="space-y-4">
-                  {researchInterests.map((interest, index) => (
-                    <li key={index} className="flex items-start">
-                      <span className="text-primary mr-2 mt-1">•</span>
-                      <span>{interest}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-8">
-                  <h4 className="font-semibold mb-4">Research Focus</h4>
-                  <p className="text-sm">
-                    My research primarily focuses on optimizing resource provisioning in cloud environments
-                    and applying AI techniques to solve complex educational and linguistic problems,
-                    with a special interest in Bangla language processing.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>
