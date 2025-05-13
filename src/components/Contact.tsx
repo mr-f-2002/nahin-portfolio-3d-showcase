@@ -85,8 +85,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "nahinsiddiqui@iut-dhaka.edu",
-      link: "mailto:nahinsiddiqui@iut-dhaka.edu"
+      value: "nahinfs.2002@gmail.com",
+      link: "mailto:nahinfs.2002@gmail.com"
     },
     {
       icon: Phone,
