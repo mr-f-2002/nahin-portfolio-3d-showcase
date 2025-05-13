@@ -117,7 +117,7 @@ const Portfolio = () => {
         if (el) observer.unobserve(el);
       });
     };
-  }, []);
+  }, [showAll]); // Added showAll dependency to refresh animations when more projects are shown
 
   const addToRefs = (el: HTMLDivElement) => {
     if (el && !elementsRef.current.includes(el)) {
@@ -134,15 +134,15 @@ const Portfolio = () => {
       <div className="container mx-auto max-w-6xl">
         <h2 className="section-heading">My Projects</h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-12">
           {displayedProjects.map((project, index) => (
             <div
               key={project.id}
               ref={addToRefs}
-              className={`animate-on-scroll animate-delay-${(index % 3 + 1) * 100}`}
+              className={`animate-on-scroll animate-delay-${(index % 4 + 1) * 100}`}
             >
               <Card className="h-full flex flex-col card-hover overflow-hidden">
-                <div className="h-48 bg-secondary flex items-center justify-center">
+                <div className="h-40 bg-secondary flex items-center justify-center">
                   <div className="w-full h-full bg-secondary relative overflow-hidden p-1">
                     <img
                       src={project.image}
@@ -151,26 +151,26 @@ const Portfolio = () => {
                     />
                   </div>
                 </div>
-                <CardHeader>
-                  <CardTitle>{project.title}</CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
+                <CardHeader className="p-4">
+                  <CardTitle className="text-xl">{project.title}</CardTitle>
+                  <CardDescription className="text-sm">{project.description}</CardDescription>
                 </CardHeader>
-                <CardContent className="flex-grow">
-                  <div className="flex flex-wrap gap-2">
+                <CardContent className="flex-grow p-4 pt-0">
+                  <div className="flex flex-wrap gap-1">
                     {project.technologies.map((tech, i) => (
-                      <Badge key={i} variant="secondary">{tech}</Badge>
+                      <Badge key={i} variant="secondary" className="text-xs">{tech}</Badge>
                     ))}
                   </div>
                 </CardContent>
-                <CardFooter>
+                <CardFooter className="p-4 pt-0">
                   {project.link ? (
-                    <Button variant="outline" asChild className="w-full">
+                    <Button variant="outline" asChild className="w-full text-sm">
                       <a href={project.link} target="_blank" rel="noopener noreferrer">
-                        View Project <ArrowRight size={16} className="ml-2" />
+                        View Project <ArrowRight size={14} className="ml-1" />
                       </a>
                     </Button>
                   ) : (
-                    <Button variant="outline" disabled className="w-full">
+                    <Button variant="outline" disabled className="w-full text-sm">
                       Coming Soon
                     </Button>
                   )}
