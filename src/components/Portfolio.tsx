@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 
 type Project = {
   id: number;
@@ -181,8 +181,8 @@ const Portfolio = () => {
           ))}
         </div>
         
-        {!showAll && projects.length > initialProjectCount && (
-          <div className="flex justify-center mt-10">
+        <div className="flex justify-center mt-10">
+          {!showAll && projects.length > initialProjectCount && (
             <Button 
               variant="outline" 
               onClick={() => setShowAll(true)}
@@ -190,8 +190,18 @@ const Portfolio = () => {
             >
               See All Projects <ChevronDown size={16} />
             </Button>
-          </div>
-        )}
+          )}
+          
+          {showAll && projects.length > initialProjectCount && (
+            <Button 
+              variant="outline" 
+              onClick={() => setShowAll(false)}
+              className="flex items-center gap-2 text-primary border-primary hover:bg-primary/10"
+            >
+              Show Less <ChevronUp size={16} />
+            </Button>
+          )}
+        </div>
       </div>
     </section>
   );
