@@ -1,69 +1,71 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 223 19% 12%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 223 19% 15%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 223 19% 12%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 48 100% 50%;
+    --primary-foreground: 223 19% 12%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 223 19% 20%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 223 10% 60%;
+    --muted-foreground: 0 0% 80%;
 
-    --accent: 32 98% 56%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 30 100% 50%;
+    --accent-foreground: 223 19% 12%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --border: 223 19% 22%;
+    --input: 223 19% 22%;
+    --ring: 48 100% 50%;
 
     --radius: 0.5rem;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+  .light {
+    --background: 210 20% 98%;
+    --foreground: 223 19% 12%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 223 19% 12%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 210 20% 98%;
+    --popover-foreground: 223 19% 12%;
 
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 48 100% 50%;
+    --primary-foreground: 223 19% 12%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 220 14% 90%;
+    --secondary-foreground: 223 19% 12%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 220 14% 70%;
+    --muted-foreground: 220 9% 40%;
 
-    --accent: 32 98% 56%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 30 100% 50%;
+    --accent-foreground: 223 19% 12%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --border: 220 13% 85%;
+    --input: 220 13% 85%;
+    --ring: 48 100% 50%;
   }
 }
 
@@ -71,71 +73,121 @@
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 }
 
 @layer components {
+  .nav-link {
+    @apply relative font-medium text-foreground hover:text-primary transition-colors duration-300 after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
+  }
+  
   .section-heading {
-    @apply text-3xl font-bold text-center mb-10;
+    @apply text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-8 text-foreground relative inline-block after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-16 after:h-1 after:bg-primary after:rounded-full;
   }
-
+  
   .section-subheading {
-    @apply text-2xl font-semibold mb-6;
+    @apply text-xl md:text-2xl font-display font-semibold mb-4 text-foreground;
   }
-
+  
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-md hover:-translate-y-1;
-  }
-
-  /* Improve consistency in spacing */
-  .about-section > div {
-    @apply mb-12;
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-1;
   }
   
-  /* Add proper spacing to the section components in About */
-  .education-section,
-  .research-interests-section,
-  .skills-section {
-    @apply mb-12;
-  }
-  
-  /* Animation classes */
-  .animate-on-scroll {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  }
-  
-  .animate-on-scroll.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .animate-delay-100 {
-    transition-delay: 0.1s;
-  }
-  
-  .animate-delay-200 {
-    transition-delay: 0.2s;
-  }
-  
-  .animate-delay-300 {
-    transition-delay: 0.3s;
-  }
-  
-  .animate-delay-400 {
-    transition-delay: 0.4s;
+  .glass-effect {
+    @apply backdrop-blur-lg bg-white/5 border border-white/10;
   }
 }
 
-/* 3D Background */
-.bg-three {
-  position: fixed;
+/* Enhanced animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.animate-on-scroll.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-delay-100 {
+  transition-delay: 100ms;
+}
+
+.animate-delay-200 {
+  transition-delay: 200ms;
+}
+
+.animate-delay-300 {
+  transition-delay: 300ms;
+}
+
+.animate-delay-400 {
+  transition-delay: 400ms;
+}
+
+.animate-delay-500 {
+  transition-delay: 500ms;
+}
+
+/* Added animations */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+canvas {
+  position: fixed !important;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100vh;
+  pointer-events: none;
   z-index: -1;
+}
+
+/* Modern card effect */
+.modern-card {
+  @apply bg-card/80 backdrop-blur-sm border border-white/5 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/20;
+}
+
+/* Shimmer effect */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shimmer 6s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) rotate(30deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(30deg);
+  }
 }

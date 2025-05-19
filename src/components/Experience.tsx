@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -159,14 +158,14 @@ const Experience = () => {
             {researchWorks.map((research) => (
               <Card key={research.id} className="card-hover">
                 <CardHeader>
-                  <div className="flex justify-between items-start flex-wrap">
-                    <div className="mb-2">
+                  <div className="flex justify-between items-start">
+                    <div>
                       <CardTitle className="text-primary">{research.title}</CardTitle>
                       <CardDescription className="text-lg font-medium">{research.journal}</CardDescription>
                     </div>
                     <div className="text-right">
-                      <div className="text-sm text-muted-foreground mb-1">{research.date}</div>
-                      <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">
+                      <span className="text-sm text-muted-foreground">{research.date}</span>
+                      <span className="ml-2 text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">
                         {research.status}
                       </span>
                     </div>
