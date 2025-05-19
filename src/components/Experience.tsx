@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -114,7 +115,7 @@ const Experience = () => {
       responsibilities: [
         "Explained complex topics in physics and mathematics in an understandable way",
         "Designed personalized lesson plans and mock tests",
-        "Helped improve the student’s academic performance significantly"
+        "Helped improve the student's academic performance significantly"
       ],
       technologies: ["Communication", "Mentorship", "Subject Mastery"]
     },
@@ -163,9 +164,9 @@ const Experience = () => {
                       <CardTitle className="text-primary">{research.title}</CardTitle>
                       <CardDescription className="text-lg font-medium">{research.journal}</CardDescription>
                     </div>
-                    <div className="text-right">
+                    <div className="text-right flex flex-col">
                       <span className="text-sm text-muted-foreground">{research.date}</span>
-                      <span className="ml-2 text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">
+                      <span className="mt-1 text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">
                         {research.status}
                       </span>
                     </div>
