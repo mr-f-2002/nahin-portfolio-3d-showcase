@@ -82,7 +82,7 @@ const About = () => {
       degree: "B.Sc. in Computer Science & Engineering",
       institution: "Islamic University of Technology (IUT)",
       year: "2021 - 2025",
-      achievements: ["CGPA: 3.9/4.0", "Research in Resource Provisioning and Forecasting in Cloud"]
+      achievements: ["CGPA: 3.88/4.00", "Research in Resource Provisioning and Forecasting in Cloud"]
     },
     {
       degree: "Higher Secondary School Certificate (HSC)",
