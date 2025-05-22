@@ -120,7 +120,7 @@ const About = () => {
   const whoIAmFlashcards = [
     {
       title: "Academic Excellence",
-      content: "Computer Science and Engineering graduate with CGPA of 3.9/4.0, passionate about learning and implementing innovative methods."
+      content: "Computer Science and Engineering graduate with CGPA of 3.88/4.00, passionate about learning and implementing innovative methods."
     },
     {
       title: "Research Interests",

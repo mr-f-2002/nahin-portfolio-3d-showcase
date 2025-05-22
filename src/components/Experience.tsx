@@ -43,36 +43,36 @@ const Experience = () => {
   };
 
   const researchWorks = [
-    {
-      id: 1,
-      title: "Resource Allocation Optimization in Cloud Computing",
-      journal: "International Journal of Cloud Computing",
-      date: "June 2023 - Present",
-      description: "Researching efficient resource allocation algorithms for cloud computing environments using predictive analytics and machine learning techniques.",
-      status: "Ongoing",
-      authors: ["Nahin Ahmed", "Dr. John Smith", "Dr. Emily Taylor"],
-      keywords: ["Cloud Computing", "Resource Allocation", "Machine Learning", "Optimization"]
-    },
-    {
-      id: 2,
-      title: "Bangla Text Classification Using Deep Learning",
-      journal: "Journal of Natural Language Processing",
-      date: "March 2023 - December 2023",
-      description: "Developed a novel approach for Bangla text classification using transformer-based models, achieving 92% accuracy on benchmark datasets.",
-      status: "Published",
-      authors: ["Nahin Ahmed", "Dr. Sarah Johnson"],
-      keywords: ["NLP", "Bangla Language", "Text Classification", "Deep Learning"]
-    },
-    {
-      id: 3,
-      title: "Performance Analysis of RAG Models in Medical Education",
-      journal: "AI in Education Conference",
-      date: "January 2024 - Present",
-      description: "Analyzing the effectiveness of Retrieval Augmented Generation models in medical education scenarios, with focus on knowledge retention and accuracy.",
-      status: "Under Review",
-      authors: ["Nahin Ahmed", "Dr. Robert Chen", "Dr. Lisa Wong"],
-      keywords: ["RAG", "Medical Education", "Knowledge Assessment", "AI"]
-    }
+    // {
+    //   id: 1,
+    //   title: "Resource Allocation Optimization in Cloud Computing",
+    //   journal: "International Journal of Cloud Computing",
+    //   date: "June 2023 - Present",
+    //   description: "Researching efficient resource allocation algorithms for cloud computing environments using predictive analytics and machine learning techniques.",
+    //   status: "Ongoing",
+    //   authors: ["Nahin Ahmed", "Dr. John Smith", "Dr. Emily Taylor"],
+    //   keywords: ["Cloud Computing", "Resource Allocation", "Machine Learning", "Optimization"]
+    // },
+    // {
+    //   id: 2,
+    //   title: "Bangla Text Classification Using Deep Learning",
+    //   journal: "Journal of Natural Language Processing",
+    //   date: "March 2023 - December 2023",
+    //   description: "Developed a novel approach for Bangla text classification using transformer-based models, achieving 92% accuracy on benchmark datasets.",
+    //   status: "Published",
+    //   authors: ["Nahin Ahmed", "Dr. Sarah Johnson"],
+    //   keywords: ["NLP", "Bangla Language", "Text Classification", "Deep Learning"]
+    // },
+    // {
+    //   id: 3,
+    //   title: "Performance Analysis of RAG Models in Medical Education",
+    //   journal: "AI in Education Conference",
+    //   date: "January 2024 - Present",
+    //   description: "Analyzing the effectiveness of Retrieval Augmented Generation models in medical education scenarios, with focus on knowledge retention and accuracy.",
+    //   status: "Under Review",
+    //   authors: ["Nahin Ahmed", "Dr. Robert Chen", "Dr. Lisa Wong"],
+    //   keywords: ["RAG", "Medical Education", "Knowledge Assessment", "AI"]
+    // }
   ];
 
   const experiences = [
