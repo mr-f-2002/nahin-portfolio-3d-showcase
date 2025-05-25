@@ -82,7 +82,7 @@ const Hero = () => {
                 {/* Updated Nahin's Photo with the provided URL */}
                 <div className="w-full h-full bg-secondary rounded-full relative overflow-hidden">
                   <img
-                    src="https://i.postimg.cc/J09HPQX2/nahin.webp"
+                    src="https://i.postimg.cc/MGyyvKTS/image-1.webp"
                     alt="Nahin"
                     className="w-full h-full object-cover rounded-full"
                   />
