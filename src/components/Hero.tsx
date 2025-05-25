@@ -79,28 +79,28 @@ const Hero = () => {
           <div className="md:col-span-2 order-1 md:order-2 flex justify-center">
             <div className="relative">
               {/* Background circle */}
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-primary/20 relative overflow-hidden">
-                {/* Animated gradient overlay on background */}
-                <div
-                  className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/5 to-accent/10 animate-spin opacity-70"
-                  style={{ animationDuration: '10s' }}
-                ></div>
-              </div>
-              
-              {/* Profile image popping out */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <div className="w-72 h-72 md:w-96 md:h-96 relative">
-                  <img
-                    src="https://i.postimg.cc/Mp07GpX8/image-1.png"
-                    alt="Nahin"
-                    className="w-full h-full object-cover object-center"
-                    style={{
-                      clipPath: 'ellipse(45% 50% at 50% 50%)',
-                      transform: 'scale(1.1)'
-                    }}
-                  />
+                <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-primary/20 relative overflow-hidden">
+                  {/* Animated gradient overlay on background */}
+                  <div
+                    className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/5 to-accent/10 animate-spin opacity-70"
+                    style={{ animationDuration: '10s' }}
+                  ></div>
                 </div>
-              </div>
+                
+                {/* Profile image with same bottom alignment */}
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2">
+                  <div className="w-72 h-72 md:w-96 md:h-96 relative">
+                    <img
+                      src="https://i.postimg.cc/Mp07GpX8/image-1.png"
+                      alt="Nahin"
+                      className="w-full h-full object-cover object-center"
+                      style={{
+                        clipPath: 'ellipse(45% 50% at 50% 50%)',
+                        transform: 'scale(1.1)'
+                      }}
+                    />
+                  </div>
+                </div>
               
               {/* Decorative elements */}
               <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-accent rounded-full opacity-20 animate-pulse"></div>
