@@ -77,8 +77,8 @@ const Hero = () => {
           </div>
           
           <div className="md:col-span-2 order-1 md:order-2 flex justify-center">
-            <div className="relative flex items-end">
-              {/* Background circle positioned at bottom */}
+            <div className="relative">
+              {/* Background circle */}
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-primary/20 relative overflow-hidden">
                 {/* Animated gradient overlay on background */}
                 <div
@@ -87,15 +87,16 @@ const Hero = () => {
                 ></div>
               </div>
               
-              {/* Profile image aligned at bottom, extending upward */}
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2">
-                <div className="w-72 h-80 md:w-96 md:h-[26rem] relative">
+              {/* Profile image popping out */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div className="w-72 h-72 md:w-96 md:h-96 relative">
                   <img
                     src="https://i.postimg.cc/Mp07GpX8/image-1.png"
                     alt="Nahin"
-                    className="w-full h-full object-cover object-bottom"
+                    className="w-full h-full object-cover object-center"
                     style={{
-                      clipPath: 'ellipse(45% 55% at 50% 100%)',
+                      clipPath: 'ellipse(45% 50% at 50% 50%)',
+                      transform: 'scale(1.1)'
                     }}
                   />
                 </div>
@@ -103,7 +104,7 @@ const Hero = () => {
               
               {/* Decorative elements */}
               <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-accent rounded-full opacity-20 animate-pulse"></div>
-              <div className="absolute top-8 -left-4 w-20 h-20 bg-primary rounded-full opacity-20 animate-float"></div>
+              <div className="absolute -top-4 -left-4 w-20 h-20 bg-primary rounded-full opacity-20 animate-float"></div>
               <div className="absolute top-1/2 -right-8 w-16 h-16 bg-secondary rounded-full opacity-30 animate-float" style={{ animationDelay: '1s' }}></div>
             </div>
           </div>
