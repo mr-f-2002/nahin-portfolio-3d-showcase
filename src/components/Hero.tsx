@@ -88,10 +88,10 @@ const Hero = () => {
                 </div>
                 
                 {/* Profile image with same bottom alignment */}
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2">
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                   <div className="w-72 h-72 md:w-96 md:h-96 relative">
                     <img
-                      src="https://i.postimg.cc/9z36QjR3/2c7c25c9-ba82-4879-8854-7ae05cdaca54.png"
+                      src="https://i.postimg.cc/26Z6nDtg/image-2.png"
                       alt="Nahin"
                       className="w-full h-full object-cover object-center"
                       style={{
