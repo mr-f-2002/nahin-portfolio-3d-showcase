@@ -87,7 +87,7 @@ const Hero = () => {
                 ></div>
                 
                 {/* Profile image contained within circle */}
-                <div className="w-72 h-72 md:w-88 md:h-88 relative">
+                <div className="w-80 h-80 md:w-96 md:h-96 relative">
                   <img
                     src="https://i.postimg.cc/26Z6nDtg/image-2.png"
                     alt="Nahin"
