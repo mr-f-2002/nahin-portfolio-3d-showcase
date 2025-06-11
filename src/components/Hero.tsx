@@ -80,7 +80,7 @@ const Hero = () => {
           <div className="md:col-span-2 order-1 md:order-2 flex justify-center">
             <div className="relative">
               {/* Background circle */}
-              <div className="w-80 h-80 md:w-96 md:h-96 rounded-full bg-primary/20 relative overflow-hidden flex items-center justify-center">
+              <div className="w-72 h-72 md:w-80 md:h-80 rounded-full bg-primary/20 relative overflow-hidden flex items-center justify-center">
                 {/* Animated gradient overlay on background */}
                 <div
                   className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/5 to-accent/10 animate-spin opacity-70"
