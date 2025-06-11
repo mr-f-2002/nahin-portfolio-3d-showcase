@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -143,7 +142,7 @@ const Portfolio = () => {
               className={`animate-on-scroll animate-delay-${(index % 4 + 1) * 100}`}
             >
               <Card className="h-full flex flex-col card-hover overflow-hidden">
-                <div className="h-40 bg-secondary flex items-center justify-center">
+                <div className="aspect-square bg-secondary flex items-center justify-center">
                   <div className="w-full h-full bg-secondary relative overflow-hidden p-1">
                     <img
                       src={project.image}
