@@ -25,7 +25,7 @@ const Portfolio = () => {
       title: "Libra",
       description: "An anonymous blogging platform with embedded study tools for students.",
       technologies: ["Java", "FXML", "JavaFX", "MySQL"],
-      image: "/public/assets/libra.png",
+      image: "mr-f-2002/nahin-portfolio-3d-showcase/public/assets/libra.png",
       link: "https://github.com/mr-f-2002/libraRepos.git"
     },
     {
@@ -33,7 +33,7 @@ const Portfolio = () => {
       title: "Crop Recommender",
       description: "An intelligent ML based crop recommendation system to predict most suitable crop based on environmental conditions like soil nutrients, temperature, humidity, pH, and rainfall",
       technologies: ["Jupyter Notebook", "HTML", "CSS", "Python", "JavaScript"],
-      image: "/public/assets/crop_recom.png",
+      image: "https://i.postimg.cc/26Z6nDtg/image-2.png",
       link: "https://github.com/mr-f-2002/Crop-Recommender.git"
     },
     {
