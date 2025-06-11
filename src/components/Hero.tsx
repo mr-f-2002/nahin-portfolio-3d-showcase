@@ -1,10 +1,11 @@
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   const heroRef = useRef<HTMLElement>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -78,7 +79,7 @@ const Hero = () => {
           
           <div className="md:col-span-2 order-1 md:order-2 flex justify-center">
             <div className="relative">
-              {/* Background circle - made bigger */}
+              {/* Background circle */}
               <div className="w-80 h-80 md:w-96 md:h-96 rounded-full bg-primary/20 relative overflow-hidden flex items-center justify-center">
                 {/* Animated gradient overlay on background */}
                 <div
@@ -86,12 +87,25 @@ const Hero = () => {
                   style={{ animationDuration: '10s' }}
                 ></div>
                 
-                {/* Profile image contained within circle */}
-                <div className="w-80 h-80 md:w-96 md:h-96 relative">
+                {/* Image container with loading optimization */}
+                <div className="w-72 h-72 md:w-80 md:h-80 relative">
+                  {/* Loading placeholder */}
+                  {!imageLoaded && (
+                    <div className="absolute inset-0 bg-muted animate-pulse rounded-full flex items-center justify-center">
+                      <div className="w-16 h-16 bg-primary/20 rounded-full animate-pulse"></div>
+                    </div>
+                  )}
+                  
                   <img
                     src="https://i.postimg.cc/26Z6nDtg/image-2.png"
-                    alt="Nahin"
-                    className="w-full h-full object-cover object-center rounded-full"
+                    alt="Nahin F Siddiqui"
+                    className={`w-full h-full object-cover object-center rounded-full transition-opacity duration-500 ${
+                      imageLoaded ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    loading="eager"
+                    fetchPriority="high"
+                    onLoad={() => setImageLoaded(true)}
+                    onError={() => console.log('Image failed to load')}
                   />
                 </div>
               </div>
