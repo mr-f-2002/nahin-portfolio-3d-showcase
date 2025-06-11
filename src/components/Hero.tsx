@@ -97,7 +97,7 @@ const Hero = () => {
                   )}
                   
                   <img
-                    src="/public/assets/med_planner.png"
+                    src="public/assets/avatar.png"
                     alt="Nahin F Siddiqui"
                     className={`w-full h-full object-cover object-center rounded-full transition-opacity duration-500 ${
                       imageLoaded ? 'opacity-100' : 'opacity-0'
