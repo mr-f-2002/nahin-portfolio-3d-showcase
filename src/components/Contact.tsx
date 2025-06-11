@@ -127,26 +127,29 @@ const Contact = () => {
             
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
               {contactInfo.map((info, index) => (
-                <Card key={index} className="card-hover">
-                  <CardContent className="p-6">
-                    <div className="flex items-center space-x-4">
-                      <div className="bg-primary/10 p-3 rounded-full">
-                        <info.icon className="text-primary w-6 h-6" />
+                <a 
+                  key={index}
+                  href={info.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="block"
+                >
+                  <Card className="card-hover h-full cursor-pointer transition-transform hover:scale-105">
+                    <CardContent className="p-6">
+                      <div className="flex items-center space-x-4">
+                        <div className="bg-primary/10 p-3 rounded-full">
+                          <info.icon className="text-primary w-6 h-6" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold">{info.title}</h4>
+                          <span className="text-sm text-muted-foreground">
+                            {info.value}
+                          </span>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="font-semibold">{info.title}</h4>
-                        <a 
-                          href={info.link} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                        >
-                          {info.value}
-                        </a>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </a>
               ))}
             </div>
           </div>
