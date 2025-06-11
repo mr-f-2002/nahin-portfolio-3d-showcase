@@ -65,7 +65,7 @@ const Portfolio = () => {
       title: "PoorCAD",
       description: "A simple drawing app with multiple shapes and pen tools.",
       technologies: ["C++", "SFML"],
-      image: "public/assets/poor_cad.png",
+      image: "/public/assets/poor_cad.png",
       link: "https://github.com/mr-f-2002/Poor-Cad"
     },
     {
@@ -73,14 +73,14 @@ const Portfolio = () => {
       title: "Bangla Document Topic Modeler",
       description: "A machine learning model to identify topics from Bangla articles.",
       technologies: ["Python", "BARTopic", "ML"],
-      image: "public/assets/topic_modeler.png"
+      image: "/public/assets/topic_modeler.png"
     },
     {
       id: 8,
       title: "Daily Dashboard",
       description: "A python based simple daily dashboard that keeps track of todo, daily work progress and reminders",
       technologies: ["Python", "Tkinter"],
-      image: "public/assets/daily_dash.png",
+      image: "/public/assets/daily_dash.png",
       link: "https://github.com/mr-f-2002/event-planner-dashboard.git"
     },
     
