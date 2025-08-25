@@ -150,7 +150,7 @@ const About = () => {
       ref={aboutRef}
       className="py-20 px-4 bg-secondary/30 animate-on-scroll"
     >
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-7xl px-2">
         <h2 className="section-heading">About Me</h2>
         
         {/* New grid-based layout for better space utilization */}
