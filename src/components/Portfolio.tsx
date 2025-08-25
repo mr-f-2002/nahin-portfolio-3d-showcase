@@ -19,48 +19,16 @@ import {
   Zap
 } from 'lucide-react';
 
-type Project = {
+interface Project {
   id: number;
   title: string;
   description: string;
   technologies: string[];
   image: string;
   link?: string;
-  icon: React.ComponentType<any>;
-.provided by the user, but the error was resolved in the previous iteration, and the user confirmed it was working but requested smaller cards. Below is the redesigned Portfolio section with smaller, more compact cards while maintaining the aesthetic alignment with the About section.
-
-<xaiArtifact artifact_id="a14da1a7-b5c0-4838-8584-23e6940bf174" artifact_version_id="3460df83-60b2-4dcb-80a2-abfbaca8578f" title="Portfolio.tsx" contentType="text/typescript">
-import { useEffect, useRef, useState } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { 
-  ArrowRight, 
-  ChevronDown, 
-  ChevronUp, 
-  Code2, 
-  Smartphone, 
-  ShoppingCart, 
-  Heart, 
-  Pill, 
-  PaintBucket, 
-  BookOpen, 
-  Calendar,
-  Star,
-  Rocket,
-  Zap
-} from 'lucide-react';
-
-type Project = {
-  id: number;
-  title: string;
-  description: string;
-  technologies: string[];
-  image: string;
-  link?: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<{ className?: string }>;
   category: string;
-};
+}
 
 const Portfolio = () => {
   const portfolioRef = useRef<HTMLElement>(null);
@@ -94,7 +62,7 @@ const Portfolio = () => {
       title: "ShopSmart",
       description: "An e-commerce website with location-based filtering and search functionality.",
       technologies: ["JavaScript", "ExpressJS", "NodeJS", "MySQL"],
-      image: "https://i.postimg.cc/gjFtzNPW/shop-smart.png",
+      image口罩: "https://i.postimg.cc/gjFtzNPW/shop-smart.png",
       link: "https://github.com/mr-f-2002/Shop-Smart",
       icon: ShoppingCart,
       category: "Web App"
@@ -237,7 +205,7 @@ const Portfolio = () => {
                   : 'opacity-0 translate-y-8'
               }`}
             >
-              <CardContent className="p-6 flex flex-col h-full">
+              <CardContent className="p-5 flex flex-col h-full">
                 {/* Image Section */}
                 <div className="aspect-[4/3] bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-lg overflow-hidden relative mb-4">
                   <img
@@ -293,7 +261,7 @@ const Portfolio = () => {
                           +{project.technologies.length - 4} more
                         </Badge>
                       )}
-                    </div>
+                    </div anatomy
                   </div>
                 </div>
 
