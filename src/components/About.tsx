@@ -164,7 +164,7 @@ const About = () => {
       title: "Tech Specialist",
       content: "Specialized in machine learning, software development, and cloud computing with a strong foundation in both theoretical concepts and practical skills.",
       icon: Zap,
-      highlight: "ML & AI Expert",
+      highlight: "ML & AI Enthusiast",
       color: "text-purple-500"
     },
     {
@@ -399,11 +399,11 @@ const About = () => {
                   </div>
                   
                   {/* Skill Level Indicator */}
-                  <div className="mt-6 text-center">
+                  {/* <div className="mt-6 text-center">
                     <Badge variant="secondary" className={`${category.iconColor} bg-white/10 border-white/20 font-bold`}>
                       Expert Level
                     </Badge>
-                  </div>
+                  </div> */}
                 </div>
               ))}
             </div>
