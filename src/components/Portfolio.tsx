@@ -27,6 +27,38 @@ type Project = {
   image: string;
   link?: string;
   icon: React.ComponentType<any>;
+.provided by the user, but the error was resolved in the previous iteration, and the user confirmed it was working but requested smaller cards. Below is the redesigned Portfolio section with smaller, more compact cards while maintaining the aesthetic alignment with the About section.
+
+<xaiArtifact artifact_id="a14da1a7-b5c0-4838-8584-23e6940bf174" artifact_version_id="3460df83-60b2-4dcb-80a2-abfbaca8578f" title="Portfolio.tsx" contentType="text/typescript">
+import { useEffect, useRef, useState } from 'react';
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { 
+  ArrowRight, 
+  ChevronDown, 
+  ChevronUp, 
+  Code2, 
+  Smartphone, 
+  ShoppingCart, 
+  Heart, 
+  Pill, 
+  PaintBucket, 
+  BookOpen, 
+  Calendar,
+  Star,
+  Rocket,
+  Zap
+} from 'lucide-react';
+
+type Project = {
+  id: number;
+  title: string;
+  description: string;
+  technologies: string[];
+  image: string;
+  link?: string;
+  icon: React.ComponentType<any>;
   category: string;
 };
 
@@ -137,7 +169,6 @@ const Portfolio = () => {
       observer.observe(portfolioRef.current);
     }
 
-    // For the project items
     projectItemsRef.current.forEach((el, index) => {
       if (!el) return;
       
@@ -158,7 +189,6 @@ const Portfolio = () => {
       
       itemObserver.observe(el);
       
-      // Cleanup for each observer
       return () => {
         if (el) itemObserver.unobserve(el);
       };
@@ -168,10 +198,9 @@ const Portfolio = () => {
       if (portfolioRef.current) {
         observer.unobserve(portfolioRef.current);
       }
-      // No need to unobserve projectItems here as individual cleanups are set
-      projectItemsRef.current = []; // Clear refs on cleanup
+      projectItemsRef.current = [];
     };
-  }, [showAll, displayedProjects.length]); // Added displayedProjects.length to refresh when count changes
+  }, [showAll, displayedProjects.length]);
 
   const addToProjectRefs = (el: HTMLDivElement | null, index: number) => {
     projectItemsRef.current[index] = el;
@@ -181,69 +210,69 @@ const Portfolio = () => {
     <section
       id="portfolio"
       ref={portfolioRef}
-      className="py-28 bg-gradient-to-b from-background to-secondary/10"
+      className="py-24 bg-gradient-to-b from-background to-secondary/10"
     >
       <div className="container mx-auto max-w-[90%] xl:max-w-[1400px] px-4 sm:px-8 lg:px-12">
         {/* Header Section */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-6 mb-6">
-            <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               My Projects
             </h2>
           </div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Innovative solutions • Creative implementations • Real-world impact
           </p>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
           {displayedProjects.map((project, index) => (
             <Card
               key={project.id}
               ref={(el) => addToProjectRefs(el, index)}
-              className={`transform transition-all duration-700 border border-primary/10 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-105 ${
+              className={`transform transition-all duration-700 border border-primary/10 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm shadow-md hover:shadow-lg hover:scale-105 ${
                 index <= activeProjectIndex 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-8'
               }`}
             >
-              <CardContent className="p-8 flex flex-col h-full">
+              <CardContent className="p-6 flex flex-col h-full">
                 {/* Image Section */}
-                <div className="aspect-[4/3] bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-xl overflow-hidden relative mb-6">
+                <div className="aspect-[4/3] bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-lg overflow-hidden relative mb-4">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <Badge
                     variant="secondary"
-                    className="absolute top-4 left-4 bg-primary/10 text-primary border-primary/20 text-sm px-3 py-1"
+                    className="absolute top-3 left-3 bg-primary/10 text-primary border-primary/20 text-xs px-2 py-0.5"
                   >
                     {project.category}
                   </Badge>
-                  <div className="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <project.icon className="w-6 h-6 text-primary" />
+                  <div className="absolute top-3 right-3 w-8 h-8 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <project.icon className="w-4 h-4 text-primary" />
                   </div>
                 </div>
 
                 {/* Content Section */}
                 <div className="flex-1">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center">
-                      <project.icon className="w-6 h-6 text-primary" />
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center">
+                      <project.icon className="w-4 h-4 text-primary" />
                     </div>
-                    <h3 className="text-2xl font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                    <h3 className="text-lg font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                       {project.title}
                     </h3>
                   </div>
-                  <p className="text-base text-muted-foreground leading-relaxed mb-6">
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                     {project.description}
                   </p>
-                  <div className="mb-6">
-                    <h4 className="text-base font-medium text-primary flex items-center gap-2 mb-3">
-                      <Code2 className="w-5 h-5" />
+                  <div className="mb-4">
+                    <h4 className="text-sm font-medium text-primary flex items-center gap-2 mb-2">
+                      <Code2 className="w-4 h-4" />
                       Technologies
                     </h4>
                     <div className="flex flex-wrap gap-2">
@@ -251,7 +280,7 @@ const Portfolio = () => {
                         <Badge
                           key={i}
                           variant="secondary"
-                          className="text-sm px-3 py-1 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors duration-300"
+                          className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors duration-300"
                         >
                           {tech}
                         </Badge>
@@ -259,7 +288,7 @@ const Portfolio = () => {
                       {project.technologies.length > 4 && (
                         <Badge
                           variant="outline"
-                          className="text-sm px-3 py-1 border-primary/20 text-primary hover:bg-primary/10 transition-colors duration-300"
+                          className="text-xs px-2 py-0.5 border-primary/20 text-primary hover:bg-primary/10 transition-colors duration-300"
                         >
                           +{project.technologies.length - 4} more
                         </Badge>
@@ -274,20 +303,20 @@ const Portfolio = () => {
                     <Button
                       variant="outline"
                       asChild
-                      className="group w-full h-12 text-base font-semibold border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                      className="group w-full h-10 text-sm font-semibold border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                     >
-                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3">
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
                         <span>Explore Project</span>
-                        <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                       </a>
                     </Button>
                   ) : (
                     <Button
                       variant="outline"
                       disabled
-                      className="w-full h-12 text-base font-semibold border-primary/20 text-primary"
+                      className="w-full h-10 text-sm font-semibold border-primary/20 text-primary"
                     >
-                      <Calendar className="w-5 h-5 mr-2" />
+                      <Calendar className="w-4 h-4 mr-2" />
                       Coming Soon
                     </Button>
                   )}
@@ -298,27 +327,27 @@ const Portfolio = () => {
         </div>
 
         {/* Show More/Less Button */}
-        <div className="flex justify-center mt-12">
+        <div className="flex justify-center mt-10">
           {!showAll && projects.length > initialProjectCount && (
             <Button
               variant="outline"
               onClick={() => setShowAll(true)}
-              className="h-12 px-8 text-base font-semibold border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center gap-3"
+              className="h-10 px-6 text-sm font-semibold border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center gap-2"
             >
-              <Zap className="w-5 h-5" />
+              <Zap className="w-4 h-4" />
               See All Projects
-              <ChevronDown className="w-5 h-5" />
+              <ChevronDown className="w-4 h-4" />
             </Button>
           )}
           {showAll && projects.length > initialProjectCount && (
             <Button
               variant="outline"
               onClick={() => setShowAll(false)}
-              className="h-12 px-8 text-base font-semibold border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center gap-3"
+              className="h-10 px-6 text-sm font-semibold border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center gap-2"
             >
-              <Star className="w-5 h-5" />
+              <Star className="w-4 h-4" />
               Show Less
-              <ChevronUp className="w-5 h-5" />
+              <ChevronUp className="w-4 h-4" />
             </Button>
           )}
         </div>
