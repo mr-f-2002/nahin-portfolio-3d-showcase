@@ -153,115 +153,108 @@ const About = () => {
       <div className="container mx-auto max-w-6xl">
         <h2 className="section-heading">About Me</h2>
         
-        {/* Updated layout - separate rows for Who I Am and Education/Skills */}
-        <div className="flex flex-col gap-8 mb-16">
-          {/* Who I Am - Now with sequential slide-in effect */}
-          <div ref={addToRefs} className="w-full animate-on-scroll animate-delay-100">
+        {/* New grid-based layout for better space utilization */}
+        <div className="grid lg:grid-cols-12 gap-8">
+          
+          {/* Who I Am - Takes up full width on large screens */}
+          <div ref={addToRefs} className="lg:col-span-12 animate-on-scroll animate-delay-100">
             <div className="p-6 bg-card rounded-lg shadow-md modern-card shimmer">
               <h3 className="section-subheading border-b border-primary/20 pb-3 mb-6">Who I Am</h3>
 
-              <div className="flex flex-col space-y-8 relative">
-                {/* Progress line */}
-                <div className="absolute left-3 top-4 bottom-4 w-0.5 bg-primary/30 z-0"></div>
-                
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {whoIAmFlashcards.map((card, index) => (
                   <div
                     key={index}
                     ref={(el) => addToWhoIAmRefs(el, index)}
-                    className={`relative pl-10 transform transition-all duration-700 ${
+                    className={`transform transition-all duration-700 ${
                       index <= activeWhoIAmIndex 
-                        ? 'opacity-100 translate-x-0' 
-                        : 'opacity-0 translate-x-[-50px]'
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-8'
                     }`}
                   >
-                    {/* Progress circle */}
-                    <div className={`absolute left-0 top-2 w-6 h-6 rounded-full border-2 flex items-center justify-center ${
-                      index <= activeWhoIAmIndex ? 'border-primary bg-primary/20' : 'border-muted bg-secondary'
-                    }`}>
-                      <div className={`w-2 h-2 rounded-full ${
-                        index <= activeWhoIAmIndex ? 'bg-primary' : 'bg-muted'
-                      }`}></div>
-                    </div>
-
-                    <div className="bg-card/60 p-4 rounded-lg border border-primary/10 shadow-md hover:shadow-lg transition-all duration-300 hover:border-primary/30">
-                      <h4 className="text-lg font-semibold text-primary mb-2">{card.title}</h4>
-                      <p className="text-muted-foreground">{card.content}</p>
+                    <div className="bg-card/60 p-4 rounded-lg border border-primary/10 shadow-md hover:shadow-lg transition-all duration-300 hover:border-primary/30 h-full">
+                      <div className="flex items-center mb-3">
+                        <div className={`w-3 h-3 rounded-full mr-3 ${
+                          index <= activeWhoIAmIndex ? 'bg-primary' : 'bg-muted'
+                        }`}></div>
+                        <h4 className="text-lg font-semibold text-primary">{card.title}</h4>
+                      </div>
+                      <p className="text-muted-foreground text-sm">{card.content}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
-        </div>
-          
-        {/* Education - Now in its own row */}
-        <div ref={addToRefs} className="w-full animate-on-scroll animate-delay-200">
-          <div className="p-6 bg-card rounded-lg shadow-md modern-card shimmer">
-            <h3 className="section-subheading border-b border-primary/20 pb-3 mb-6">Education</h3>
-            <div className="space-y-6">
-              {educationData.map((edu, index) => (
-                <div key={index} className="grid md:grid-cols-3 gap-4 p-4 bg-secondary/30 rounded-lg hover:bg-secondary/50 transition-all duration-300">
-                  <div className="md:col-span-1">
-                    <p className="text-primary font-semibold">{edu.year}</p>
+
+          {/* Education and Research side by side on large screens */}
+          <div ref={addToRefs} className="lg:col-span-6 animate-on-scroll animate-delay-200">
+            <div className="p-6 bg-card rounded-lg shadow-md modern-card shimmer h-full">
+              <h3 className="section-subheading border-b border-primary/20 pb-3 mb-6">Education</h3>
+              <div className="space-y-4">
+                {educationData.map((edu, index) => (
+                  <div key={index} className="p-4 bg-secondary/30 rounded-lg hover:bg-secondary/50 transition-all duration-300">
+                    <div className="mb-2">
+                      <p className="text-primary font-semibold text-sm">{edu.year}</p>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-base mb-1">{edu.degree}</h4>
+                      <p className="text-muted-foreground text-sm mb-2">{edu.institution}</p>
+                      <ul className="list-disc list-inside text-xs space-y-1">
+                        {edu.achievements.map((achievement, idx) => (
+                          <li key={idx}>{achievement}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                  <div className="md:col-span-2">
-                    <h4 className="font-bold text-lg">{edu.degree}</h4>
-                    <p className="text-muted-foreground mb-2">{edu.institution}</p>
-                    <ul className="list-disc list-inside text-sm pl-2">
-                      {edu.achievements.map((achievement, idx) => (
-                        <li key={idx}>{achievement}</li>
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          <div ref={addToRefs} className="lg:col-span-6 animate-on-scroll animate-delay-250">
+            <div className="p-6 bg-card rounded-lg shadow-md modern-card shimmer h-full">
+              <h3 className="section-subheading border-b border-primary/20 pb-3 mb-6">Research Interests</h3>
+              <div className="space-y-4">
+                <ul className="space-y-3">
+                  {researchInterests.map((interest, index) => (
+                    <li key={index} className="flex items-start p-3 bg-secondary/30 rounded-lg hover:bg-secondary/50 transition-all duration-300">
+                      <span className="text-primary text-lg mr-2">•</span>
+                      <span className="font-medium text-sm">{interest}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
+                  <h4 className="font-semibold mb-3 text-primary">Research Focus</h4>
+                  <p className="text-sm">
+                    My research primarily focuses on optimizing resource provisioning in cloud environments
+                    and applying AI techniques to solve complex educational and linguistic problems,
+                    with a special interest in Bangla language processing.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Skills - Full width */}
+          <div ref={addToRefs} className="lg:col-span-12 animate-on-scroll animate-delay-300">
+            <div className="p-6 bg-card rounded-lg shadow-md modern-card shimmer">
+              <h3 className="section-subheading border-b border-primary/20 pb-3 mb-6">My Skills</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {skillCategories.map((category, index) => (
+                  <div key={index} className="p-4 bg-secondary/30 rounded-lg hover:bg-secondary/50 transition-all duration-300">
+                    <h4 className="font-bold text-lg mb-4 text-primary">{category.category}</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {category.skills.map((skill, idx) => (
+                        <span key={idx} className="bg-background/50 px-3 py-1 rounded-full text-sm border border-primary/10 hover:border-primary/30 transition-all duration-300">
+                          {skill}
+                        </span>
                       ))}
-                    </ul>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-          
-        {/* Research Interests - Moved from Experience section */}
-        <div ref={addToRefs} className="w-full animate-on-scroll animate-delay-250">
-          <div className="p-6 bg-card rounded-lg shadow-md modern-card shimmer">
-            <h3 className="section-subheading border-b border-primary/20 pb-3 mb-6">Research Interests</h3>
-            <div className="space-y-4">
-              <ul className="space-y-4">
-                {researchInterests.map((interest, index) => (
-                  <li key={index} className="flex items-start p-3 bg-secondary/30 rounded-lg hover:bg-secondary/50 transition-all duration-300">
-                    <span className="text-primary text-lg mr-2">•</span>
-                    <span className="font-medium">{interest}</span>
-                  </li>
                 ))}
-              </ul>
-              
-              <div className="mt-8 p-4 bg-primary/10 rounded-lg border border-primary/20">
-                <h4 className="font-semibold mb-4 text-primary">Research Focus</h4>
-                <p>
-                  My research primarily focuses on optimizing resource provisioning in cloud environments
-                  and applying AI techniques to solve complex educational and linguistic problems,
-                  with a special interest in Bangla language processing.
-                </p>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Skills - Now in its own row */}
-        <div ref={addToRefs} className="w-full animate-on-scroll animate-delay-300">
-          <div className="p-6 bg-card rounded-lg shadow-md modern-card shimmer">
-            <h3 className="section-subheading border-b border-primary/20 pb-3 mb-6">My Skills</h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {skillCategories.map((category, index) => (
-                <div key={index} className="p-4 bg-secondary/30 rounded-lg hover:bg-secondary/50 transition-all duration-300">
-                  <h4 className="font-bold text-lg mb-4 text-primary">{category.category}</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill, idx) => (
-                      <span key={idx} className="bg-background/50 px-3 py-1 rounded-full text-sm border border-primary/10 hover:border-primary/30 transition-all duration-300">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
