@@ -133,27 +133,47 @@ const Portfolio = () => {
       { threshold: 0.1 }
     );
 
+    // Observe the main section
     if (portfolioRef.current) {
       observer.observe(portfolioRef.current);
     }
 
+    // Observe all current project items
     projectItemsRef.current.forEach((el) => {
       if (el) observer.observe(el);
     });
 
     return () => {
+      // Only unobserve, don't clear the refs array
       if (portfolioRef.current) {
         observer.unobserve(portfolioRef.current);
       }
       projectItemsRef.current.forEach((el) => {
         if (el) observer.unobserve(el);
       });
-      projectItemsRef.current = [];
     };
-  }, [showAll, displayedProjects.length]);
+  }, [displayedProjects.length]);
 
   const addToProjectRefs = (el: HTMLDivElement | null, index: number) => {
-    projectItemsRef.current[index] = el;
+    if (el && !projectItemsRef.current[index]) {
+      projectItemsRef.current[index] = el;
+      // Apply initial animation state to new elements
+      el.classList.add('opacity-0', 'translate-y-8');
+      
+      // Create observer for this new element
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('opacity-100', 'translate-y-0');
+              entry.target.classList.remove('opacity-0', 'translate-y-8');
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(el);
+    }
   };
 
   return (
