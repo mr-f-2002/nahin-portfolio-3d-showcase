@@ -190,7 +190,7 @@ const About = () => {
         {/* Header Section */}
         <div className="text-center mb-20">
           <div className="flex items-center justify-center gap-6 mb-6">
-            <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground">
               About Me
             </h2>
           </div>
@@ -239,7 +239,7 @@ const About = () => {
                 <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center">
                   <GraduationCap className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-3xl font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                <h3 className="text-2xl font-semibold text-foreground">
                   Education
                 </h3>
               </div>
@@ -279,7 +279,7 @@ const About = () => {
                 <div className="w-14 h-14 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-xl flex items-center justify-center">
                   <Brain className="w-8 h-8 text-blue-600" />
                 </div>
-                <h3 className="text-3xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h3 className="text-2xl font-semibold text-foreground">
                   Research Interests
                 </h3>
               </div>
@@ -312,7 +312,7 @@ const About = () => {
                 <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center">
                   <Zap className="w-8 h-8 text-primary" />
                 </div>
-                <h3 className="text-3xl font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                <h3 className="text-2xl font-semibold text-foreground">
                   Technical Skills
                 </h3>
               </div>

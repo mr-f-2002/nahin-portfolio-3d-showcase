@@ -143,7 +143,7 @@ const Experience = () => {
         {/* Header Section */}
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-6 mb-6">
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground">
               Research & Work Experience
             </h2>
           </div>
@@ -158,7 +158,7 @@ const Experience = () => {
             <div className="w-8 h-8 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center">
               <BookOpen className="w-4 h-4 text-primary" />
             </div>
-            <h3 className="text-2xl font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <h3 className="text-2xl font-semibold text-foreground">
               Research Works
             </h3>
           </div>
@@ -172,7 +172,7 @@ const Experience = () => {
                 <CardContent className="p-5">
                   <div className="flex justify-between items-start mb-3">
                     <div>
-                      <h4 className="text-lg font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                      <h4 className="text-lg font-semibold text-foreground">
                         {research.title}
                       </h4>
                       <p className="text-sm text-muted-foreground">{research.journal}</p>
@@ -217,7 +217,7 @@ const Experience = () => {
             <div className="w-8 h-8 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center">
               <Code2 className="w-4 h-4 text-primary" />
             </div>
-            <h3 className="text-2xl font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <h3 className="text-2xl font-semibold text-foreground">
               Professional Experience
             </h3>
           </div>
@@ -231,7 +231,7 @@ const Experience = () => {
                 <CardContent className="p-5">
                   <div className="flex justify-between items-start mb-3">
                     <div>
-                      <h4 className="text-lg font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                      <h4 className="text-lg font-semibold text-foreground">
                         {exp.role}
                       </h4>
                       <p className="text-sm text-muted-foreground">{exp.company}</p>

@@ -103,7 +103,6 @@ const Hero = () => {
                       imageLoaded ? 'opacity-100' : 'opacity-0'
                     }`}
                     loading="eager"
-                    fetchPriority="high"
                     onLoad={() => setImageLoaded(true)}
                     onError={() => console.log('Image failed to load')}
                   />
