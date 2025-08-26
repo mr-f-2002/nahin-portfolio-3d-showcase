@@ -1,17 +1,40 @@
-
 import { useEffect, useRef } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { BookOpen, Code2 } from 'lucide-react';
+
+interface ResearchWork {
+  id: number;
+  title: string;
+  journal: string;
+  date: string;
+  description: string;
+  status: string;
+  authors: string[];
+  keywords: string[];
+}
+
+interface Experience {
+  id: number;
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+  responsibilities: string[];
+  technologies: string[];
+}
 
 const Experience = () => {
   const experienceRef = useRef<HTMLElement>(null);
-  const elementsRef = useRef<HTMLDivElement[]>([]);
+  const elementsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('active');
+            entry.target.classList.add('opacity-100', 'translate-y-0');
+            entry.target.classList.remove('opacity-0', 'translate-y-8');
           }
         });
       },
@@ -33,56 +56,34 @@ const Experience = () => {
       elementsRef.current.forEach((el) => {
         if (el) observer.unobserve(el);
       });
+      elementsRef.current = [];
     };
   }, []);
 
-  const addToRefs = (el: HTMLDivElement) => {
-    if (el && !elementsRef.current.includes(el)) {
-      elementsRef.current.push(el);
-    }
+  const addToRefs = (el: HTMLDivElement | null, index: number) => {
+    elementsRef.current[index] = el;
   };
 
-  const researchWorks = [
-    // {
-    //   id: 1,
-    //   title: "Resource Allocation Optimization in Cloud Computing",
-    //   journal: "International Journal of Cloud Computing",
-    //   date: "June 2023 - Present",
-    //   description: "Researching efficient resource allocation algorithms for cloud computing environments using predictive analytics and machine learning techniques.",
-    //   status: "Ongoing",
-    //   authors: ["Nahin Ahmed", "Dr. John Smith", "Dr. Emily Taylor"],
-    //   keywords: ["Cloud Computing", "Resource Allocation", "Machine Learning", "Optimization"]
-    // },
-    // {
-    //   id: 2,
-    //   title: "Bangla Text Classification Using Deep Learning",
-    //   journal: "Journal of Natural Language Processing",
-    //   date: "March 2023 - December 2023",
-    //   description: "Developed a novel approach for Bangla text classification using transformer-based models, achieving 92% accuracy on benchmark datasets.",
-    //   status: "Published",
-    //   authors: ["Nahin Ahmed", "Dr. Sarah Johnson"],
-    //   keywords: ["NLP", "Bangla Language", "Text Classification", "Deep Learning"]
-    // },
-    // {
-    //   id: 3,
-    //   title: "Performance Analysis of RAG Models in Medical Education",
-    //   journal: "AI in Education Conference",
-    //   date: "January 2024 - Present",
-    //   description: "Analyzing the effectiveness of Retrieval Augmented Generation models in medical education scenarios, with focus on knowledge retention and accuracy.",
-    //   status: "Under Review",
-    //   authors: ["Nahin Ahmed", "Dr. Robert Chen", "Dr. Lisa Wong"],
-    //   keywords: ["RAG", "Medical Education", "Knowledge Assessment", "AI"]
-    // }
+  const researchWorks: ResearchWork[] = [
+    {
+      id: 1,
+      title: "SpectraNet: An Energy-Efficient Hybrid Model for Sustainable Cloud Resource Management",
+      journal: "",
+      date: "June 2023 - Present",
+      description: "Researching efficient resource allocation model for cloud computing environments using predictive analytics and machine learning techniques.",
+      status: "Ongoing",
+      authors: ["Nahin F. Siddiqui", "Zarif Safwan Haque", "Md. Ehsanul Hoque", "Dr. Md. Azam Hossain"],
+      keywords: ["Cloud Computing", "Resource Allocation", "Machine Learning", "Optimization"]
+    }
   ];
 
-  const experiences = [
+  const experiences: Experience[] = [
     {
       id: 1,
       role: "AI Engineering Intern",
       company: "Kernel Technologies Limited",
       period: "June 2024 - September 2024",
-      description:
-        "Developed an AI-powered viva system for medical students using Retrieval Augmented Generation (RAG) for textbook-based viva questions and feedback.",
+      description: "Developed an AI-powered viva system for medical students using Retrieval Augmented Generation (RAG) for textbook-based viva questions and feedback.",
       responsibilities: [
         "Implemented RAG models to generate context-relevant questions from medical textbooks",
         "Created a feedback system that evaluates student answers based on key concepts",
@@ -96,8 +97,7 @@ const Experience = () => {
       role: "Event Management Team Member",
       company: "ICPC Regional Programming Contest – University Chapter",
       period: "October 2023",
-      description:
-        "Assisted in organizing and managing the ICPC regional programming contest hosted at the university.",
+      description: "Assisted in organizing and managing the ICPC regional programming contest hosted at the university.",
       responsibilities: [
         "Coordinated logistics and participant management",
         "Worked with the tech team to ensure system readiness",
@@ -110,8 +110,7 @@ const Experience = () => {
       role: "Private Tutor (SSC Level)",
       company: "Self-employed",
       period: "March 2023 - August 2023",
-      description:
-        "Provided academic support to an SSC-level student in science subjects.",
+      description: "Provided academic support to an SSC-level student in science subjects.",
       responsibilities: [
         "Explained complex topics in physics and mathematics in an understandable way",
         "Designed personalized lesson plans and mock tests",
@@ -124,65 +123,86 @@ const Experience = () => {
       role: "Private Tutor (HSC Level)",
       company: "Self-employed",
       period: "July 2023 - February 2024",
-      description:
-        "Tutored an HSC-level student in science disciplines for university admission preparation.",
+      description: "Tutored an HSC-level student in science disciplines for university admission preparation.",
       responsibilities: [
         "Taught advanced concepts in physics and mathematics",
         "Monitored progress and adapted teaching style based on performance",
         "Prepared custom study materials for efficiency and retention"
       ],
       technologies: ["Communication", "Curriculum Design", "Problem Solving"]
-    },
-  ];
-
-  const researchInterests = [
-    "Cloud Computing Resource Optimization",
-    "Natural Language Processing in Education",
-    "Retrieval Augmented Generation",
-    "Machine Learning for Healthcare",
-    "Bangla Language Processing"
+    }
   ];
 
   return (
     <section
       id="experience"
       ref={experienceRef}
-      className="py-20 px-4 bg-secondary/30 animate-on-scroll"
+      className="py-24 bg-gradient-to-b from-background to-secondary/10"
     >
-      <div className="container mx-auto max-w-6xl">
-        <h2 className="section-heading">Research & Work Experience</h2>
+      <div className="container mx-auto max-w-[90%] xl:max-w-[1400px] px-4 sm:px-8 lg:px-12">
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-6 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Research & Work Experience
+            </h2>
+          </div>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            Combining innovation, research, and practical expertise
+          </p>
+        </div>
 
         {/* Research Works Section */}
-        <div ref={addToRefs} className="mb-16 animate-on-scroll animate-delay-100">
-          <h3 className="section-subheading mb-6">Research Works</h3>
-          <div className="space-y-8">
-            {researchWorks.map((research) => (
-              <Card key={research.id} className="card-hover">
-                <CardHeader>
-                  <div className="flex justify-between items-start">
+        <div className="mb-16">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-8 h-8 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center">
+              <BookOpen className="w-4 h-4 text-primary" />
+            </div>
+            <h3 className="text-2xl font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Research Works
+            </h3>
+          </div>
+          <div className="space-y-6">
+            {researchWorks.map((research, index) => (
+              <Card
+                key={research.id}
+                ref={(el) => addToRefs(el, index)}
+                className={`transform transition-all duration-700 border border-primary/10 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm shadow-md hover:shadow-lg hover:scale-105 opacity-0 translate-y-8 group`}
+              >
+                <CardContent className="p-5">
+                  <div className="flex justify-between items-start mb-3">
                     <div>
-                      <CardTitle className="text-primary">{research.title}</CardTitle>
-                      <CardDescription className="text-lg font-medium">{research.journal}</CardDescription>
+                      <h4 className="text-lg font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                        {research.title}
+                      </h4>
+                      <p className="text-sm text-muted-foreground">{research.journal}</p>
                     </div>
-                    <div className="text-right flex flex-col">
-                      <span className="text-sm text-muted-foreground">{research.date}</span>
-                      <span className="mt-1 text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">
+                    <div className="text-right flex flex-col gap-1">
+                      <span className="text-xs text-muted-foreground">{research.date}</span>
+                      <Badge
+                        variant="secondary"
+                        className="bg-primary/10 text-primary border-primary/20 text-xs px-2 py-0.5"
+                      >
                         {research.status}
-                      </span>
+                      </Badge>
                     </div>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="mb-4">{research.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">
+                    {research.description}
+                  </p>
                   <div className="flex items-center gap-1 text-sm mb-3">
                     <span className="font-semibold">Authors:</span>
                     <span>{research.authors.join(", ")}</span>
                   </div>
-                  <div className="flex flex-wrap gap-2 mt-4">
+                  <div className="flex flex-wrap gap-2">
                     {research.keywords.map((keyword, i) => (
-                      <span key={i} className="bg-secondary px-3 py-1 rounded-full text-xs">
+                      <Badge
+                        key={i}
+                        variant="secondary"
+                        className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors duration-300"
+                      >
                         {keyword}
-                      </span>
+                      </Badge>
                     ))}
                   </div>
                 </CardContent>
@@ -192,45 +212,55 @@ const Experience = () => {
         </div>
 
         {/* Professional Experience Section */}
-        <div className="grid md:grid-cols-1 gap-12 mb-16">
-          <div>
-            <div ref={addToRefs} className="animate-on-scroll animate-delay-200">
-              <h3 className="section-subheading">Professional Experience</h3>
-
-              <div className="space-y-8">
-                {experiences.map((exp) => (
-                  <Card key={exp.id} className="card-hover">
-                    <CardHeader>
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <CardTitle className="text-primary">{exp.role}</CardTitle>
-                          <CardDescription className="text-lg font-medium">{exp.company}</CardDescription>
-                        </div>
-                        <div className="text-right">
-                          <span className="text-sm text-muted-foreground">{exp.period}</span>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="mb-4">{exp.description}</p>
-                      <h4 className="font-semibold mb-2">Key Responsibilities:</h4>
-                      <ul className="list-disc list-inside space-y-2 mb-4">
-                        {exp.responsibilities.map((item, i) => (
-                          <li key={i} className="text-sm">{item}</li>
-                        ))}
-                      </ul>
-                      <div className="flex flex-wrap gap-2 mt-4">
-                        {exp.technologies.map((tech, i) => (
-                          <span key={i} className="bg-secondary px-3 py-1 rounded-full text-xs">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+        <div className="mb-16">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-8 h-8 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center">
+              <Code2 className="w-4 h-4 text-primary" />
             </div>
+            <h3 className="text-2xl font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Professional Experience
+            </h3>
+          </div>
+          <div className="space-y-6">
+            {experiences.map((exp, index) => (
+              <Card
+                key={exp.id}
+                ref={(el) => addToRefs(el, index + researchWorks.length)}
+                className={`transform transition-all duration-700 border border-primary/10 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm shadow-md hover:shadow-lg hover:scale-105 opacity-0 translate-y-8 group`}
+              >
+                <CardContent className="p-5">
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <h4 className="text-lg font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                        {exp.role}
+                      </h4>
+                      <p className="text-sm text-muted-foreground">{exp.company}</p>
+                    </div>
+                    <span className="text-xs text-muted-foreground">{exp.period}</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">
+                    {exp.description}
+                  </p>
+                  <h5 className="text-sm font-medium text-primary mb-2">Key Responsibilities:</h5>
+                  <ul className="list-disc list-inside space-y-1 mb-4 text-sm text-muted-foreground">
+                    {exp.responsibilities.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-2">
+                    {exp.technologies.map((tech, i) => (
+                      <Badge
+                        key={i}
+                        variant="secondary"
+                        className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors duration-300"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </div>
