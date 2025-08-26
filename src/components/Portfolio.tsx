@@ -33,7 +33,6 @@ interface Project {
 const Portfolio = () => {
   const portfolioRef = useRef<HTMLElement>(null);
   const projectItemsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const [activeProjectIndex, setActiveProjectIndex] = useState<number>(-1);
   const [showAll, setShowAll] = useState(false);
 
   const projects: Project[] = [
@@ -126,7 +125,8 @@ const Portfolio = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('active');
+            entry.target.classList.add('opacity-100', 'translate-y-0');
+            entry.target.classList.remove('opacity-0', 'translate-y-8');
           }
         });
       },
@@ -137,35 +137,17 @@ const Portfolio = () => {
       observer.observe(portfolioRef.current);
     }
 
-    projectItemsRef.current.forEach((el, index) => {
-      if (!el) return;
-      
-      const itemObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setTimeout(() => {
-                setActiveProjectIndex(prevIndex => 
-                  index > prevIndex ? index : prevIndex
-                );
-              }, index * 150);
-            }
-          });
-        },
-        { threshold: 0.5 }
-      );
-      
-      itemObserver.observe(el);
-      
-      return () => {
-        if (el) itemObserver.unobserve(el);
-      };
+    projectItemsRef.current.forEach((el) => {
+      if (el) observer.observe(el);
     });
 
     return () => {
       if (portfolioRef.current) {
         observer.unobserve(portfolioRef.current);
       }
+      projectItemsRef.current.forEach((el) => {
+        if (el) observer.unobserve(el);
+      });
       projectItemsRef.current = [];
     };
   }, [showAll, displayedProjects.length]);
@@ -199,11 +181,7 @@ const Portfolio = () => {
             <Card
               key={project.id}
               ref={(el) => addToProjectRefs(el, index)}
-              className={`transform transition-all duration-700 border border-primary/10 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm shadow-md hover:shadow-lg hover:scale-105 ${
-                index <= activeProjectIndex 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-8'
-              }`}
+              className={`transform transition-all duration-700 border border-primary/10 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm shadow-md hover:shadow-lg hover:scale-105 opacity-0 translate-y-8 group`}
             >
               <CardContent className="p-5 flex flex-col h-full">
                 {/* Image Section */}
