@@ -173,12 +173,15 @@ const About = () => {
   ];
 
   const researchInterests = [
-    "Cloud Computing Resource Optimization",
+    "Cloud Resource Provisioning Optimization",
+    "Lightweight & Sustainable Architecture Development",
+    "Proactive Anomaly Prediction in Large-Scale Cloud Systems",
     "Natural Language Processing in Education",
-    "Retrieval Augmented Generation",
+    "Retrieval-Augmented Generation (RAG) Systems",
     "Machine Learning for Healthcare",
     "Bangla Language Processing"
   ];
+
   
   return (
     <section 
