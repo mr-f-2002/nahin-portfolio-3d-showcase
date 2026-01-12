@@ -178,8 +178,8 @@ const About = () => {
     "Proactive Anomaly Prediction in Large-Scale Cloud Systems",
     "Natural Language Processing in Education",
     "Retrieval-Augmented Generation (RAG) Systems",
-    "Machine Learning for Healthcare",
-    "Bangla Language Processing"
+    // "Machine Learning for Healthcare",
+    // "Bangla Language Processing"
   ];
 
   
