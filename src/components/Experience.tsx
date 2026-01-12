@@ -67,13 +67,13 @@ const Experience = () => {
   const researchWorks: ResearchWork[] = [
     {
       id: 1,
-      title: "SpectraNet: An Energy-Efficient Hybrid Model for Sustainable Cloud Resource Management",
-      journal: "",
-      date: "June 2023 - Present",
+      title: "SpectraNet: A Lightweight Hybrid Time–Frequency Deep Learning Framework for Sustainable Cloud Workload Forecasting",
+      journal: "Journal of Cloud Computing",
+      date: "11 December, 2025",
       description: "Researching efficient resource allocation model for cloud computing environments using predictive analytics and machine learning techniques.",
-      status: "Ongoing",
-      authors: ["Nahin F. Siddiqui", "Zarif Safwan Haque", "Md. Ehsanul Hoque", "Dr. Md. Azam Hossain"],
-      keywords: ["Cloud Computing", "Resource Allocation", "Machine Learning", "Optimization"]
+      status: "Accepted",
+      authors: ["Nahin F. Siddiqui, Zarif Safwan Hoque, Md. Ehsanul Haque, Abu Raihan Mostofa Kamal, A. K. M. Azad, Salem A. Alyami, Md Azam Hossain"],
+      keywords: ["Cloud Computing, Sustainable Resource Management, CPU Workload Forecasting, Time-Frequency Analysis, Hybrid Deep Learning Models, Lightweight AI Models"]
     }
   ];
 
