@@ -94,7 +94,7 @@ const About = () => {
       degree: "B.Sc. in Computer Science & Engineering",
       institution: "Islamic University of Technology (IUT)",
       year: "2021 - 2025",
-      achievements: ["CGPA: 3.88/4.00", "Research in Resource Provisioning and Forecasting in Cloud"]
+      achievements: ["CGPA: 3.89/4.00", "Research in lightweight hybrid architectures for cloud resource forecasting."]
     },
     {
       degree: "Higher Secondary School Certificate (HSC)",
@@ -144,16 +144,16 @@ const About = () => {
   const whoIAmFlashcards = [
     {
       title: "Academic Excellence",
-      content: "Computer Science and Engineering graduate with CGPA of 3.88/4.00, passionate about learning and implementing innovative methods.",
+      content: "Computer Science and Engineering graduate with CGPA of 3.89/4.00, passionate about learning and implementing innovative methods.",
       icon: Trophy,
-      highlight: "3.88/4.00 CGPA",
+      highlight: "3.89/4.00 CGPA",
       color: "text-yellow-600"
     },
     {
       title: "Research Pioneer",
-      content: "Focused on resource provisioning and forecasting in cloud environments, applying innovative methods to solve real-world problems.",
+      content: "Focused on developing lightweight hybrid models for resource provisioning and forecasting in cloud environments.",
       icon: Lightbulb,
-      highlight: "Cloud Computing",
+      highlight: "Light-weight models",
       color: "text-blue-600"
     },
     {
@@ -273,35 +273,45 @@ const About = () => {
           </Card>
 
           {/* Research Card */}
-          <Card ref={addToRefs} className="border border-primary/10 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-500">
-            <CardContent className="p-10">
-              <div className="flex items-center gap-6 mb-8">
-                <div className="w-14 h-14 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-xl flex items-center justify-center">
-                  <Brain className="w-8 h-8 text-blue-600" />
-                </div>
-                <h3 className="text-2xl font-semibold text-foreground">
-                  Research Interests
-                </h3>
-              </div>
-              <div className="space-y-6">
-                {researchInterests.map((interest, index) => (
-                  <div key={index} className="flex items-center gap-4 p-4 bg-blue-600/10 rounded-lg border border-blue-600/10 hover:border-blue-600/20 transition-all duration-300">
-                    <Target className="w-6 h-6 text-blue-600 flex-shrink-0" />
-                    <span className="text-base font-medium text-foreground">{interest}</span>
+            <Card
+              ref={addToRefs}
+              className="border border-primary/10 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-500"
+            >
+              <CardContent className="p-10">
+                <div className="flex items-center gap-6 mb-8">
+                  <div className="w-14 h-14 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-xl flex items-center justify-center">
+                    <Brain className="w-8 h-8 text-blue-600" />
                   </div>
-                ))}
-                <div className="mt-8 p-6 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg border border-primary/20">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Rocket className="w-6 h-6 text-primary" />
-                    <h4 className="text-xl font-semibold text-primary">Research Vision</h4>
-                  </div>
-                  <p className="text-base text-muted-foreground leading-relaxed">
-                    My research focuses on optimizing resource provisioning in cloud environments and applying AI techniques to solve complex educational and linguistic problems, with a special interest in Bangla language processing.
-                  </p>
+                  <h3 className="text-2xl font-semibold text-foreground">
+                    Research Interests
+                  </h3>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+
+                <div className="space-y-6">
+                  {researchInterests.map((interest, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center gap-4 p-4 bg-blue-600/10 rounded-lg border border-blue-600/10 hover:border-blue-600/20 transition-all duration-300"
+                    >
+                      <Target className="w-6 h-6 text-blue-600 flex-shrink-0" />
+                      <span className="text-base font-medium text-foreground">{interest}</span>
+                    </div>
+                  ))}
+
+                  <div className="mt-8 p-6 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg border border-primary/20">
+                    <div className="flex items-center gap-3 mb-3">
+                      <Rocket className="w-6 h-6 text-primary" />
+                      <h4 className="text-xl font-semibold text-primary">Research Vision</h4>
+                    </div>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                      As a lecturer and researcher, my work focuses on optimizing resource provisioning in cloud environments and leveraging AI/ML techniques 
+                      to address complex problems in education and computational linguistics. I have a special interest in developing AI solutions for Bangla 
+                      language processing and contributing to the advancement of applied machine learning in academia.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
         </div>
 
         {/* Skills Section */}

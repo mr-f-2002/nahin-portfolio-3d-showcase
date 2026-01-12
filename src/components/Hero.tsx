@@ -55,14 +55,15 @@ const Hero = () => {
             </h1>
             
             <h2 className="text-xl md:text-2xl mb-8 text-muted-foreground">
-              Computer Science Engineer & ML Enthusiast
+              Lecturer & Researcher, Computer Science and Engineering
             </h2>
-            
+
             <p className="mb-10 text-lg max-w-lg">
-              A passionate CSE graduate with a focus on academic excellence, 
-              machine learning, and software development. Building innovative 
-              solutions through code and research.
+              Dedicated Computer Science lecturer with expertise in machine learning, software development, 
+              and academic research. Committed to teaching, mentoring students, and advancing innovative 
+              solutions through research.
             </p>
+
             
             <div className="flex flex-wrap gap-4">
               <Button className="rounded-full px-6" asChild>
@@ -97,7 +98,8 @@ const Hero = () => {
                   )}
                   
                   <img
-                    src="https://i.postimg.cc/QxLZCJqV/avatar.png"
+                    // src="https://i.postimg.cc/QxLZCJqV/avatar.png"
+                    src="public/assets/avatar.png"
                     alt="Nahin F Siddiqui"
                     className={`w-full h-full object-cover object-center rounded-full transition-opacity duration-500 ${
                       imageLoaded ? 'opacity-100' : 'opacity-0'
