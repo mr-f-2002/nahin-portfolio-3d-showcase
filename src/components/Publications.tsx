@@ -25,7 +25,7 @@ const Publications = () => {
 
   return (
     <section id="publications" className="py-20 px-4 relative">
-      <div className="max-w-5xl mx-auto">
+      <div className="w-[80%] max-w-none mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16 animate-on-scroll">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">

@@ -55,12 +55,13 @@ const Index = () => {
         <Experience />
 
         {/* Education & Research Side-by-Side */}
-        <section className="max-w-7xl mx-auto px-4 md:px-8 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
-            <Education />
-            <ResearchInterest />
-          </div>
-        </section>
+        <section className="w-[80%] max-w-none mx-auto px-4 md:px-6 py-16">
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 lg:gap-2">
+    <Education />
+    <ResearchInterest />
+  </div>
+</section>
+
 
         <TechnicalSkills />
 
