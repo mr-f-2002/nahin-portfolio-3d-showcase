@@ -1,18 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, Code2 } from 'lucide-react';
-
-interface ResearchWork {
-  id: number;
-  title: string;
-  journal: string;
-  date: string;
-  description: string;
-  status: string;
-  authors: string[];
-  keywords: string[];
-}
+import { Code2 } from 'lucide-react';
 
 interface Experience {
   id: number;
@@ -63,19 +52,6 @@ const Experience = () => {
   const addToRefs = (el: HTMLDivElement | null, index: number) => {
     elementsRef.current[index] = el;
   };
-
-  const researchWorks: ResearchWork[] = [
-    // {
-    //   id: 1,
-    //   title: "SpectraNet: A Lightweight Hybrid Time–Frequency Deep Learning Framework for Sustainable Cloud Workload Forecasting",
-    //   journal: "Journal of Cloud Computing",
-    //   date: "11 December, 2025",
-    //   description: "Researching efficient resource allocation model for cloud computing environments using predictive analytics and machine learning techniques.",
-    //   status: "Accepted",
-    //   authors: ["Nahin F. Siddiqui, Zarif Safwan Hoque, Md. Ehsanul Haque, Abu Raihan Mostofa Kamal, A. K. M. Azad, Salem A. Alyami, Md Azam Hossain"],
-    //   keywords: ["Cloud Computing, Sustainable Resource Management, CPU Workload Forecasting, Time-Frequency Analysis, Hybrid Deep Learning Models, Lightweight AI Models"]
-    // }
-  ];
 
   const experiences: Experience[] = [
     {
@@ -144,71 +120,12 @@ const Experience = () => {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-6 mb-6">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-              Research & Work Experience
+              Work Experience
             </h2>
           </div>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Combining innovation, research, and practical expertise
+            Professional experience and practical expertise
           </p>
-        </div>
-
-        {/* Research Works Section */}
-        <div className="mb-16">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center">
-              <BookOpen className="w-4 h-4 text-primary" />
-            </div>
-            <h3 className="text-2xl font-semibold text-foreground">
-              Research Works
-            </h3>
-          </div>
-          {/* <div className="space-y-6">
-            {researchWorks.map((research, index) => (
-              <Card
-                key={research.id}
-                ref={(el) => addToRefs(el, index)}
-                className={`transform transition-all duration-700 border border-primary/10 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm shadow-md hover:shadow-lg hover:scale-105 opacity-0 translate-y-8 group`}
-              >
-                <CardContent className="p-5">
-                  <div className="flex justify-between items-start mb-3">
-                    <div>
-                      <h4 className="text-lg font-semibold text-foreground">
-                        {research.title}
-                      </h4>
-                      <p className="text-sm text-muted-foreground">{research.journal}</p>
-                    </div>
-                    <div className="text-right flex flex-col gap-1">
-                      <span className="text-xs text-muted-foreground">{research.date}</span>
-                      <Badge
-                        variant="secondary"
-                        className="bg-primary/10 text-primary border-primary/20 text-xs px-2 py-0.5"
-                      >
-                        {research.status}
-                      </Badge>
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">
-                    {research.description}
-                  </p>
-                  <div className="flex items-center gap-1 text-sm mb-3">
-                    <span className="font-semibold">Authors:</span>
-                    <span>{research.authors.join(", ")}</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {research.keywords.map((keyword, i) => (
-                      <Badge
-                        key={i}
-                        variant="secondary"
-                        className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors duration-300"
-                      >
-                        {keyword}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div> */}
         </div>
 
         {/* Professional Experience Section */}
@@ -225,7 +142,7 @@ const Experience = () => {
             {experiences.map((exp, index) => (
               <Card
                 key={exp.id}
-                ref={(el) => addToRefs(el, index + researchWorks.length)}
+                ref={(el) => addToRefs(el, index)}
                 className={`transform transition-all duration-700 border border-primary/10 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm shadow-md hover:shadow-lg hover:scale-105 opacity-0 translate-y-8 group`}
               >
                 <CardContent className="p-5">
