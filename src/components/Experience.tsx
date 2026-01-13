@@ -167,21 +167,21 @@ const Experience = () => {
                 ref={(el) => addToRefs(el, index)}
                 className={`transform transition-all duration-700 border border-primary/10 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm shadow-md hover:shadow-lg hover:scale-105 opacity-0 translate-y-8 group`}
               >
-                <CardContent className="p-5">
-                  <div className="flex justify-between items-start mb-3">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4 mb-4">
                     <div>
-                      <h4 className="text-lg font-semibold text-foreground">
+                      <h4 className="text-lg sm:text-xl font-semibold text-foreground">
                         {exp.role}
                       </h4>
-                      <p className="text-sm text-muted-foreground">{exp.company}</p>
+                      <p className="text-sm sm:text-base text-muted-foreground">{exp.company}</p>
                     </div>
-                    <span className="text-xs text-muted-foreground">{exp.period}</span>
+                    <span className="text-sm text-muted-foreground whitespace-nowrap">{exp.period}</span>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">
+                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4">
                     {exp.description}
                   </p>
-                  <h5 className="text-sm font-medium text-primary mb-2">Key Responsibilities:</h5>
-                  <ul className="list-disc list-inside space-y-1 mb-4 text-sm text-muted-foreground">
+                  <h5 className="text-sm sm:text-base font-medium text-primary mb-2">Key Responsibilities:</h5>
+                  <ul className="list-disc list-inside space-y-1.5 mb-4 text-sm sm:text-base text-muted-foreground">
                     {exp.responsibilities.map((item, i) => (
                       <li key={i}>{item}</li>
                     ))}
@@ -191,7 +191,7 @@ const Experience = () => {
                       <Badge
                         key={i}
                         variant="secondary"
-                        className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors duration-300"
+                        className="text-xs sm:text-sm px-2 sm:px-3 py-0.5 sm:py-1 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors duration-300"
                       >
                         {tech}
                       </Badge>
