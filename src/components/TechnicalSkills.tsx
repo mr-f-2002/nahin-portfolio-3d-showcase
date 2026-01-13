@@ -72,7 +72,7 @@ const TechnicalSkills = () => {
       ref={sectionRef}
       className="py-20 bg-gradient-to-b from-secondary/10 to-background"
     >
-      <div className="container mx-auto max-w-[90%] xl:max-w-[1400px] px-4 sm:px-8 lg:px-12">
+      <div className="container mx-auto max-w-[80%] px-4 sm:px-8 lg:px-12">
         <Card ref={cardRef} className="border border-primary/10 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm shadow-lg">
           <CardContent className="p-10">
             <div className="text-center mb-10">

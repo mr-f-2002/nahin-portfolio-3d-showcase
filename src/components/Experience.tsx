@@ -137,7 +137,7 @@ const Experience = () => {
       ref={experienceRef}
       className="py-24 bg-gradient-to-b from-background to-secondary/10"
     >
-      <div className="container mx-auto max-w-[90%] xl:max-w-[1400px] px-4 sm:px-8 lg:px-12">
+      <div className="container mx-auto max-w-[80%] px-4 sm:px-8 lg:px-12">
         {/* Header Section */}
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-6 mb-6">
