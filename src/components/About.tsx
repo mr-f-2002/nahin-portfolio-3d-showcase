@@ -330,7 +330,7 @@ const About = () => {
                 </h3>
               </div>
               <p className="text-base text-muted-foreground max-w-3xl mx-auto">
-                Cutting-edge technologies and frameworks I specialize in
+                Technologies and frameworks I specialize in
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
