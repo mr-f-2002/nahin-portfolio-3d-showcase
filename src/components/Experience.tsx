@@ -65,16 +65,16 @@ const Experience = () => {
   };
 
   const researchWorks: ResearchWork[] = [
-    {
-      id: 1,
-      title: "SpectraNet: A Lightweight Hybrid Time–Frequency Deep Learning Framework for Sustainable Cloud Workload Forecasting",
-      journal: "Journal of Cloud Computing",
-      date: "11 December, 2025",
-      description: "Researching efficient resource allocation model for cloud computing environments using predictive analytics and machine learning techniques.",
-      status: "Accepted",
-      authors: ["Nahin F. Siddiqui, Zarif Safwan Hoque, Md. Ehsanul Haque, Abu Raihan Mostofa Kamal, A. K. M. Azad, Salem A. Alyami, Md Azam Hossain"],
-      keywords: ["Cloud Computing, Sustainable Resource Management, CPU Workload Forecasting, Time-Frequency Analysis, Hybrid Deep Learning Models, Lightweight AI Models"]
-    }
+    // {
+    //   id: 1,
+    //   title: "SpectraNet: A Lightweight Hybrid Time–Frequency Deep Learning Framework for Sustainable Cloud Workload Forecasting",
+    //   journal: "Journal of Cloud Computing",
+    //   date: "11 December, 2025",
+    //   description: "Researching efficient resource allocation model for cloud computing environments using predictive analytics and machine learning techniques.",
+    //   status: "Accepted",
+    //   authors: ["Nahin F. Siddiqui, Zarif Safwan Hoque, Md. Ehsanul Haque, Abu Raihan Mostofa Kamal, A. K. M. Azad, Salem A. Alyami, Md Azam Hossain"],
+    //   keywords: ["Cloud Computing, Sustainable Resource Management, CPU Workload Forecasting, Time-Frequency Analysis, Hybrid Deep Learning Models, Lightweight AI Models"]
+    // }
   ];
 
   const experiences: Experience[] = [
@@ -162,7 +162,7 @@ const Experience = () => {
               Research Works
             </h3>
           </div>
-          <div className="space-y-6">
+          {/* <div className="space-y-6">
             {researchWorks.map((research, index) => (
               <Card
                 key={research.id}
@@ -208,7 +208,7 @@ const Experience = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* Professional Experience Section */}
