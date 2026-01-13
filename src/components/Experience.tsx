@@ -57,8 +57,8 @@ const Experience = () => {
     {
       id: 0,
       role: "Lecturer",
-      company: "Department of Computer Science & Engineering",
-      period: "January 2026 – Present",
+      company: "Eastern University, Department of CSE",
+      period: "October 2025 – Present",
       description:
         "Teaching undergraduate-level computer science courses while actively engaging in academic research and student mentorship.",
       responsibilities: [
@@ -74,7 +74,6 @@ const Experience = () => {
         "Academic Research",
         "Machine Learning",
         "Cloud Computing",
-        "NLP"
       ]
     },
     {
