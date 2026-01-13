@@ -74,35 +74,35 @@ const Education = () => {
         </div>
 
         <Card ref={cardRef} className="border border-primary/10 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-500 max-w-4xl mx-auto">
-          <CardContent className="p-10">
-            <div className="flex items-center gap-6 mb-8">
-              <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center">
-                <GraduationCap className="w-8 h-8 text-primary" />
+          <CardContent className="p-4 sm:p-6 md:p-10">
+            <div className="flex items-center gap-3 sm:gap-6 mb-6 sm:mb-8">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center shrink-0">
+                <GraduationCap className="w-5 h-5 sm:w-8 sm:h-8 text-primary" />
               </div>
-              <h3 className="text-2xl font-semibold text-foreground">
+              <h3 className="text-xl sm:text-2xl font-semibold text-foreground">
                 Academic Background
               </h3>
             </div>
-            <div className="space-y-8">
+            <div className="space-y-4 sm:space-y-8">
               {educationData.map((edu, index) => (
-                <div key={index} className="p-6 bg-secondary/10 rounded-xl border border-primary/10 hover:border-primary/20 transition-all duration-300">
-                  <div className="flex justify-between items-start flex-wrap gap-4">
-                    <div>
-                      <h4 className="text-xl font-semibold text-foreground">{edu.degree}</h4>
-                      <p className="text-base text-primary font-medium flex items-center gap-2 mt-2">
-                        <BookOpen className="w-5 h-5" />
-                        {edu.institution}
+                <div key={index} className="p-4 sm:p-6 bg-secondary/10 rounded-xl border border-primary/10 hover:border-primary/20 transition-all duration-300">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4">
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-base sm:text-xl font-semibold text-foreground leading-tight">{edu.degree}</h4>
+                      <p className="text-sm sm:text-base text-primary font-medium flex items-center gap-2 mt-1 sm:mt-2">
+                        <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                        <span className="break-words">{edu.institution}</span>
                       </p>
                     </div>
-                    <Badge variant="secondary" className="bg-primary/10 text-primary text-sm px-3 py-1">
+                    <Badge variant="secondary" className="bg-primary/10 text-primary text-xs sm:text-sm px-2 sm:px-3 py-1 w-fit shrink-0">
                       {edu.year}
                     </Badge>
                   </div>
-                  <div className="mt-4 space-y-3">
+                  <div className="mt-3 sm:mt-4 space-y-2 sm:space-y-3">
                     {edu.achievements.map((achievement, idx) => (
-                      <div key={idx} className="flex items-center gap-3 text-base text-muted-foreground">
-                        <Star className="w-5 h-5 text-yellow-500" />
-                        {achievement}
+                      <div key={idx} className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base text-muted-foreground">
+                        <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 shrink-0 mt-0.5" />
+                        <span>{achievement}</span>
                       </div>
                     ))}
                   </div>
