@@ -32,7 +32,7 @@ const Publications = () => {
             Publications
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Peer-reviewed research contributions in cloud computing and machine learning
+            Contribution to light-weight and sustainable future
           </p>
         </div>
 
