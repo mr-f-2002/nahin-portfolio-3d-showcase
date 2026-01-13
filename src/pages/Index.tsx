@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
+import AboutFlashcards from "@/components/AboutFlashcards";
 import Publications from "@/components/Publications";
-import Portfolio from "@/components/Portfolio";
 import Experience from "@/components/Experience";
+import Education from "@/components/Education";
+import ResearchInterest from "@/components/ResearchInterest";
+import TechnicalSkills from "@/components/TechnicalSkills";
+import Portfolio from "@/components/Portfolio";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -47,9 +50,12 @@ const Index = () => {
       <div className="relative z-10">
         <Navbar />
         <Hero />
-        <About />
+        <AboutFlashcards />
         <Publications />
         <Experience />
+        <Education />
+        <ResearchInterest />
+        <TechnicalSkills />
         <Portfolio />
         <Contact />
         <Footer />
