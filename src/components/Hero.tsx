@@ -89,7 +89,7 @@ const Hero = () => {
                 ></div>
                 
                 {/* Image container with loading optimization */}
-                <div className="w-80 h-80 md:w-105 md:h-105 relative">
+                <div className="w-100 h-100 md:w-92 md:h-92 relative">
                   {/* Loading placeholder */}
                   {!imageLoaded && (
                     <div className="absolute inset-0 bg-muted animate-pulse rounded-full flex items-center justify-center">
@@ -98,7 +98,7 @@ const Hero = () => {
                   )}
                   
                   <img
-                    src="https://i.postimg.cc/qB6cn40z/applicant-photo-bg-removed.png"
+                    src="https://i.postimg.cc/QxLZCJqV/avatar.png"
                     // src="public/assets/avatar.png"
                     alt="Nahin F Siddiqui"
                     className={`w-full h-full object-cover object-center rounded-full transition-opacity duration-500 ${
