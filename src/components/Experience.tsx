@@ -55,6 +55,29 @@ const Experience = () => {
 
   const experiences: Experience[] = [
     {
+      id: 0,
+      role: "Lecturer",
+      company: "Department of Computer Science & Engineering",
+      period: "January 2026 – Present",
+      description:
+        "Teaching undergraduate-level computer science courses while actively engaging in academic research and student mentorship.",
+      responsibilities: [
+        "Conduct lectures, tutorials, and lab sessions for core CSE courses",
+        "Design course materials, assignments, and assessments aligned with academic outcomes",
+        "Supervise and mentor undergraduate student projects and research work",
+        "Engage in research activities related to cloud computing, machine learning, and NLP",
+        "Participate in curriculum development and academic coordination"
+      ],
+      technologies: [
+        "Teaching",
+        "Curriculum Design",
+        "Academic Research",
+        "Machine Learning",
+        "Cloud Computing",
+        "NLP"
+      ]
+    },
+    {
       id: 1,
       role: "AI Engineering Intern",
       company: "Kernel Technologies Limited",

@@ -53,9 +53,17 @@ const Index = () => {
         <AboutFlashcards />
         <Publications />
         <Experience />
-        <Education />
-        <ResearchInterest />
+
+        {/* Education & Research Side-by-Side */}
+        <section className="max-w-7xl mx-auto px-4 md:px-8 py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <Education />
+            <ResearchInterest />
+          </div>
+        </section>
+          
         <TechnicalSkills />
+
         <Portfolio />
         <Contact />
         <Footer />
