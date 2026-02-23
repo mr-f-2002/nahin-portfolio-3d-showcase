@@ -98,7 +98,8 @@ const Hero = () => {
                   )}
                   
                   <img
-                    src="https://postimg.cc/R6Q48pSY"
+                    src="https://i.postimg.cc/gJ1jx1fG/dp.pngY"
+                    // src="public/assets/avatar.png"
                     alt="Nahin F Siddiqui"
                     className={`w-full h-full object-cover object-center rounded-full transition-opacity duration-500 ${
                       imageLoaded ? 'opacity-100' : 'opacity-0'
