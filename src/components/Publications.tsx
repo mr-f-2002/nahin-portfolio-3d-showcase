@@ -53,7 +53,7 @@ const Publications = () => {
                 ) : (
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-medium rounded-full border border-amber-500/20">
                     <Clock className="w-3 h-3" />
-                    Under Review
+                    Accepted
                   </span>
                 )}
               </div>
