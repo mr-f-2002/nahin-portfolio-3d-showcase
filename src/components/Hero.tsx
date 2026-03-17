@@ -116,7 +116,7 @@ const Hero = () => {
 
               <Button
                 variant="outline"
-                className="rounded-full px-6 border-primary/30 text-primary hover:bg-primary/10"
+                className="rounded-full px-6 border-primary/30 text-primary hover:bg-primary/10 hover:text-primary hover:border-primary/50"
                 asChild
               >
                 <a href="/assets/cv.pdf" download>
