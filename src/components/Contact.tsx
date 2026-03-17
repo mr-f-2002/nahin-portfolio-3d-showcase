@@ -1,23 +1,10 @@
-
-import { useState, useEffect, useRef } from 'react';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent } from "@/components/ui/card";
+import { useEffect, useRef } from 'react';
 import { Mail, Phone, Github, Linkedin } from 'lucide-react';
-import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const contactRef = useRef<HTMLElement>(null);
   const elementsRef = useRef<HTMLDivElement[]>([]);
-  const { toast } = useToast();
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -29,185 +16,115 @@ const Contact = () => {
       },
       { threshold: 0.1 }
     );
-    
-    if (contactRef.current) {
-      observer.observe(contactRef.current);
-    }
-    
-    elementsRef.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-    
+
+    if (contactRef.current) observer.observe(contactRef.current);
+    elementsRef.current.forEach((el) => { if (el) observer.observe(el); });
+
     return () => {
-      if (contactRef.current) {
-        observer.unobserve(contactRef.current);
-      }
-      elementsRef.current.forEach((el) => {
-        if (el) observer.unobserve(el);
-      });
+      if (contactRef.current) observer.unobserve(contactRef.current);
+      elementsRef.current.forEach((el) => { if (el) observer.unobserve(el); });
     };
   }, []);
-  
-  const addToRefs = (el: HTMLDivElement) => {
+
+  const addToRefs = (el: HTMLDivElement | null) => {
     if (el && !elementsRef.current.includes(el)) {
       elementsRef.current.push(el);
     }
   };
-  
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      toast({
-        title: "Message Sent!",
-        description: "Thanks for reaching out. I'll get back to you soon.",
-      });
-      
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
-      });
-      setIsSubmitting(false);
-    }, 1500);
-  };
-  
+
   const contactInfo = [
     {
       icon: Mail,
-      title: "Email",
-      value: "nahinfs.2002@gmail.com",
-      link: "mailto:nahinfs.2002@gmail.com"
+      title: "Academic Email",
+      value: "nahin@cse.uiu.ac.bd",
+      link: "mailto:nahin@cse.uiu.ac.bd",
+      note: "Preferred for academic enquiries"
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "01924-509192",
-      link: "tel:+8801924509192"
+      value: "+880 1924-509192",
+      link: "tel:+8801924509192",
+      note: null
+    },
+    {
+      icon: Linkedin,
+      title: "LinkedIn",
+      value: "nahin-f-siddiqui",
+      link: "https://www.linkedin.com/in/nahin-f-siddiqui-a11871270/",
+      note: null
     },
     {
       icon: Github,
       title: "GitHub",
       value: "mr-f-2002",
-      link: "https://github.com/mr-f-2002"
-    },
-    {
-      icon: Linkedin,
-      title: "Linkedin",
-      value: "nahin-f-siddiqui",
-      link: "https://www.linkedin.com/in/nahin-f-siddiqui-a11871270/"
+      link: "https://github.com/mr-f-2002",
+      note: null
     }
   ];
-  
-  return (
-    <section 
-      id="contact" 
-      ref={contactRef}
-      className="py-20 px-4 animate-on-scroll"
-    >
-      <div className="container mx-auto max-w-6xl">
-        <h2 className="section-heading">Get In Touch</h2>
-        
-        <div className="grid md:grid-cols-1 gap-12">
-          <div ref={addToRefs} className="animate-on-scroll animate-delay-100">
-            <h3 className="section-subheading">Contact Information</h3>
-            <p className="mb-8">
-              I'm always open to discussing new projects, research opportunities, or innovative ideas. 
-              Feel free to reach out through any of the following channels:
-            </p>
-            
-            <div className="grid sm:grid-cols-2 gap-4 mb-8">
-              {contactInfo.map((info, index) => (
-                <a 
-                  key={index}
-                  href={info.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="block"
-                >
-                  <Card className="card-hover h-full cursor-pointer transition-transform hover:scale-105">
-                    <CardContent className="p-6">
-                      <div className="flex items-center space-x-4">
-                        <div className="bg-primary/10 p-3 rounded-full">
-                          <info.icon className="text-primary w-6 h-6" />
-                        </div>
-                        <div>
-                          <h4 className="font-semibold">{info.title}</h4>
-                          <span className="text-sm text-muted-foreground">
-                            {info.value}
-                          </span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </a>
-              ))}
-            </div>
-          </div>
-          
-          {/* <div ref={addToRefs} className="animate-on-scroll animate-delay-200">
-            <h3 className="section-subheading">Send Me a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block mb-2 text-sm font-medium">
-                  Your Name
-                </label>
-                <Input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  placeholder="John Doe"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block mb-2 text-sm font-medium">
-                  Email Address
-                </label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  placeholder="john@example.com"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block mb-2 text-sm font-medium">
-                  Message
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  placeholder="I'd like to discuss..."
-                  rows={5}
-                />
-              </div>
-              
-              <Button type="submit" className="w-full" disabled={isSubmitting}>
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </Button>
-            </form>
-          </div> */}
 
+  const handleCardClick = (link: string) => {
+    window.open(link, '_blank', 'noopener,noreferrer');
+  };
+
+  return (
+    <section
+      id="contact"
+      ref={contactRef}
+      className="py-20 px-4 relative animate-on-scroll"
+    >
+      <div className="w-[80%] max-w-none mx-auto">
+
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Get In Touch
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Open to research collaborations, academic enquiries, and professional connections
+          </p>
         </div>
+
+        <div ref={addToRefs} className="animate-on-scroll max-w-2xl mx-auto">
+          <p className="text-center text-muted-foreground leading-relaxed mb-10">
+            If you are a researcher, fellow academic, or student interested in
+            collaboration, feel free to reach out via email — it is the most
+            reliable way to get in touch. I am particularly open to discussions
+            around lightweight deep learning, cloud computing, and NLP research.
+          </p>
+
+          <div className="grid sm:grid-cols-2 gap-4">
+            {contactInfo.map((info, index) => {
+              const Icon = info.icon;
+              return (
+                <div
+                  key={index}
+                  onClick={() => handleCardClick(info.link)}
+                  className="group cursor-pointer bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-5 hover:border-primary/30 hover:bg-card/80 transition-all duration-300"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-9 h-9 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center shrink-0">
+                      <Icon className="w-4 h-4 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-300 mb-0.5">
+                        {info.title}
+                      </h4>
+                      <p className="text-sm text-muted-foreground break-all">
+                        {info.value}
+                      </p>
+                      {info.note && (
+                        <p className="text-xs text-primary/70 mt-1">
+                          {info.note}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
     </section>
   );
