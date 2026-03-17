@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import { Code, Database, Globe, Brain, Zap } from 'lucide-react';
+import { Code, Database, Globe, Brain } from 'lucide-react';
+import { Badge } from "@/components/ui/badge";
 
 const TechnicalSkills = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -18,51 +18,59 @@ const TechnicalSkills = () => {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    if (cardRef.current) observer.observe(cardRef.current);
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
-      }
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+      if (cardRef.current) observer.unobserve(cardRef.current);
     };
   }, []);
 
   const skillCategories = [
     {
       category: "Programming Languages",
-      skills: ["Python", "Java", "C++", "JavaScript", "Kotlin"],
       icon: Code,
-      color: "bg-gradient-to-br from-blue-600/20 to-blue-800/20",
-      iconColor: "text-blue-600"
+      iconColor: "text-blue-500",
+      skills: [
+        { name: "Python", primary: true },
+        { name: "C++", primary: true },
+        { name: "JavaScript", primary: false },
+        { name: "Kotlin", primary: false },
+      ]
     },
     {
       category: "Machine Learning & AI",
-      skills: ["TensorFlow", "PyTorch", "Scikit-Learn", "NLP", "RAG"],
       icon: Brain,
-      color: "bg-gradient-to-br from-purple-600/20 to-purple-800/20",
-      iconColor: "text-purple-600"
+      iconColor: "text-purple-500",
+      skills: [
+        { name: "PyTorch", primary: true },
+        { name: "TensorFlow", primary: true },
+        { name: "Pandas / NumPy", primary: true },
+        { name: "RAG", primary: true },
+      ]
     },
     {
-      category: "Web & Mobile Development",
-      skills: ["React", "Node.js", "Express", "React Native", "HTML/CSS"],
+      category: "Web & Mobile",
       icon: Globe,
-      color: "bg-gradient-to-br from-green-600/20 to-green-800/20",
-      iconColor: "text-green-600"
+      iconColor: "text-green-500",
+      skills: [
+        { name: "React", primary: false },
+        { name: "Node.js", primary: false },
+        { name: "React Native", primary: false },
+        { name: "HTML / CSS", primary: false },
+      ]
     },
     {
       category: "Databases & Tools",
-      skills: ["MySQL", "MongoDB", "Git", "Docker", "Firebase"],
       icon: Database,
-      color: "bg-gradient-to-br from-orange-600/20 to-orange-800/20",
-      iconColor: "text-orange-600"
+      iconColor: "text-orange-500",
+      skills: [
+        { name: "MySQL", primary: false },
+        { name: "MongoDB", primary: false },
+        { name: "Git", primary: true },
+        { name: "Docker", primary: false },
+      ]
     }
   ];
 
@@ -70,46 +78,72 @@ const TechnicalSkills = () => {
     <section
       id="skills"
       ref={sectionRef}
-      className="py-20 bg-gradient-to-b from-secondary/10 to-background"
+      className="py-20 px-4 relative animate-on-scroll"
     >
-      <div className="container mx-auto max-w-[80%] px-4 sm:px-8 lg:px-12">
-        <Card ref={cardRef} className="border border-primary/10 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm shadow-lg">
-          <CardContent className="p-10">
-            <div className="text-center mb-10">
-              <div className="flex items-center justify-center gap-6 mb-6">
-                <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center">
-                  <Zap className="w-8 h-8 text-primary" />
+      <div className="w-[80%] max-w-none mx-auto">
+
+        {/* Section Header */}
+        <div className="text-center mb-16 animate-on-scroll">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Technical Skills
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Technologies and tools I work with
+          </p>
+        </div>
+
+        {/* Skills Grid */}
+        <div
+          ref={cardRef}
+          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 animate-on-scroll"
+        >
+          {skillCategories.map((category, index) => (
+            <div
+              key={index}
+              className="group bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 hover:border-primary/30 hover:bg-card/80 transition-all duration-300"
+            >
+              {/* Icon + Category */}
+              <div className="flex items-center gap-3 mb-5">
+                <div className={`w-9 h-9 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center shrink-0 ${category.iconColor}`}>
+                  <category.icon className="w-4 h-4" />
                 </div>
-                <h3 className="text-2xl font-semibold text-foreground">
-                  Technical Skills
-                </h3>
+                <h4 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                  {category.category}
+                </h4>
               </div>
-              <p className="text-base text-muted-foreground max-w-3xl mx-auto">
-                Technologies and frameworks I specialize in
-              </p>
+
+              {/* Skills */}
+              <div className="flex flex-wrap gap-2">
+                {category.skills.map((skill, idx) => (
+                  <Badge
+                    key={idx}
+                    variant="secondary"
+                    className={`text-xs px-2.5 py-1 border transition-colors duration-300 ${
+                      skill.primary
+                        ? 'bg-primary/10 text-primary border-primary/20 hover:bg-primary/20'
+                        : 'bg-card/80 text-muted-foreground border-border/50 hover:border-primary/20 hover:text-foreground'
+                    }`}
+                  >
+                    {skill.name}
+                  </Badge>
+                ))}
+              </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
-              {skillCategories.map((category, index) => (
-                <div key={index} className={`p-8 rounded-xl border border-primary/10 ${category.color} shadow-md hover:shadow-lg transition-all duration-300`}>
-                  <div className="text-center mb-6">
-                    <div className={`w-14 h-14 mx-auto mb-4 rounded-lg bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center ${category.iconColor}`}>
-                      <category.icon className={`w-8 h-8 ${category.iconColor}`} />
-                    </div>
-                    <h4 className="text-xl font-semibold text-foreground">{category.category}</h4>
-                  </div>
-                  <div className="space-y-3">
-                    {category.skills.map((skill, idx) => (
-                      <div key={idx} className="flex items-center gap-3 p-3 bg-white/5 rounded-lg border border-white/10 hover:border-primary/20 transition-all duration-300">
-                        <div className="w-3 h-3 rounded-full bg-primary"></div>
-                        <span className="text-base font-medium text-foreground">{skill}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+          ))}
+        </div>
+
+        {/* Legend */}
+        <div className="flex items-center justify-center gap-6 mt-8">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+            <span className="inline-block w-3 h-3 rounded-full bg-primary/40 border border-primary/40"></span>
+            Actively used in research
+          </div>
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+            <span className="inline-block w-3 h-3 rounded-full bg-border/80 border border-border"></span>
+            General proficiency
+          </div>
+        </div>
+
       </div>
     </section>
   );
