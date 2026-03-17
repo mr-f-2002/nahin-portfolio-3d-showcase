@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import { Brain, Target, Rocket } from 'lucide-react';
+import { Brain, Target, Telescope } from 'lucide-react';
 
 const ResearchInterest = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -18,83 +17,97 @@ const ResearchInterest = () => {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    if (cardRef.current) observer.observe(cardRef.current);
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
-      }
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+      if (cardRef.current) observer.unobserve(cardRef.current);
     };
   }, []);
 
   const researchInterests = [
-    "Cloud Resource Provisioning Optimization",
-    "Lightweight & Sustainable Architecture Development",
-    "Proactive Anomaly Prediction in Large-Scale Cloud Systems",
-    "Natural Language Processing in Education",
-    "Retrieval-Augmented Generation (RAG) Systems",
+    {
+      topic: "Cloud Resource Provisioning Optimisation",
+      note: "Core research area — published Q1 work"
+    },
+    {
+      topic: "Lightweight & Sustainable Architecture Development",
+      note: "Core research area — published Q1 work"
+    },
+    {
+      topic: "Proactive Anomaly Detection in Cloud Systems",
+      note: "Active — conference paper accepted (CCCN 2026)"
+    },
+    {
+      topic: "Retrieval-Augmented Generation (RAG) Systems",
+      note: "Exploratory interest"
+    },
+    {
+      topic: "Bangla Language Processing",
+      note: "Exploratory interest"
+    },
   ];
 
   return (
     <section
       id="research"
       ref={sectionRef}
-      className="py-20 bg-gradient-to-b from-background to-secondary/10"
+      className="py-20 px-4 relative animate-on-scroll"
     >
-      <div className="container mx-auto max-w-[90%] xl:max-w-[1400px] px-4 sm:px-8 lg:px-12">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+      <div ref={cardRef} className="animate-on-scroll">
+
+        {/* Section Header */}
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
             Research Interests
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Areas of focus and ongoing research directions
+          <p className="text-muted-foreground text-base max-w-xs mx-auto">
+            Focus areas and ongoing directions
           </p>
         </div>
 
-        <Card ref={cardRef} className="border border-primary/10 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-500 max-w-4xl mx-auto">
-          <CardContent className="p-4 sm:p-6 md:p-10">
-            <div className="flex items-center gap-3 sm:gap-6 mb-6 sm:mb-8">
-              <div className="w-10 h-10 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-xl flex items-center justify-center shrink-0">
-                <Brain className="w-5 h-5 sm:w-8 sm:h-8 text-blue-600" />
+        {/* Interests List */}
+        <div className="space-y-3 mb-4">
+          {researchInterests.map((item, index) => (
+            <div
+              key={index}
+              className="group flex items-start gap-3 bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-4 hover:border-primary/30 hover:bg-card/80 transition-all duration-300"
+            >
+              <div className="w-7 h-7 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                <Target className="w-3.5 h-3.5 text-primary" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-foreground">
-                Current Focus Areas
-              </h3>
-            </div>
-
-            <div className="space-y-3 sm:space-y-6">
-              {researchInterests.map((interest, index) => (
-                <div
-                  key={index}
-                  className="flex items-start sm:items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-blue-600/10 rounded-lg border border-blue-600/10 hover:border-blue-600/20 transition-all duration-300"
-                >
-                  <Target className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 flex-shrink-0 mt-0.5 sm:mt-0" />
-                  <span className="text-sm sm:text-base font-medium text-foreground">{interest}</span>
-                </div>
-              ))}
-
-              <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg border border-primary/20">
-                <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-                  <Rocket className="w-5 h-5 sm:w-6 sm:h-6 text-primary shrink-0" />
-                  <h4 className="text-lg sm:text-xl font-semibold text-primary">Research Vision</h4>
-                </div>
-                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                  As a lecturer and researcher, my work focuses on optimizing resource provisioning in cloud environments and leveraging AI/ML techniques 
-                  to address complex problems in education and computational linguistics. I have a special interest in developing AI solutions for Bangla 
-                  language processing and contributing to the advancement of applied machine learning in academia.
+              <div>
+                <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors duration-300">
+                  {item.topic}
+                </p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  {item.note}
                 </p>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          ))}
+        </div>
+
+        {/* Research Vision */}
+        <div className="group bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-5 hover:border-primary/30 hover:bg-card/80 transition-all duration-300">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center shrink-0">
+              <Telescope className="w-3.5 h-3.5 text-primary" />
+            </div>
+            <h4 className="text-sm font-semibold text-primary">Research Vision</h4>
+          </div>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            My near-term goal is to deepen my work on sustainable, resource-efficient AI
+            for cloud environments — building on my published research in lightweight
+            hybrid architectures. In parallel, I am expanding into RAG systems and
+            Bangla language processing, where I see meaningful open problems.
+            Long-term, I aim to establish an independent research line and contribute
+            to the academic community through publications, collaboration, and
+            eventually graduate supervision.
+          </p>
+        </div>
+
       </div>
     </section>
   );
