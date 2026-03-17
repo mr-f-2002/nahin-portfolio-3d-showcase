@@ -258,19 +258,12 @@ const Portfolio = () => {
                   {project.link ? (
                     <Button
                       variant="outline"
-                      asChild
-                      className="w-full h-9 text-sm border-border/50 text-foreground hover:border-primary/30 hover:text-primary hover:bg-primary/5 transition-all duration-300"
+                      onClick={() => window.open(project.link, '_blank', 'noopener,noreferrer')}
+                      className="w-full h-9 text-sm border-border/50 text-foreground hover:border-primary/30 hover:text-primary hover:bg-primary/5 transition-all duration-300 flex items-center justify-center gap-2"
                     >
-                      
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2"
-                      >
-                        <Code2 className="w-3.5 h-3.5" />
-                        View on GitHub
-                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                      </a>
+                      <Code2 className="w-3.5 h-3.5" />
+                      View on GitHub
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                     </Button>
                   ) : (
                     <Button
