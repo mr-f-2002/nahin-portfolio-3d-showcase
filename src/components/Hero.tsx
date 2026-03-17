@@ -33,10 +33,10 @@ const Hero = () => {
       icon: Building2,
       label: "Lecturer at UIU",
     },
-    {
-      icon: BookOpen,
-      label: "1 Q1 Journal Published",
-    },
+    // {
+    //   icon: BookOpen,
+    //   label: "1 Q1 Journal Published",
+    // },
     {
       icon: GraduationCap,
       label: "IUT Graduate, 2025",
