@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GraduationCap, BookOpen, Star } from 'lucide-react';
+import { GraduationCap, BookOpen, Star, Award } from 'lucide-react';
 
 const Education = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -19,98 +18,125 @@ const Education = () => {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    if (cardRef.current) observer.observe(cardRef.current);
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
-      }
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+      if (cardRef.current) observer.unobserve(cardRef.current);
     };
   }, []);
-
-  const educationData = [
-    {
-      degree: "B.Sc. in Computer Science & Engineering",
-      institution: "Islamic University of Technology (IUT)",
-      year: "2021 - 2025",
-      achievements: ["CGPA: 3.89/4.00", "Research in lightweight hybrid architectures for cloud resource forecasting."]
-    },
-    {
-      degree: "Higher Secondary School Certificate (HSC)",
-      institution: "Gurudayal Govt. College",
-      year: "2019 - 2020",
-      achievements: ["GPA: 5.00/5.00"]
-    },
-    {
-      degree: "Secondary School Certificate (SSC)",
-      institution: "Kishoreganj Govt. Boys' High School",
-      year: "2014 - 2018",
-      achievements: ["GPA: 5.00/5.00"]
-    }
-  ];
 
   return (
     <section
       id="education"
       ref={sectionRef}
-      className="py-20 bg-gradient-to-b from-secondary/10 to-background"
+      className="py-20 px-4 relative animate-on-scroll"
     >
-      <div className="container mx-auto max-w-[90%] xl:max-w-[1400px] px-4 sm:px-8 lg:px-12">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+      <div ref={cardRef} className="animate-on-scroll">
+
+        {/* Section Header */}
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
             Education
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-base max-w-xs mx-auto">
             Academic journey and qualifications
           </p>
         </div>
 
-        <Card ref={cardRef} className="border border-primary/10 bg-gradient-to-br from-card to-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-500 max-w-4xl mx-auto">
-          <CardContent className="p-4 sm:p-6 md:p-10">
-            <div className="flex items-center gap-3 sm:gap-6 mb-6 sm:mb-8">
-              <div className="w-10 h-10 sm:w-14 sm:h-14 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center shrink-0">
-                <GraduationCap className="w-5 h-5 sm:w-8 sm:h-8 text-primary" />
+        {/* BSc — Primary Card */}
+        <div className="group bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 hover:border-primary/30 hover:bg-card/80 transition-all duration-300 mb-4">
+          {/* Degree badge */}
+          <div className="flex items-start justify-between gap-4 mb-4">
+            <div className="w-10 h-10 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center shrink-0">
+              <GraduationCap className="w-5 h-5 text-primary" />
+            </div>
+            <Badge
+              variant="secondary"
+              className="bg-primary/10 text-primary border-primary/20 text-xs px-2.5 py-1 shrink-0"
+            >
+              2021 – 2025
+            </Badge>
+          </div>
+
+          <h4 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors duration-300 mb-1">
+            B.Sc. in Computer Science &amp; Engineering
+          </h4>
+          <p className="text-sm text-primary/80 font-medium flex items-center gap-1.5 mb-4">
+            <BookOpen className="w-3.5 h-3.5 shrink-0" />
+            Islamic University of Technology (IUT)
+          </p>
+
+          {/* Achievements */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Star className="w-3.5 h-3.5 text-yellow-500 shrink-0" />
+              <span>CGPA: <span className="text-foreground font-medium">3.89 / 4.00</span></span>
+            </div>
+            <div className="flex items-start gap-2 text-sm text-muted-foreground">
+              <Star className="w-3.5 h-3.5 text-yellow-500 shrink-0 mt-0.5" />
+              <span>Research in lightweight hybrid architectures for cloud resource forecasting</span>
+            </div>
+          </div>
+        </div>
+
+        {/* HSC & SSC — Secondary Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+          {/* HSC */}
+          <div className="group bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-5 hover:border-primary/30 hover:bg-card/80 transition-all duration-300">
+            <div className="flex items-start justify-between gap-3 mb-3">
+              <div className="w-8 h-8 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center shrink-0">
+                <Award className="w-4 h-4 text-primary" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-foreground">
-                Academic Background
-              </h3>
+              <Badge
+                variant="secondary"
+                className="bg-primary/10 text-primary border-primary/20 text-xs px-2.5 py-1 shrink-0"
+              >
+                2019 – 2020
+              </Badge>
             </div>
-            <div className="space-y-4 sm:space-y-8">
-              {educationData.map((edu, index) => (
-                <div key={index} className="p-4 sm:p-6 bg-secondary/10 rounded-xl border border-primary/10 hover:border-primary/20 transition-all duration-300">
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4">
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-base sm:text-xl font-semibold text-foreground leading-tight">{edu.degree}</h4>
-                      <p className="text-sm sm:text-base text-primary font-medium flex items-center gap-2 mt-1 sm:mt-2">
-                        <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
-                        <span className="break-words">{edu.institution}</span>
-                      </p>
-                    </div>
-                    <Badge variant="secondary" className="bg-primary/10 text-primary text-xs sm:text-sm px-2 sm:px-3 py-1 w-fit shrink-0">
-                      {edu.year}
-                    </Badge>
-                  </div>
-                  <div className="mt-3 sm:mt-4 space-y-2 sm:space-y-3">
-                    {edu.achievements.map((achievement, idx) => (
-                      <div key={idx} className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base text-muted-foreground">
-                        <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 shrink-0 mt-0.5" />
-                        <span>{achievement}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
+            <h4 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-300 mb-1">
+              Higher Secondary Certificate (HSC)
+            </h4>
+            <p className="text-xs text-primary/80 font-medium flex items-center gap-1.5 mb-3">
+              <BookOpen className="w-3 h-3 shrink-0" />
+              Gurudayal Govt. College
+            </p>
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <Star className="w-3 h-3 text-yellow-500 shrink-0" />
+              <span>GPA: <span className="text-foreground font-medium">5.00 / 5.00</span></span>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+
+          {/* SSC */}
+          <div className="group bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-5 hover:border-primary/30 hover:bg-card/80 transition-all duration-300">
+            <div className="flex items-start justify-between gap-3 mb-3">
+              <div className="w-8 h-8 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center shrink-0">
+                <Award className="w-4 h-4 text-primary" />
+              </div>
+              <Badge
+                variant="secondary"
+                className="bg-primary/10 text-primary border-primary/20 text-xs px-2.5 py-1 shrink-0"
+              >
+                2014 – 2019
+              </Badge>
+            </div>
+            <h4 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-300 mb-1">
+              Secondary School Certificate (SSC)
+            </h4>
+            <p className="text-xs text-primary/80 font-medium flex items-center gap-1.5 mb-3">
+              <BookOpen className="w-3 h-3 shrink-0" />
+              Kishoreganj Govt. Boys' High School
+            </p>
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <Star className="w-3 h-3 text-yellow-500 shrink-0" />
+              <span>GPA: <span className="text-foreground font-medium">5.00 / 5.00</span></span>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );
