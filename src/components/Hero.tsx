@@ -108,7 +108,7 @@ const Hero = () => {
           {/* ── Photo ── */}
           <div className="md:col-span-2 order-1 md:order-2 flex justify-center mb-6 md:mb-0">
             <div className="relative">
-              <div className="w-[200px] h-[200px] md:w-80 md:h-80 rounded-full bg-card/50 backdrop-blur-sm border border-border/50 relative overflow-hidden flex items-center justify-center hover:border-primary/30 transition-all duration-300">
+              <div className="w-[200px] h-[200px] md:w-80 md:h-80 rounded-full bg-card relative overflow-hidden flex items-center justify-center photo-glow transition-all duration-300">
                 <div
                   className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/5 to-accent/10 animate-spin opacity-70"
                   style={{ animationDuration: '10s' }}

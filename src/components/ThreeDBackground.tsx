@@ -41,10 +41,10 @@ const ThreeDBackground = () => {
     // Create particle material
     const particlesMaterial = new THREE.PointsMaterial({
       size: 0.02,
-      color: 0xFFD700,
+      color: 0x00D4AA,
       blending: THREE.AdditiveBlending,
       transparent: true,
-      opacity: 0.5
+      opacity: 0.25
     });
     
     // Create mesh
@@ -59,9 +59,9 @@ const ThreeDBackground = () => {
     ];
     
     const materials = [
-      new THREE.MeshPhongMaterial({ color: 0xFFA500, flatShading: true, transparent: true, opacity: 0.8 }),
-      new THREE.MeshPhongMaterial({ color: 0xFFD700, flatShading: true, transparent: true, opacity: 0.8 }),
-      new THREE.MeshPhongMaterial({ color: 0xFFFFFF, flatShading: true, transparent: true, opacity: 0.8 }),
+      new THREE.MeshPhongMaterial({ color: 0x0D3D30, flatShading: true, transparent: true, opacity: 0.6 }),
+      new THREE.MeshPhongMaterial({ color: 0x1A4A3A, flatShading: true, transparent: true, opacity: 0.6 }),
+      new THREE.MeshPhongMaterial({ color: 0x0D3D30, flatShading: true, transparent: true, opacity: 0.6 }),
     ];
     
     const meshes: THREE.Mesh[] = [];

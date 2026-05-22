@@ -46,12 +46,12 @@ const Publications = () => {
               {/* Status Badge */}
               <div className="mb-3 sm:mb-0 sm:absolute sm:top-4 sm:right-4">
                 {pub.status === "published" ? (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-medium rounded-full border border-green-500/20">
-                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary text-primary-foreground text-xs font-mono font-medium rounded-full">
+                    <span className="w-1.5 h-1.5 bg-primary-foreground/70 rounded-full"></span>
                     Published
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-medium rounded-full border border-amber-500/20">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-transparent text-primary text-xs font-mono font-medium rounded-full border border-primary">
                     <Clock className="w-3 h-3" />
                     Accepted
                   </span>
