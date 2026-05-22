@@ -1,152 +1,107 @@
 import { useRef, useState, useEffect } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
-  GraduationCap,
-  Lightbulb,
-  BookOpenCheck,
-  Telescope
-} from 'lucide-react';
+import { GraduationCap, Lightbulb, BookOpenCheck, Telescope } from 'lucide-react';
 
 const AboutFlashcards = () => {
-  const aboutRef = useRef<HTMLElement>(null);
-  const whoIAmItemsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const [activeWhoIAmIndex, setActiveWhoIAmIndex] = useState<number>(-1);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [activeIndex, setActiveIndex] = useState<number>(-1);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          }
-        });
-      },
+    const headingObserver = new IntersectionObserver(
+      (entries) => entries.forEach(e => e.isIntersecting && e.target.classList.add('active')),
       { threshold: 0.1 }
     );
+    if (sectionRef.current) headingObserver.observe(sectionRef.current);
 
-    if (aboutRef.current) {
-      observer.observe(aboutRef.current);
-    }
-
-    whoIAmItemsRef.current.forEach((el, index) => {
+    cardRefs.current.forEach((el, index) => {
       if (!el) return;
-
-      const itemObserver = new IntersectionObserver(
+      const obs = new IntersectionObserver(
         (entries) => {
-          entries.forEach((entry) => {
+          entries.forEach(entry => {
             if (entry.isIntersecting) {
-              setTimeout(() => {
-                setActiveWhoIAmIndex(prevIndex =>
-                  index > prevIndex ? index : prevIndex
-                );
-              }, index * 150);
+              setTimeout(() => setActiveIndex(prev => index > prev ? index : prev), index * 120);
             }
           });
         },
-        { threshold: 0.5 }
+        { threshold: 0.3 }
       );
-
-      itemObserver.observe(el);
-
-      return () => {
-        if (el) itemObserver.unobserve(el);
-      };
+      obs.observe(el);
     });
 
-    return () => {
-      if (aboutRef.current) {
-        observer.unobserve(aboutRef.current);
-      }
-    };
+    return () => { if (sectionRef.current) headingObserver.unobserve(sectionRef.current); };
   }, []);
 
-  const addToWhoIAmRefs = (el: HTMLDivElement | null, index: number) => {
-    whoIAmItemsRef.current[index] = el;
-  };
-
-  const whoIAmFlashcards = [
+  const cards = [
     {
       title: "Academic Background",
-      content:
-        "B.Sc. in Computer Science & Engineering from Islamic University of Technology (IUT), graduating with a CGPA of 3.89/4.00. Built a strong foundation across algorithms, systems, and applied machine learning.",
+      content: "B.Sc. in Computer Science & Engineering from Islamic University of Technology (IUT), graduating with a CGPA of 3.89/4.00. Built a strong foundation across algorithms, systems, and applied machine learning.",
       icon: GraduationCap,
       highlight: "IUT · CGPA 3.89/4.00",
-      color: "text-primary"
     },
     {
       title: "Research Focus",
-      content:
-        "Specialising in lightweight hybrid deep learning models for cloud workload forecasting and anomaly detection. My work targets sustainable, resource-efficient AI solutions for large-scale cloud environments.",
+      content: "Specialising in lightweight hybrid deep learning models for cloud workload forecasting and anomaly detection. My work targets sustainable, resource-efficient AI solutions for large-scale cloud environments.",
       icon: Lightbulb,
       highlight: "Lightweight DL · Cloud AI",
-      color: "text-blue-500"
     },
     {
       title: "Teaching Identity",
-      content:
-        "Currently serving as a Lecturer in the Department of CSE at United International University. Previously at Eastern University. Committed to building strong conceptual foundations in students and nurturing the next generation of researchers.",
+      content: "Currently serving as a Lecturer in the Department of CSE at United International University. Previously at Eastern University. Committed to building strong conceptual foundations in students and nurturing the next generation of researchers.",
       icon: BookOpenCheck,
       highlight: "Lecturer · UIU",
-      color: "text-purple-500"
     },
     {
       title: "Academic Vision",
-      content:
-        "Academia is not just a career choice — it is a long-term commitment. My goal is to grow as a researcher and educator, contribute meaningfully to the scientific community, and eventually lead independent research at a recognised institution.",
+      content: "Academia is not just a career choice — it is a long-term commitment. My goal is to grow as a researcher and educator, contribute meaningfully to the scientific community, and eventually lead independent research at a recognised institution.",
       icon: Telescope,
       highlight: "Research · Teaching · Growth",
-      color: "text-green-500"
     }
   ];
 
   return (
-    <section
-      id="about"
-      ref={aboutRef}
-      className="py-12 md:py-20 px-4 relative"
-    >
-      <div className="w-full md:w-[80%] max-w-none mx-auto">
+    <section id="about" ref={sectionRef} className="py-16 md:py-24 px-4 relative animate-on-scroll">
+      <div className="w-full md:w-[82%] max-w-none mx-auto">
 
-        {/* Section Header */}
-        <div className="text-center mb-8 md:mb-16 animate-on-scroll">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-3 md:mb-4">
-            About Me
-          </h2>
-          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-            Educator · Researcher · ML Specialist
-          </p>
+        {/* Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <div className="flex justify-center">
+            <span className="section-chip">About Me</span>
+          </div>
+          <h2 className="section-title mb-3">Who I Am</h2>
+          <p className="section-subtitle">Educator · Researcher · ML Specialist</p>
         </div>
 
-        {/* Flashcards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6">
-          {whoIAmFlashcards.map((card, index) => (
+        {/* Cards grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
+          {cards.map((card, index) => (
             <div
               key={index}
-              ref={(el) => addToWhoIAmRefs(el, index)}
-              className={`group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-4 md:p-6 hover:border-primary/30 hover:bg-card/80 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 z-10 ${
-                index <= activeWhoIAmIndex
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-8'
-              }`}
+              ref={el => { cardRefs.current[index] = el; }}
+              className="teal-card shimmer p-5 md:p-6"
+              style={{
+                opacity: index <= activeIndex ? 1 : 0,
+                transform: index <= activeIndex ? 'translateY(0)' : 'translateY(20px)',
+                transition: `opacity 0.5s ease ${index * 80}ms, transform 0.5s ease ${index * 80}ms, box-shadow 0.35s ease, border-color 0.35s ease`,
+              }}
             >
               {/* Icon */}
-              <div className={`w-12 h-12 mb-5 rounded-lg bg-card/80 border border-border/50 flex items-center justify-center ${card.color}`}>
-                <card.icon className="w-6 h-6" />
+              <div className="icon-box mb-4">
+                <card.icon size={18} />
               </div>
 
-              {/* Badge */}
-              <span className="inline-flex flex-wrap max-w-full items-center px-2.5 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full border border-primary/20 mb-4 break-words">
+              {/* Highlight badge */}
+              <span className="teal-badge mb-4 inline-flex flex-wrap max-w-full break-words">
                 {card.highlight}
               </span>
 
               {/* Title */}
-              <h4 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+              <h4 className="font-display font-semibold text-base mb-3 transition-colors duration-300"
+                style={{ color: 'hsl(var(--foreground))' }}>
                 {card.title}
               </h4>
 
-              {/* Content */}
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              {/* Body */}
+              <p className="font-body text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                 {card.content}
               </p>
             </div>
