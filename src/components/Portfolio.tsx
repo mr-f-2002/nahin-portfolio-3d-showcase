@@ -1,111 +1,101 @@
 {/* Grid */}
-<div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
   {displayed.map((project) => (
     <div
       key={project.id}
-      className="project-card group flex flex-col rounded-2xl overflow-hidden transition-all duration-300"
+      className="project-card group flex overflow-hidden rounded-2xl transition-all duration-300"
       style={{
         opacity: 0,
         transform: 'translateY(20px)',
         transition:
-          'opacity 0.5s ease, transform 0.4s ease, border-color 0.3s ease',
+          'opacity 0.5s ease, transform 0.35s ease, border-color 0.3s ease',
         background: 'hsl(var(--card))',
         border: '1px solid hsl(var(--border))',
       }}
       onMouseEnter={(e) => {
-        const el = e.currentTarget;
-        el.style.transform = 'translateY(-3px)';
-        el.style.borderColor =
-          'color-mix(in srgb, var(--teal) 18%, var(--border-color))';
+        e.currentTarget.style.transform = 'translateY(-2px)';
+        e.currentTarget.style.borderColor =
+          'color-mix(in srgb, var(--teal) 15%, var(--border-color))';
       }}
       onMouseLeave={(e) => {
-        const el = e.currentTarget;
-        el.style.transform = 'translateY(0)';
-        el.style.borderColor = 'hsl(var(--border))';
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.borderColor = 'hsl(var(--border))';
       }}
     >
-      {/* Small Image */}
-      <div
-        className="relative h-40 overflow-hidden border-b"
-        style={{
-          background: 'hsl(var(--muted) / 0.15)',
-          borderColor: 'hsl(var(--border))',
-        }}
-      >
+      {/* LEFT: Small Thumbnail */}
+      <div className="relative w-32 sm:w-36 shrink-0">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          className="w-full h-full object-cover"
         />
 
-        {/* Category */}
-        <div className="absolute top-3 left-3 flex gap-2 flex-wrap">
-          <span
-            className="px-2 py-1 text-[11px] rounded-full font-medium"
-            style={{
-              background: 'hsl(var(--background) / 0.9)',
-              border: '1px solid hsl(var(--border))',
-            }}
-          >
-            {project.category}
-          </span>
-
-          {project.isResearch && (
+        {/* Tiny research badge */}
+        {project.isResearch && (
+          <div className="absolute top-2 right-2">
             <span
-              className="px-2 py-1 text-[11px] rounded-full flex items-center gap-1 font-medium"
+              className="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-medium"
               style={{
-                background:
-                  'color-mix(in srgb, var(--teal) 12%, transparent)',
+                background: 'hsl(var(--background) / 0.92)',
                 color: 'var(--teal)',
-                border:
-                  '1px solid color-mix(in srgb, var(--teal) 22%, transparent)',
+                border: '1px solid hsl(var(--border))',
               }}
             >
               <FlaskConical size={10} />
-              Research
             </span>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
-      {/* Content */}
-      <div className="flex flex-col flex-1 p-4">
-        {/* Title */}
-        <div className="flex items-center gap-2 mb-2">
-          <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center"
-            style={{
-              background: 'hsl(var(--muted) / 0.18)',
-              color: 'var(--teal)',
-            }}
-          >
-            <project.icon size={14} />
-          </div>
+      {/* RIGHT: Content */}
+      <div className="flex flex-col flex-1 p-4 min-w-0">
+        {/* Top row */}
+        <div className="flex items-start justify-between gap-3 mb-2">
+          <div className="flex items-center gap-2 min-w-0">
+            <div
+              className="w-7 h-7 rounded-md flex items-center justify-center shrink-0"
+              style={{
+                background: 'hsl(var(--muted) / 0.15)',
+                color: 'var(--teal)',
+              }}
+            >
+              <project.icon size={13} />
+            </div>
 
-          <h3
-            className="font-semibold text-sm tracking-tight"
-            style={{ color: 'hsl(var(--foreground))' }}
-          >
-            {project.title}
-          </h3>
+            <div className="min-w-0">
+              <h3
+                className="font-semibold text-sm truncate"
+                style={{ color: 'hsl(var(--foreground))' }}
+              >
+                {project.title}
+              </h3>
+
+              <span
+                className="text-[11px] uppercase tracking-wide"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                {project.category}
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* Description */}
         <p
-          className="text-sm leading-6 mb-4 line-clamp-3"
+          className="text-sm leading-5 mb-3 line-clamp-2"
           style={{ color: 'var(--text-secondary)' }}
         >
           {project.description}
         </p>
 
-        {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2 mb-5">
+        {/* Tech */}
+        <div className="flex flex-wrap gap-1.5 mb-4">
           {project.technologies.slice(0, 4).map((tech, i) => (
             <span
               key={i}
-              className="text-[11px] px-2 py-1 rounded-md"
+              className="text-[10px] px-2 py-1 rounded-md"
               style={{
-                background: 'hsl(var(--muted) / 0.2)',
+                background: 'hsl(var(--muted) / 0.12)',
                 color: 'var(--text-secondary)',
                 border: '1px solid hsl(var(--border))',
               }}
@@ -113,54 +103,32 @@
               {tech}
             </span>
           ))}
-
-          {project.technologies.length > 4 && (
-            <span
-              className="text-[11px] px-2 py-1 rounded-md"
-              style={{
-                background: 'hsl(var(--muted) / 0.2)',
-                color: 'var(--text-secondary)',
-              }}
-            >
-              +{project.technologies.length - 4}
-            </span>
-          )}
         </div>
 
-        {/* Action */}
-        <div className="mt-auto">
+        {/* Bottom */}
+        <div className="mt-auto flex items-center justify-between">
           {project.link ? (
             <button
               onClick={() =>
                 window.open(project.link, '_blank', 'noopener,noreferrer')
               }
-              className="w-full flex items-center justify-center gap-2 text-sm font-medium py-2.5 rounded-xl transition-all"
-              style={{
-                border: '1px solid hsl(var(--border))',
-                background: 'transparent',
-                color: 'hsl(var(--foreground))',
-              }}
+              className="flex items-center gap-2 text-sm font-medium transition-all"
+              style={{ color: 'hsl(var(--foreground))' }}
             >
-              <Code2 size={14} />
+              <Code2 size={13} />
               View Project
               <ArrowRight
-                size={13}
+                size={12}
                 className="transition-transform group-hover:translate-x-1"
               />
             </button>
           ) : (
-            <button
-              disabled
-              className="w-full flex items-center justify-center gap-2 text-sm py-2.5 rounded-xl"
-              style={{
-                background: 'hsl(var(--muted) / 0.15)',
-                color: 'var(--text-secondary)',
-                border: '1px solid hsl(var(--border))',
-              }}
+            <span
+              className="text-xs"
+              style={{ color: 'var(--text-secondary)' }}
             >
-              <Calendar size={14} />
               No Public Repo
-            </button>
+            </span>
           )}
         </div>
       </div>
