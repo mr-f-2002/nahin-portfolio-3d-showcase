@@ -1,21 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  ArrowRight,
-  ChevronDown,
-  ChevronUp,
-  Code2,
-  ShoppingCart,
-  Heart,
-  Pill,
-  PaintBucket,
-  BookOpen,
-  Calendar,
-  FlaskConical,
-  Zap,
-  Star
-} from 'lucide-react';
+import { ArrowRight, ChevronDown, ChevronUp, Code2, ShoppingCart, Heart, Pill, PaintBucket, BookOpen, Calendar, FlaskConical, Zap, Star } from 'lucide-react';
 
 interface Project {
   id: number;
@@ -24,194 +8,116 @@ interface Project {
   technologies: string[];
   image: string;
   link?: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: React.ComponentType<{ className?: string; size?: number }>;
   category: string;
   isResearch?: boolean;
 }
 
+const projects: Project[] = [
+  { id: 1, title: "Libra", description: "An anonymous blogging platform with embedded study tools for students — built to support collaborative and distraction-free academic engagement.", technologies: ["Java", "JavaFX", "FXML", "MySQL"], image: "https://i.postimg.cc/qMrDWbLc/libra.png", link: "https://github.com/mr-f-2002/libraRepos.git", icon: BookOpen, category: "Desktop App" },
+  { id: 2, title: "ShopSmart", description: "A full-stack e-commerce platform with location-based store filtering, product search, and a complete order management system.", technologies: ["JavaScript", "Node.js", "Express", "MySQL"], image: "https://i.postimg.cc/gjFtzNPW/shop-smart.png", link: "https://github.com/mr-f-2002/Shop-Smart", icon: ShoppingCart, category: "Web App" },
+  { id: 3, title: "Crop Recommender", description: "An ML-based crop recommendation system that predicts the most suitable crop given soil and environmental conditions.", technologies: ["Python", "Scikit-Learn", "HTML", "CSS", "JavaScript"], image: "https://i.postimg.cc/NF6J5mgr/crop-recom.png", link: "https://github.com/mr-f-2002/Crop-Recommender.git", icon: FlaskConical, category: "Machine Learning", isResearch: true },
+  { id: 4, title: "Fitify", description: "A health-tracking mobile app with personalised fitness recommendations and progress monitoring.", technologies: ["React Native", "Firebase"], image: "https://i.postimg.cc/Y9myBTZR/fitify.png", link: "https://github.com/mr-f-2002/Fitify.git", icon: Heart, category: "Mobile App" },
+  { id: 5, title: "Med Planner", description: "A mobile app for managing medicine schedules with reminder notifications and intake tracking.", technologies: ["Kotlin", "Android"], image: "https://i.postimg.cc/pLG0h2tk/med-planner.png", link: "https://github.com/mr-f-2002/Med-Planner", icon: Pill, category: "Mobile App" },
+  { id: 6, title: "PoorCAD", description: "A lightweight drawing application with multiple shape tools and freehand pen support, built with C++ and SFML.", technologies: ["C++", "SFML"], image: "https://i.postimg.cc/W4yfKsWt/poor-cad.png", link: "https://github.com/mr-f-2002/Poor-Cad", icon: PaintBucket, category: "Desktop App" },
+  { id: 7, title: "Daily Dashboard", description: "A Python desktop dashboard for tracking daily todos, work progress, and reminders with a clean GUI.", technologies: ["Python", "Tkinter"], image: "https://i.postimg.cc/1zXjJ8KL/daily-dash.png", link: "https://github.com/mr-f-2002/event-planner-dashboard.git", icon: Calendar, category: "Desktop App" },
+  { id: 8, title: "Bangla Document Topic Modeler", description: "An NLP model that identifies latent topics in Bangla-language articles using BARTopic.", technologies: ["Python", "BARTopic", "NLP"], image: "https://i.postimg.cc/Kj6qYQSb/topic-modeler.png", icon: FlaskConical, category: "Machine Learning", isResearch: true },
+];
+
 const Portfolio = () => {
-  const portfolioRef = useRef<HTMLElement>(null);
-  const projectItemsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const sectionRef = useRef<HTMLElement>(null);
   const [showAll, setShowAll] = useState(false);
-
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "Libra",
-      description: "An anonymous blogging platform with embedded study tools for students — built to support collaborative and distraction-free academic engagement.",
-      technologies: ["Java", "JavaFX", "FXML", "MySQL"],
-      image: "https://i.postimg.cc/qMrDWbLc/libra.png",
-      link: "https://github.com/mr-f-2002/libraRepos.git",
-      icon: BookOpen,
-      category: "Desktop App",
-      isResearch: false
-    },
-    {
-      id: 2,
-      title: "ShopSmart",
-      description: "A full-stack e-commerce platform with location-based store filtering, product search, and a complete order management system.",
-      technologies: ["JavaScript", "Node.js", "Express", "MySQL"],
-      image: "https://i.postimg.cc/gjFtzNPW/shop-smart.png",
-      link: "https://github.com/mr-f-2002/Shop-Smart",
-      icon: ShoppingCart,
-      category: "Web App",
-      isResearch: false
-    },
-    {
-      id: 3,
-      title: "Crop Recommender",
-      description: "An ML-based crop recommendation system that predicts the most suitable crop given soil and environmental conditions.",
-      technologies: ["Python", "Scikit-Learn", "HTML", "CSS", "JavaScript"],
-      image: "https://i.postimg.cc/NF6J5mgr/crop-recom.png",
-      link: "https://github.com/mr-f-2002/Crop-Recommender.git",
-      icon: FlaskConical,
-      category: "Machine Learning",
-      isResearch: true
-    },
-    {
-      id: 4,
-      title: "Fitify",
-      description: "A health-tracking mobile app with personalised fitness recommendations and progress monitoring.",
-      technologies: ["React Native", "Firebase"],
-      image: "https://i.postimg.cc/Y9myBTZR/fitify.png",
-      link: "https://github.com/mr-f-2002/Fitify.git",
-      icon: Heart,
-      category: "Mobile App",
-      isResearch: false
-    },
-    {
-      id: 5,
-      title: "Med Planner",
-      description: "A mobile app for managing medicine schedules with reminder notifications and intake tracking.",
-      technologies: ["Kotlin", "Android"],
-      image: "https://i.postimg.cc/pLG0h2tk/med-planner.png",
-      link: "https://github.com/mr-f-2002/Med-Planner",
-      icon: Pill,
-      category: "Mobile App",
-      isResearch: false
-    },
-    {
-      id: 6,
-      title: "PoorCAD",
-      description: "A lightweight drawing application with multiple shape tools and freehand pen support, built with C++ and SFML.",
-      technologies: ["C++", "SFML"],
-      image: "https://i.postimg.cc/W4yfKsWt/poor-cad.png",
-      link: "https://github.com/mr-f-2002/Poor-Cad",
-      icon: PaintBucket,
-      category: "Desktop App",
-      isResearch: false
-    },
-    {
-      id: 7,
-      title: "Daily Dashboard",
-      description: "A Python desktop dashboard for tracking daily todos, work progress, and reminders with a clean GUI.",
-      technologies: ["Python", "Tkinter"],
-      image: "https://i.postimg.cc/1zXjJ8KL/daily-dash.png",
-      link: "https://github.com/mr-f-2002/event-planner-dashboard.git",
-      icon: Calendar,
-      category: "Desktop App",
-      isResearch: false
-    },
-    {
-      id: 8,
-      title: "Bangla Document Topic Modeler",
-      description: "An NLP model that identifies latent topics in Bangla-language articles using BARTopic.",
-      technologies: ["Python", "BARTopic", "NLP"],
-      image: "https://i.postimg.cc/Kj6qYQSb/topic-modeler.png",
-      icon: FlaskConical,
-      category: "Machine Learning",
-      isResearch: true
-    }
-  ];
-
-  const initialProjectCount = 3;
-  const displayedProjects = showAll ? projects : projects.slice(0, initialProjectCount);
+  const INITIAL = 3;
+  const displayed = showAll ? projects : projects.slice(0, INITIAL);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('active')),
+      { threshold: 0.05 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
+  }, []);
+
+  useEffect(() => {
+    const cards = document.querySelectorAll('.project-card');
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach((entry, i) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('opacity-100', 'translate-y-0');
-            entry.target.classList.remove('opacity-0', 'translate-y-8');
+            setTimeout(() => {
+              (entry.target as HTMLElement).style.opacity = '1';
+              (entry.target as HTMLElement).style.transform = 'translateY(0)';
+            }, 80 * i);
           }
         });
       },
       { threshold: 0.1 }
     );
-
-    if (portfolioRef.current) observer.observe(portfolioRef.current);
-    projectItemsRef.current.forEach((el) => { if (el) observer.observe(el); });
-
-    return () => {
-      if (portfolioRef.current) observer.unobserve(portfolioRef.current);
-      projectItemsRef.current.forEach((el) => { if (el) observer.unobserve(el); });
-    };
-  }, [displayedProjects.length]);
-
-  const addToProjectRefs = (el: HTMLDivElement | null, index: number) => {
-    if (el && !projectItemsRef.current[index]) {
-      projectItemsRef.current[index] = el;
-      el.classList.add('opacity-0', 'translate-y-8');
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('opacity-100', 'translate-y-0');
-              entry.target.classList.remove('opacity-0', 'translate-y-8');
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-      observer.observe(el);
-    }
-  };
+    cards.forEach(c => observer.observe(c));
+    return () => cards.forEach(c => observer.unobserve(c));
+  }, [displayed.length]);
 
   return (
-    <section
-      id="portfolio"
-      ref={portfolioRef}
-      className="py-12 md:py-20 px-4 relative"
-    >
-      <div className="w-full md:w-[80%] max-w-none mx-auto">
+    <section id="portfolio" ref={sectionRef} className="py-16 md:py-24 px-4 relative animate-on-scroll">
+      <div className="w-full md:w-[82%] max-w-none mx-auto">
 
-        {/* Section Header */}
-        <div className="text-center mb-8 md:mb-16 animate-on-scroll">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-3 md:mb-4">
-            Projects
-          </h2>
-          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-            Selected work across research, web, mobile, and systems
-          </p>
+        {/* Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <div className="flex justify-center">
+            <span className="section-chip">Portfolio</span>
+          </div>
+          <h2 className="section-title mb-3">Projects</h2>
+          <p className="section-subtitle">Selected work across research, web, mobile, and systems</p>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
-          {displayedProjects.map((project, index) => (
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5">
+          {displayed.map((project) => (
             <div
               key={project.id}
-              ref={(el) => addToProjectRefs(el, index)}
-              className="group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl flex flex-col overflow-hidden hover:border-primary/30 hover:bg-card/80 transition-all duration-300 transform z-10"
+              className="project-card group flex flex-col overflow-hidden rounded-xl"
+              style={{
+                opacity: 0,
+                transform: 'translateY(20px)',
+                transition: 'opacity 0.5s ease, transform 0.5s ease, box-shadow 0.35s ease, border-color 0.35s ease',
+                background: 'hsl(var(--card) / 0.6)',
+                border: '1px solid var(--border-color)',
+                backdropFilter: 'blur(12px)',
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.borderColor = 'color-mix(in srgb, var(--teal) 40%, var(--border-color))';
+                el.style.boxShadow = '0 8px 40px var(--teal-glow)';
+                el.style.transform = 'translateY(-4px)';
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.borderColor = 'var(--border-color)';
+                el.style.boxShadow = 'none';
+                el.style.transform = 'translateY(0)';
+              }}
             >
               {/* Image */}
-              <div className="aspect-[4/3] relative overflow-hidden bg-secondary/10">
+              <div className="aspect-[4/3] relative overflow-hidden" style={{ background: 'hsl(var(--muted) / 0.2)' }}>
                 <img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: 'linear-gradient(to top, rgba(15,20,25,0.5), transparent)' }} />
 
-                {/* Category badge — top left */}
-                <div className="absolute top-3 left-3 flex items-center gap-2">
-                  <span className="inline-flex items-center px-2.5 py-1 bg-background/80 backdrop-blur-sm text-foreground text-xs font-medium rounded-full border border-border/50">
+                {/* Badges — top left */}
+                <div className="absolute top-3 left-3 flex items-center gap-2 flex-wrap">
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-full font-mono text-xs"
+                    style={{ background: 'hsl(var(--background) / 0.85)', color: 'hsl(var(--foreground))', border: '1px solid var(--border-color)', backdropFilter: 'blur(8px)' }}>
                     {project.category}
                   </span>
                   {project.isResearch && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-primary/20 backdrop-blur-sm text-primary text-xs font-medium rounded-full border border-primary/30">
-                      <FlaskConical className="w-3 h-3" />
-                      Research
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-mono text-xs"
+                      style={{ background: 'color-mix(in srgb, var(--teal) 20%, transparent)', color: 'var(--teal)', border: '1px solid color-mix(in srgb, var(--teal) 35%, transparent)', backdropFilter: 'blur(8px)' }}>
+                      <FlaskConical size={11} /> Research
                     </span>
                   )}
                 </div>
@@ -220,60 +126,46 @@ const Portfolio = () => {
               {/* Content */}
               <div className="flex flex-col flex-1 p-5">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-7 h-7 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center shrink-0">
-                    <project.icon className="w-3.5 h-3.5 text-primary" />
+                  <div className="icon-box w-7 h-7">
+                    <project.icon size={14} />
                   </div>
-                  <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                  <h3 className="font-display font-semibold text-sm group-hover:text-primary transition-colors duration-300"
+                    style={{ color: 'hsl(var(--foreground))' }}>
                     {project.title}
                   </h3>
                 </div>
 
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">
+                <p className="font-body text-sm leading-relaxed mb-4 line-clamp-3" style={{ color: 'var(--text-secondary)' }}>
                   {project.description}
                 </p>
 
-                {/* Technologies */}
+                {/* Tech tags */}
                 <div className="flex flex-wrap gap-1.5 mb-5">
                   {project.technologies.slice(0, 4).map((tech, i) => (
-                    <Badge
-                      key={i}
-                      variant="secondary"
-                      className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors duration-300"
-                    >
-                      {tech}
-                    </Badge>
+                    <span key={i} className="teal-badge">{tech}</span>
                   ))}
                   {project.technologies.length > 4 && (
-                    <Badge
-                      variant="outline"
-                      className="text-xs px-2 py-0.5 border-primary/20 text-muted-foreground"
-                    >
-                      +{project.technologies.length - 4}
-                    </Badge>
+                    <span className="muted-badge">+{project.technologies.length - 4}</span>
                   )}
                 </div>
 
-                {/* Action Button */}
+                {/* Action */}
                 <div className="mt-auto">
                   {project.link ? (
-                    <Button
-                      variant="outline"
+                    <button
                       onClick={() => window.open(project.link, '_blank', 'noopener,noreferrer')}
-                      className="w-full h-9 text-sm border-border/50 text-foreground hover:border-primary/30 hover:text-primary hover:bg-primary/5 transition-all duration-300 flex items-center justify-center gap-2"
+                      className="btn-outline w-full text-sm justify-center"
+                      style={{ padding: '9px 16px' }}
                     >
-                      <Code2 className="w-3.5 h-3.5" />
+                      <Code2 size={14} />
                       View on GitHub
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                    </Button>
+                      <ArrowRight size={13} className="ml-auto transition-transform group-hover:translate-x-1" />
+                    </button>
                   ) : (
-                    <Button
-                      variant="outline"
-                      disabled
-                      className="w-full h-9 text-sm border-border/50 text-muted-foreground"
-                    >
-                      <Calendar className="w-3.5 h-3.5 mr-2" />
-                      No Public Repo
-                    </Button>
+                    <button disabled className="w-full flex items-center justify-center gap-2 font-body text-sm py-2.5 rounded-lg"
+                      style={{ background: 'hsl(var(--muted) / 0.3)', color: 'var(--text-secondary)', border: '1px solid var(--border-color)', cursor: 'not-allowed' }}>
+                      <Calendar size={14} /> No Public Repo
+                    </button>
                   )}
                 </div>
               </div>
@@ -281,29 +173,17 @@ const Portfolio = () => {
           ))}
         </div>
 
-        {/* Show More / Less */}
-        <div className="flex justify-center mt-6 md:mt-10 px-4">
-          {!showAll && projects.length > initialProjectCount && (
-            <Button
-              variant="outline"
-              onClick={() => setShowAll(true)}
-              className="h-10 px-6 text-sm border-border/50 text-foreground hover:border-primary/30 hover:text-primary hover:bg-primary/5 transition-all duration-300 flex items-center gap-2 w-full sm:w-auto justify-center"
-            >
-              <Zap className="w-4 h-4" />
-              See All Projects
-              <ChevronDown className="w-4 h-4" />
-            </Button>
+        {/* Show more / less */}
+        <div className="flex justify-center mt-8 md:mt-12 px-4">
+          {!showAll && projects.length > INITIAL && (
+            <button onClick={() => setShowAll(true)} className="btn-outline w-full sm:w-auto gap-2">
+              <Zap size={15} /> See All Projects <ChevronDown size={15} />
+            </button>
           )}
-          {showAll && projects.length > initialProjectCount && (
-            <Button
-              variant="outline"
-              onClick={() => setShowAll(false)}
-              className="h-10 px-6 text-sm border-border/50 text-foreground hover:border-primary/30 hover:text-primary hover:bg-primary/5 transition-all duration-300 flex items-center gap-2 w-full sm:w-auto justify-center"
-            >
-              <Star className="w-4 h-4" />
-              Show Less
-              <ChevronUp className="w-4 h-4" />
-            </Button>
+          {showAll && (
+            <button onClick={() => setShowAll(false)} className="btn-outline w-full sm:w-auto gap-2">
+              <Star size={15} /> Show Less <ChevronUp size={15} />
+            </button>
           )}
         </div>
 
