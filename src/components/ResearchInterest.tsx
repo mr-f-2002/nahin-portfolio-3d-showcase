@@ -1,87 +1,72 @@
 import { useEffect, useRef } from 'react';
-import { Brain, Target, Telescope } from 'lucide-react';
+import { Target, Telescope } from 'lucide-react';
 
 const ResearchInterest = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          }
-        });
-      },
+      entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('active')),
       { threshold: 0.1 }
     );
-
     if (sectionRef.current) observer.observe(sectionRef.current);
-    if (cardRef.current) observer.observe(cardRef.current);
-
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-      if (cardRef.current) observer.unobserve(cardRef.current);
-    };
+    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
   }, []);
 
   const researchInterests = [
-    {
-      topic: "Cloud Resource Provisioning Optimisation",
-      note: "Core research area — published Q1 work"
-    },
-    {
-      topic: "Lightweight & Sustainable Architecture Development",
-      note: "Core research area — published Q1 work"
-    },
-    {
-      topic: "Proactive Anomaly Detection in Cloud Systems",
-      note: "Active — conference paper accepted (CCCN 2026)"
-    },
-    {
-      topic: "Retrieval-Augmented Generation (RAG) Systems",
-      note: "Exploratory interest"
-    },
-    {
-      topic: "Bangla Language Processing",
-      note: "Exploratory interest"
-    },
+    { topic: "Cloud Resource Provisioning Optimisation", note: "Core research area — published Q1 work" },
+    { topic: "Lightweight & Sustainable Architecture Development", note: "Core research area — published Q1 work" },
+    { topic: "Proactive Anomaly Detection in Cloud Systems", note: "Active — conference paper accepted (CCCN 2026)" },
+    { topic: "Retrieval-Augmented Generation (RAG) Systems", note: "Exploratory interest" },
+    { topic: "Bangla Language Processing", note: "Exploratory interest" },
   ];
 
   return (
-    <section
-      id="research"
-      ref={sectionRef}
-      className="py-8 md:py-12 px-4 relative animate-on-scroll"
-    >
-      <div ref={cardRef} className="animate-on-scroll relative z-10">
+    <section id="research" ref={sectionRef} className="py-8 md:py-12 px-4 relative animate-on-scroll">
+      <div className="relative z-10">
 
-        {/* Section Header */}
+        {/* Header */}
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-            Research Interests
-          </h2>
-          <p className="text-muted-foreground text-base max-w-xs mx-auto">
-            Focus areas and ongoing directions
-          </p>
+          <div className="flex justify-center">
+            <span className="section-chip">Focus Areas</span>
+          </div>
+          <h2 className="section-title mb-2">Research Interests</h2>
+          <p className="section-subtitle">Ongoing directions and open questions</p>
         </div>
 
-        {/* Interests List */}
+        {/* Interests list */}
         <div className="space-y-3 mb-4">
           {researchInterests.map((item, index) => (
             <div
               key={index}
-              className="group flex items-start gap-3 bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-4 hover:border-primary/30 hover:bg-card/80 transition-all duration-300"
+              className="group flex items-start gap-3 p-4 rounded-xl transition-all duration-300"
+              style={{
+                background: 'hsl(var(--card) / 0.4)',
+                border: '1px solid var(--border-color)',
+                backdropFilter: 'blur(8px)',
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.borderColor = 'color-mix(in srgb, var(--teal) 35%, var(--border-color))';
+                el.style.background = 'hsl(var(--card) / 0.8)';
+                el.style.transform = 'translateX(4px)';
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.borderColor = 'var(--border-color)';
+                el.style.background = 'hsl(var(--card) / 0.4)';
+                el.style.transform = 'translateX(0)';
+              }}
             >
-              <div className="w-7 h-7 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
-                <Target className="w-3.5 h-3.5 text-primary" />
+              <div className="icon-box w-7 h-7 mt-0.5 shrink-0">
+                <Target size={13} />
               </div>
               <div>
-                <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors duration-300">
+                <p className="font-display font-medium text-sm transition-colors duration-300 group-hover:text-primary"
+                  style={{ color: 'hsl(var(--foreground))' }}>
                   {item.topic}
                 </p>
-                <p className="text-xs text-muted-foreground mt-0.5">
+                <p className="font-mono text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>
                   {item.note}
                 </p>
               </div>
@@ -89,15 +74,15 @@ const ResearchInterest = () => {
           ))}
         </div>
 
-        {/* Research Vision */}
-        <div className="group bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-5 hover:border-primary/30 hover:bg-card/80 transition-all duration-300">
+        {/* Vision card */}
+        <div className="teal-card group p-5">
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-7 h-7 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center shrink-0">
-              <Telescope className="w-3.5 h-3.5 text-primary" />
+            <div className="icon-box w-7 h-7">
+              <Telescope size={14} />
             </div>
-            <h4 className="text-sm font-semibold text-primary">Research Vision</h4>
+            <h4 className="font-display font-semibold text-sm" style={{ color: 'var(--teal)' }}>Research Vision</h4>
           </div>
-          <p className="text-sm text-muted-foreground leading-relaxed">
+          <p className="font-body text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
             My near-term goal is to deepen my work on sustainable, resource-efficient AI
             for cloud environments — building on my published research in lightweight
             hybrid architectures. In parallel, I am expanding into RAG systems and
