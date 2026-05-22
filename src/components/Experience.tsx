@@ -110,7 +110,7 @@ const Experience = () => {
   const ExperienceCard = ({ exp, index }: { exp: Experience; index: number }) => (
     <div
       ref={(el) => addToRefs(el, index)}
-      className="group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 md:p-8 hover:border-primary/30 hover:bg-card/80 transition-all duration-300 opacity-0 translate-y-8"
+      className="group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-4 md:p-8 hover:border-primary/30 hover:bg-card/80 transition-all duration-300 opacity-0 translate-y-8 z-10"
     >
       {/* Current badge */}
       {exp.current && (
@@ -122,18 +122,17 @@ const Experience = () => {
         </div>
       )}
 
-      <div className="flex items-start gap-4 md:gap-6">
+      <div className="flex items-start gap-3 md:gap-6">
         {/* Index number */}
-        <div className="hidden md:flex items-center justify-center w-12 h-12 bg-primary/10 rounded-lg text-primary font-bold text-lg shrink-0">
+        <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-lg text-primary font-bold text-base md:text-lg shrink-0 self-start">
           {index + 1}
         </div>
 
         <div className="flex-1 min-w-0">
-          {/* Role & Company */}
-          <h4 className="text-lg md:text-xl font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-300">
+          <h4 className="text-base md:text-xl font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-300">
             {exp.role}
           </h4>
-          <p className="text-base font-medium text-foreground/80">
+          <p className="text-sm md:text-base font-medium text-foreground/80">
             {exp.company}
           </p>
           {exp.department && (
@@ -141,18 +140,16 @@ const Experience = () => {
           )}
           <p className="text-sm text-muted-foreground mb-4">{exp.period}</p>
 
-          {/* Description */}
-          <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-4">
             {exp.description}
           </p>
 
-          {/* Responsibilities */}
-          <h5 className="text-sm font-medium text-primary mb-2">Key Responsibilities</h5>
-          <ul className="space-y-1.5 mb-5">
+          <h5 className="text-sm md:text-base font-medium text-primary mb-2">Key Responsibilities</h5>
+          <ul className="space-y-1.5 mb-5 pl-4">
             {exp.responsibilities.map((item, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                <span className="mt-1.5 w-1.5 h-1.5 bg-primary/50 rounded-full shrink-0"></span>
-                {item}
+              <li key={i} className="flex items-start gap-2 text-sm md:text-base text-muted-foreground">
+                <span className="mt-2 w-1.5 h-1.5 bg-primary/50 rounded-full shrink-0"></span>
+                <span className="flex-1">{item}</span>
               </li>
             ))}
           </ul>
@@ -178,22 +175,22 @@ const Experience = () => {
     <section
       id="experience"
       ref={experienceRef}
-      className="py-20 px-4 relative"
+      className="py-12 md:py-20 px-4 relative"
     >
-      <div className="w-[80%] max-w-none mx-auto">
+      <div className="w-full md:w-[80%] max-w-none mx-auto">
 
         {/* Section Header */}
-        <div className="text-center mb-16 animate-on-scroll">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+        <div className="text-center mb-8 md:mb-16 animate-on-scroll">
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-3 md:mb-4">
             Experience
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
             Academic career and industry exposure
           </p>
         </div>
 
         {/* Academic Experience */}
-        <div className="mb-14">
+        <div className="mb-8 md:mb-14">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-8 h-8 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center">
               <FlaskConical className="w-4 h-4 text-primary" />

@@ -31,9 +31,9 @@ const Education = () => {
     <section
       id="education"
       ref={sectionRef}
-      className="py-20 px-4 relative animate-on-scroll"
+      className="py-8 md:py-12 px-4 relative animate-on-scroll"
     >
-      <div ref={cardRef} className="animate-on-scroll">
+      <div ref={cardRef} className="animate-on-scroll relative z-10">
 
         {/* Section Header */}
         <div className="text-center mb-10">

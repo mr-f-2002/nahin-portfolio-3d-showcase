@@ -24,14 +24,14 @@ const Publications = () => {
   ];
 
   return (
-    <section id="publications" className="py-20 px-4 relative">
-      <div className="w-[80%] max-w-none mx-auto">
+    <section id="publications" className="py-12 md:py-20 px-4 relative">
+      <div className="w-full md:w-[80%] max-w-none mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-on-scroll">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+        <div className="text-center mb-8 md:mb-16 animate-on-scroll">
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-3 md:mb-4">
             Publications
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
             Contribution to light-weight and sustainable future
           </p>
         </div>
@@ -41,7 +41,7 @@ const Publications = () => {
           {publications.map((pub, index) => (
             <div
               key={index}
-              className="animate-on-scroll group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-4 sm:p-6 md:p-8 hover:border-primary/30 hover:bg-card/80 transition-all duration-300"
+              className="animate-on-scroll group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-4 sm:p-6 md:p-8 hover:border-primary/30 hover:bg-card/80 transition-all duration-300 z-10"
             >
               {/* Status Badge */}
               <div className="mb-3 sm:mb-0 sm:absolute sm:top-4 sm:right-4">
@@ -66,12 +66,12 @@ const Publications = () => {
 
                 <div className="flex-1 min-w-0">
                   {/* Title */}
-                  <h3 className="text-base sm:text-lg md:text-xl font-semibold text-foreground mb-2 sm:mb-3 leading-tight group-hover:text-primary transition-colors">
+                  <h3 className="text-sm sm:text-lg md:text-xl font-semibold text-foreground mb-2 sm:mb-3 leading-snug group-hover:text-primary transition-colors break-words">
                     "{pub.title}"
                   </h3>
 
                   {/* Authors */}
-                  <p className="text-muted-foreground text-sm mb-2 sm:mb-3 leading-relaxed">
+                  <p className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-3 leading-relaxed break-words">
                     {pub.authors}
                   </p>
 

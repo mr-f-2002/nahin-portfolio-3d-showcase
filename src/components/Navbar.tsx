@@ -41,7 +41,7 @@ const Navbar = () => {
           ? 'py-2 bg-background/80 backdrop-blur-lg shadow-md' 
           : 'py-4 bg-transparent'}`}
     >
-      <div className="container mx-auto px-4 flex justify-between items-center">
+      <div className="container mx-auto px-4 md:px-6 flex justify-between items-center min-h-[48px]">
         <a 
           href="#" 
           className="text-2xl font-display font-bold text-foreground flex items-center group"
@@ -94,18 +94,24 @@ const Navbar = () => {
       
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-card/95 backdrop-blur-md p-4 shadow-lg animate-fadeIn">
-          <nav className="flex flex-col space-y-3">
+        <div className="md:hidden bg-card/95 backdrop-blur-md px-4 py-4 shadow-lg animate-fadeIn">
+          <nav className="flex flex-col">
             {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
-                className="text-foreground hover:text-primary px-4 py-2 rounded-md hover:bg-primary/5 transition-colors"
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-foreground hover:text-primary px-4 min-h-[48px] flex items-center rounded-md hover:bg-primary/5 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
               </a>
             ))}
+            <button
+              onClick={() => setIsMenuOpen(false)}
+              className="mt-2 text-sm text-muted-foreground hover:text-primary min-h-[48px] flex items-center justify-center border-t border-border/50"
+            >
+              Close
+            </button>
           </nav>
         </div>
       )}
