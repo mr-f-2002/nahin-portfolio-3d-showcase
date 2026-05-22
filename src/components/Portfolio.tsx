@@ -27,7 +27,7 @@ const projects: Project[] = [
 const Portfolio = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [showAll, setShowAll] = useState(false);
-  const INITIAL = 3;
+  const INITIAL = 4;
   const displayed = showAll ? projects : projects.slice(0, INITIAL);
 
   useEffect(() => {
