@@ -72,7 +72,7 @@ const AboutFlashcards = () => {
         "B.Sc. in Computer Science & Engineering from Islamic University of Technology (IUT), graduating with a CGPA of 3.89/4.00. Built a strong foundation across algorithms, systems, and applied machine learning.",
       icon: GraduationCap,
       highlight: "IUT · CGPA 3.89/4.00",
-      color: "text-yellow-500"
+      color: "text-primary"
     },
     {
       title: "Research Focus",
