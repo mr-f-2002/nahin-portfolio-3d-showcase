@@ -1,123 +1,83 @@
-import { GraduationCap, Award } from "lucide-react";
+import { Mail, Phone, Github, Linkedin } from "lucide-react";
 
-const Education = () => {
+const Contact = () => {
+  const contactInfo = [
+    {
+      icon: Mail,
+      title: "Email",
+      value: "nahin@cse.uiu.ac.bd",
+      link: "mailto:nahin@cse.uiu.ac.bd"
+    },
+    {
+      icon: Phone,
+      title: "Phone",
+      value: "+880 1924-509192",
+      link: "tel:+8801924509192"
+    },
+    {
+      icon: Linkedin,
+      title: "LinkedIn",
+      value: "nahin-f-siddiqui",
+      link: "https://www.linkedin.com/in/nahin-f-siddiqui-a11871270/"
+    },
+    {
+      icon: Github,
+      title: "GitHub",
+      value: "mr-f-2002",
+      link: "https://github.com/mr-f-2002"
+    }
+  ];
+
+  const handleClick = (link: string) => {
+    window.open(link, "_blank", "noopener,noreferrer");
+  };
+
   return (
-    <section
-      id="education"
-      className="py-20 px-6 md:px-10 lg:px-16 bg-background"
-    >
+    <section id="contact" className="py-20 px-6 md:px-10 lg:px-16 bg-background">
       <div className="max-w-7xl mx-auto">
 
         {/* HEADER */}
         <div className="text-center mb-14">
           <h2 className="font-handwriting font-bold text-5xl text-foreground mb-3">
-            Education
+            Get In Touch
           </h2>
-
           <p className="font-handwriting text-xl text-muted-foreground">
-            Academic journey and qualifications
+            Academic collaborations & professional inquiries
           </p>
         </div>
 
-        {/* ===== PRIMARY DEGREE ===== */}
-        <div className="p-6 md:p-8 mb-10">
+        {/* CONTACT STRIP */}
+        <div className="flex flex-col md:flex-row items-stretch">
 
-          {/* TOP ROW */}
-          <div className="flex items-center gap-3 mb-5">
+          {contactInfo.map((info, index) => {
+            const Icon = info.icon;
 
-            <div className="w-9 h-9 border border-border rounded-md flex items-center justify-center text-primary">
-              <GraduationCap size={16} />
-            </div>
+            return (
+              <div
+                key={index}
+                onClick={() => handleClick(info.link)}
+                className="flex-1 flex items-center justify-center gap-3 px-6 py-6 cursor-pointer hover:bg-muted/20 transition"
+              >
 
-            <span className="font-handwriting text-sm text-muted-foreground">
-              2021 – 2025
-            </span>
+                <Icon size={16} className="text-primary" />
 
-          </div>
+                <div className="text-center md:text-left">
+                  <p className="font-handwriting font-bold text-foreground text-base">
+                    {info.title}
+                  </p>
+                  <p className="font-serif text-sm text-muted-foreground">
+                    {info.value}
+                  </p>
+                </div>
 
-          {/* DEGREE TITLE */}
-          <h3 className="font-handwriting font-bold text-3xl text-foreground mb-2">
-            B.Sc. in Computer Science & Engineering
-          </h3>
+                {/* DIVIDER (except last item) */}
+                {index !== contactInfo.length - 1 && (
+                  <div className="hidden md:block w-px h-10 bg-border ml-6" />
+                )}
 
-          <p className="font-serif text-base text-muted-foreground italic mb-4">
-            Islamic University of Technology (IUT)
-          </p>
-
-          {/* DETAILS */}
-          <div className="flex flex-wrap gap-3">
-
-            <span className="font-handwriting text-sm px-3 py-1 border border-border text-muted-foreground">
-              CGPA: 3.89 / 4.00
-            </span>
-
-            <span className="font-serif text-sm text-muted-foreground">
-              Research: Lightweight ML · Cloud Forecasting
-            </span>
-
-          </div>
-        </div>
-
-        {/* ===== SECONDARY EDUCATION ===== */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-          {/* HSC */}
-          <div className="p-6">
-
-            <div className="flex items-center gap-3 mb-4">
-
-              <div className="text-primary">
-                <Award size={16} />
               </div>
-
-              <span className="font-handwriting text-sm text-muted-foreground">
-                2019 – 2020
-              </span>
-
-            </div>
-
-            <h4 className="font-handwriting font-bold text-2xl text-foreground mb-1">
-              Higher Secondary Certificate
-            </h4>
-
-            <p className="font-serif text-base text-muted-foreground italic mb-3">
-              Gurudayal Govt. College
-            </p>
-
-            <span className="font-handwriting text-sm px-3 py-1 border border-border text-muted-foreground">
-              GPA: 5.00 / 5.00
-            </span>
-
-          </div>
-
-          {/* SSC */}
-          <div className="p-6">
-
-            <div className="flex items-center gap-3 mb-4">
-
-              <div className="text-primary">
-                <Award size={16} />
-              </div>
-
-              <span className="font-handwriting text-sm text-muted-foreground">
-                2014 – 2019
-              </span>
-
-            </div>
-
-            <h4 className="font-handwriting font-bold text-2xl text-foreground mb-1">
-              Secondary School Certificate
-            </h4>
-
-            <p className="font-serif text-base text-muted-foreground italic mb-3">
-              Kishoreganj Govt. Boys' High School
-            </p>
-
-            <span className="font-handwriting text-sm px-3 py-1 border border-border text-muted-foreground">
-              GPA: 5.00 / 5.00
-            </span>
-
-          </div>
+            );
+          })}
 
         </div>
       </div>
@@ -125,4 +85,4 @@ const Education = () => {
   );
 };
 
-export default Education;
+export default Contact;
