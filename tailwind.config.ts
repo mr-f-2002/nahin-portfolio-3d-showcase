@@ -65,12 +65,12 @@ export default {
 				},
 				// Custom palette for Nahin's portfolio
 				portfolio: {
-					dark: '#1A1D23',
-					light: '#F8F9FA',
-					accent: '#FFA500',
-					muted: '#6C757D',
-					card: '#22252C',
-					highlight: '#FFD700'
+					dark: '#0F1419',
+					light: '#E8F4F1',
+					accent: '#00D4AA',
+					muted: '#7A9BAE',
+					card: '#1A2332',
+					highlight: '#64FFDA'
 				}
 			},
 			borderRadius: {
