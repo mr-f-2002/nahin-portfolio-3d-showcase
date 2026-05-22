@@ -115,7 +115,23 @@ export default {
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
 				display: ['Syne', 'sans-serif'],
-				mono: ['"JetBrains Mono"', 'monospace']
+				mono: ['"JetBrains Mono"', 'monospace'],
+
+				// 👇 ADD THESE
+				serif: ['Cormorant Garamond', 'serif'],
+				handwriting: ['Caveat', 'cursive'],
+			},
+			fontSize: {
+				xs: "var(--text-xs)",
+				sm: "var(--text-sm)",
+				base: "var(--text-base)",
+				md: "var(--text-md)",
+				lg: "var(--text-lg)",
+				xl: "var(--text-xl)",
+				"2xl": "var(--text-2xl)",
+				"3xl": "var(--text-3xl)",
+				"4xl": "var(--text-4xl)",
+				"5xl": "var(--text-5xl)",
 			}
 		}
 	},
