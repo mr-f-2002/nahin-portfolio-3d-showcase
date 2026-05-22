@@ -1,26 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-import { Button } from "@/components/ui/button";
+import { useRef } from 'react';
 import { ArrowRight, Download, GraduationCap, Building2 } from 'lucide-react';
 
 const Hero = () => {
-  const heroRef = useRef<HTMLElement>(null);
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const current = heroRef.current;
-    if (current) observer.observe(current);
-    return () => { if (current) observer.unobserve(current); };
-  }, []);
-
   const highlights = [
     { icon: Building2, label: "Lecturer at UIU" },
     { icon: GraduationCap, label: "IUT Graduate, 2025" },
@@ -29,114 +10,132 @@ const Hero = () => {
   return (
     <section
       id="home"
-      ref={heroRef}
-      className="relative min-h-screen flex flex-col justify-center pt-20 pb-12 md:pb-16 px-5 md:px-4 overflow-hidden animate-on-scroll"
+      className="relative min-h-screen flex flex-col justify-center pt-24 pb-16 px-5 md:px-4 overflow-hidden"
     >
-      {/* Subtle background blobs */}
-      <div className="hidden md:block absolute -right-20 top-20 w-72 h-72 bg-primary/5 rounded-full filter blur-3xl z-0"></div>
-      <div className="hidden md:block absolute -left-20 bottom-20 w-80 h-80 bg-accent/5 rounded-full filter blur-3xl z-0"></div>
+      {/* Spotlight */}
+      <div className="hero-spotlight" />
 
-      <div className="w-full md:w-[80%] max-w-none mx-auto relative z-10">
-        <div className="grid md:grid-cols-5 gap-8 md:gap-12 items-center">
+      {/* Subtle blob accents — desktop only */}
+      <div className="hidden md:block absolute right-0 top-1/4 w-96 h-96 rounded-full pointer-events-none z-0"
+        style={{ background: 'radial-gradient(circle, rgba(0,212,170,0.06) 0%, transparent 70%)' }} />
+      <div className="hidden md:block absolute left-0 bottom-1/4 w-80 h-80 rounded-full pointer-events-none z-0"
+        style={{ background: 'radial-gradient(circle, rgba(0,212,170,0.04) 0%, transparent 70%)' }} />
+
+      <div className="w-full md:w-[82%] max-w-none mx-auto relative z-10">
+        <div className="grid md:grid-cols-5 gap-8 md:gap-16 items-center">
 
           {/* ── Text content ── */}
           <div className="md:col-span-3 order-2 md:order-1 text-center md:text-left">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20 mb-6">
-              <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
-              Lecturer &amp; Researcher · CSE
-            </span>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4 text-foreground">
-              <span className="block mb-2 text-2xl md:text-3xl font-normal text-muted-foreground">
-                Hi, I'm
+            {/* Role badge */}
+            <div className="hero-badge flex justify-center md:justify-start mb-6">
+              <span className="section-chip">
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: 'var(--teal)' }}></span>
+                Lecturer &amp; Researcher · CSE
               </span>
-              <span className="text-primary relative inline-block">
-                Nahin F. Siddiqui
-                <span className="absolute -bottom-2 left-0 w-1/3 h-1 bg-primary rounded-full"></span>
-              </span>
+            </div>
+
+            {/* Greeting */}
+            <p className="hero-greeting font-body text-xl md:text-2xl mb-2" style={{ color: 'var(--text-secondary)' }}>
+              Hi, I'm
+            </p>
+
+            {/* Name */}
+            <h1 className="hero-name font-display font-bold mb-4" style={{ fontSize: 'clamp(2.4rem, 6vw, 4rem)', letterSpacing: '-0.03em', lineHeight: 1.08 }}>
+              <span className="gradient-text">Nahin F. Siddiqui</span>
+              <div className="teal-divider mt-3 mx-auto md:mx-0"></div>
             </h1>
 
-            <h2 className="text-base md:text-xl mb-6 text-muted-foreground mt-4 leading-relaxed">
+            {/* Subtitle */}
+            <h2 className="hero-subtitle font-body text-base md:text-lg mb-6 mt-4 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
               Lecturer, Dept. of CSE · United International University
             </h2>
 
-            <p className="mb-8 text-sm md:text-lg max-w-lg mx-auto md:mx-0 text-foreground/80 leading-relaxed">
+            {/* Bio */}
+            <p className="hero-bio font-body text-sm md:text-base max-w-lg mx-auto md:mx-0 leading-relaxed mb-8" style={{ color: 'hsl(var(--foreground) / 0.75)' }}>
               Computer Science graduate of Islamic University of Technology, now
               contributing to academia as a full-time lecturer and researcher.
               My work focuses on lightweight deep learning and cloud computing —
               with a long-term commitment to research and teaching.
             </p>
 
-            {/* Highlight badges */}
-            <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 mb-8 md:mb-10 items-center md:items-start justify-center md:justify-start">
+            {/* Highlight chips */}
+            <div className="hero-chips flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 mb-8 md:mb-10 items-center md:items-start justify-center md:justify-start">
               {highlights.map((item) => (
                 <div
                   key={item.label}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-card/50 backdrop-blur-sm border border-border/50 text-sm text-foreground/80"
+                  className="inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-body"
+                  style={{
+                    background: 'hsl(var(--card) / 0.7)',
+                    border: '1px solid var(--border-color)',
+                    color: 'hsl(var(--foreground) / 0.85)',
+                    backdropFilter: 'blur(8px)',
+                  }}
                 >
-                  <item.icon size={14} className="text-primary shrink-0" />
-                  {item.label}
+                  <item.icon size={14} style={{ color: 'var(--teal)' }} className="shrink-0" />
+                  <span className="font-mono text-xs">{item.label}</span>
                 </div>
               ))}
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 w-full">
-              <Button className="rounded-full px-6 w-full sm:w-auto" asChild>
-                <a href="#publications">
-                  View Publications <ArrowRight size={16} className="ml-2" />
-                </a>
-              </Button>
-
-              <Button variant="outline" className="rounded-full px-6 w-full sm:w-auto" asChild>
-                <a href="#contact">Contact Me</a>
-              </Button>
-
-              <Button
-                variant="outline"
-                className="rounded-full px-6 w-full sm:w-auto border-primary/30 text-primary hover:bg-primary/10 hover:text-primary hover:border-primary/50"
-                asChild
-              >
-                <a href="/assets/cv.pdf" download>
-                  <Download size={15} className="mr-2" />
-                  Download CV
-                </a>
-              </Button>
+            <div className="hero-buttons flex flex-col sm:flex-row flex-wrap gap-3 w-full">
+              <a href="#publications" className="btn-primary w-full sm:w-auto">
+                View Publications <ArrowRight size={15} />
+              </a>
+              <a href="#contact" className="btn-outline w-full sm:w-auto">
+                Contact Me
+              </a>
+              <a href="/assets/cv.pdf" download className="btn-outline w-full sm:w-auto">
+                <Download size={14} /> Download CV
+              </a>
             </div>
           </div>
 
           {/* ── Photo ── */}
-          <div className="md:col-span-2 order-1 md:order-2 flex justify-center mb-6 md:mb-0">
-            <div className="relative">
-              <div className="w-[200px] h-[200px] md:w-80 md:h-80 rounded-full bg-card relative overflow-hidden flex items-center justify-center photo-glow transition-all duration-300">
+          <div className="md:col-span-2 order-1 md:order-2 flex justify-center mb-4 md:mb-0">
+            <div className="hero-photo relative">
+              {/* Outer ring */}
+              <div
+                className="relative rounded-full"
+                style={{
+                  padding: '4px',
+                  background: 'linear-gradient(135deg, var(--teal), transparent, var(--teal-deep))',
+                }}
+              >
                 <div
-                  className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/5 to-accent/10 animate-spin opacity-70"
-                  style={{ animationDuration: '10s' }}
-                ></div>
-
-                {!imageLoaded && (
-                  <div className="absolute inset-0 bg-muted animate-pulse rounded-full flex items-center justify-center">
-                    <div className="w-16 h-16 bg-primary/20 rounded-full animate-pulse"></div>
-                  </div>
-                )}
-
-                <img
-                  src="/assets/nahin.png"
-                  alt="Nahin F. Siddiqui"
-                  className={`w-full h-full object-cover object-center rounded-full transition-opacity duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-                  loading="eager"
-                  onLoad={() => setImageLoaded(true)}
-                  onError={(e) => { (e.target as HTMLImageElement).src = '/assets/avatar.png'; }}
-                />
+                  className="w-[190px] h-[190px] md:w-[300px] md:h-[300px] rounded-full overflow-hidden photo-glow"
+                  style={{ background: 'hsl(var(--card))' }}
+                >
+                  <img
+                    src="/assets/nahin.png"
+                    alt="Nahin F. Siddiqui"
+                    className="w-full h-full object-cover object-center rounded-full"
+                    loading="eager"
+                    onError={(e) => { (e.target as HTMLImageElement).src = '/assets/avatar.png'; }}
+                  />
+                </div>
               </div>
 
-              {/* Decorative floating circles — hidden on mobile */}
-              <div className="hidden md:block absolute -bottom-4 -right-4 w-20 h-20 bg-accent rounded-full opacity-20 animate-pulse z-0"></div>
-              <div className="hidden md:block absolute -top-4 -left-4 w-16 h-16 bg-primary rounded-full opacity-20 animate-float z-0"></div>
+              {/* Floating accent dots — desktop only */}
+              <div className="hidden md:block absolute -bottom-5 -right-5 w-14 h-14 rounded-full opacity-20 animate-pulse"
+                style={{ background: 'var(--teal)' }}></div>
+              <div className="hidden md:block absolute -top-5 -left-5 w-10 h-10 rounded-full opacity-15"
+                style={{ background: 'var(--teal-deep)' }}></div>
+
+              {/* Status chip overlapping photo */}
               <div
-                className="hidden md:block absolute top-1/2 -right-6 w-12 h-12 bg-secondary rounded-full opacity-30 animate-float z-0"
-                style={{ animationDelay: '1s' }}
-              ></div>
+                className="absolute -bottom-3 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:-right-6 md:bottom-8 flex items-center gap-2 px-3 py-1.5 rounded-full font-mono text-xs whitespace-nowrap"
+                style={{
+                  background: 'hsl(var(--card))',
+                  border: '1px solid var(--border-color)',
+                  color: 'var(--teal)',
+                  boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+                }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: 'var(--teal)' }}></span>
+                Open to collaborate
+              </div>
             </div>
           </div>
 
