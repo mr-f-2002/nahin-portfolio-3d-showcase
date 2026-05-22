@@ -31,7 +31,7 @@ const Hero = () => {
             <div className="hero-badge flex justify-center md:justify-start mb-6">
               <span className="section-chip">
                 <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: 'var(--teal)' }}></span>
-                Lecturer &amp; Researcher · CSE
+                Lecturer &amp; Researcher ·-· CSE
               </span>
             </div>
 
