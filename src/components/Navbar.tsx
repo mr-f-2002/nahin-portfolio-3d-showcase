@@ -1,31 +1,22 @@
-
 import { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
 import { Menu, X, Sun, Moon } from 'lucide-react';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true); // Start with dark mode
-  
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
+
   const toggleTheme = () => {
     document.documentElement.classList.toggle('light');
     setIsDarkMode(!isDarkMode);
   };
-  
+
   const navLinks = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
@@ -33,85 +24,111 @@ const Navbar = () => {
     { name: "Experience", href: "#experience" },
     { name: "Contact", href: "#contact" }
   ];
-  
+
   return (
-    <header 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300
-        ${isScrolled 
-          ? 'py-2 bg-background/80 backdrop-blur-lg shadow-md' 
-          : 'py-4 bg-transparent'}`}
+    <header
+      className="fixed top-0 left-0 w-full z-50 transition-all duration-300"
+      style={{
+        padding: isScrolled ? '10px 0' : '18px 0',
+        background: isScrolled ? 'hsl(var(--background) / 0.88)' : 'transparent',
+        backdropFilter: isScrolled ? 'blur(16px)' : 'none',
+        borderBottom: isScrolled ? '1px solid var(--border-color)' : '1px solid transparent',
+        boxShadow: isScrolled ? '0 4px 24px rgba(0,0,0,0.2)' : 'none',
+      }}
     >
-      <div className="container mx-auto px-4 md:px-6 flex justify-between items-center min-h-[48px]">
-        <a 
-          href="#" 
-          className="text-2xl font-display font-bold text-foreground flex items-center group"
-        >
-          <span className="text-primary mr-1 transition-transform duration-300 group-hover:rotate-12">N</span>
-          <span className="group-hover:text-primary transition-colors duration-300">ahin</span>
+      <div className="container mx-auto px-5 md:px-6 flex justify-between items-center min-h-[48px]">
+
+        {/* Logo */}
+        <a href="#" className="font-display font-bold text-xl flex items-center gap-0.5 group" style={{ textDecoration: 'none' }}>
+          <span className="transition-all duration-300 group-hover:scale-110" style={{ color: 'var(--teal)' }}>N</span>
+          <span className="transition-colors duration-300" style={{ color: 'hsl(var(--foreground))' }}>ahin</span>
         </a>
-        
-        <nav className="hidden md:flex items-center space-x-8">
+
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href} 
-              className="nav-link text-sm font-medium"
-            >
+            <a key={link.name} href={link.href} className="nav-link">
               {link.name}
             </a>
           ))}
-          
-          <Button 
-            variant="ghost" 
-            size="icon"
-            onClick={toggleTheme} 
-            className="ml-2 text-foreground hover:text-primary rounded-full"
+
+          <button
+            onClick={toggleTheme}
+            className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+            style={{
+              background: 'hsl(var(--card) / 0.5)',
+              border: '1px solid var(--border-color)',
+              color: 'var(--teal)',
+            }}
           >
-            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-          </Button>
+            {isDarkMode ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
         </nav>
-        
-        <div className="flex items-center space-x-4 md:hidden">
-          <Button 
-            variant="ghost" 
-            size="icon"
-            onClick={toggleTheme} 
-            className="text-foreground hover:text-primary rounded-full"
+
+        {/* Mobile controls */}
+        <div className="flex items-center gap-2 md:hidden">
+          <button
+            onClick={toggleTheme}
+            className="w-9 h-9 rounded-lg flex items-center justify-center"
+            style={{
+              background: 'hsl(var(--card) / 0.5)',
+              border: '1px solid var(--border-color)',
+              color: 'var(--teal)',
+            }}
           >
-            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-          </Button>
-          
-          <Button 
-            variant="ghost" 
-            size="icon"
-            className="text-foreground hover:text-primary rounded-full"
+            {isDarkMode ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+
+          <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="w-9 h-9 rounded-lg flex items-center justify-center"
+            style={{
+              background: 'hsl(var(--card) / 0.5)',
+              border: '1px solid var(--border-color)',
+              color: 'hsl(var(--foreground))',
+            }}
           >
             {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
-          </Button>
+          </button>
         </div>
       </div>
-      
-      {/* Mobile Menu */}
+
+      {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-card/95 backdrop-blur-md px-4 py-4 shadow-lg animate-fadeIn">
-          <nav className="flex flex-col">
+        <div
+          className="md:hidden animate-fadeIn"
+          style={{
+            background: 'hsl(var(--card) / 0.97)',
+            backdropFilter: 'blur(20px)',
+            borderTop: '1px solid var(--border-color)',
+          }}
+        >
+          <nav className="flex flex-col px-4 py-2">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-foreground hover:text-primary px-4 min-h-[48px] flex items-center rounded-md hover:bg-primary/5 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
+                className="font-body text-base py-3 px-3 rounded-lg flex items-center gap-3 transition-all duration-200"
+                style={{
+                  color: 'hsl(var(--foreground) / 0.8)',
+                  minHeight: '52px',
+                  borderBottom: '1px solid var(--border-color)',
+                  textDecoration: 'none',
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.color = 'var(--teal)';
+                  (e.currentTarget as HTMLElement).style.background = 'var(--teal-faint)';
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.color = 'hsl(var(--foreground) / 0.8)';
+                  (e.currentTarget as HTMLElement).style.background = 'transparent';
+                }}
               >
+                <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'var(--teal)', opacity: 0.6 }}></span>
                 {link.name}
               </a>
             ))}
-            <button
-              onClick={() => setIsMenuOpen(false)}
-              className="mt-2 text-sm text-muted-foreground hover:text-primary min-h-[48px] flex items-center justify-center border-t border-border/50"
-            >
-              Close
-            </button>
           </nav>
         </div>
       )}
