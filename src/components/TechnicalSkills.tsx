@@ -1,37 +1,42 @@
 import { useEffect, useRef } from 'react';
 import { Code, Database, Globe, Brain } from 'lucide-react';
-import { Badge } from "@/components/ui/badge";
 
 const TechnicalSkills = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          }
-        });
-      },
+      entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('active')),
       { threshold: 0.1 }
     );
-
     if (sectionRef.current) observer.observe(sectionRef.current);
-    if (cardRef.current) observer.observe(cardRef.current);
 
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-      if (cardRef.current) observer.unobserve(cardRef.current);
-    };
+    cardRefs.current.forEach((el, i) => {
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                (entry.target as HTMLElement).style.opacity = '1';
+                (entry.target as HTMLElement).style.transform = 'translateY(0)';
+              }, i * 100);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      obs.observe(el);
+    });
+
+    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
   }, []);
 
   const skillCategories = [
     {
       category: "Programming Languages",
       icon: Code,
-      iconColor: "text-blue-500",
       skills: [
         { name: "Python", primary: true },
         { name: "C++", primary: true },
@@ -42,7 +47,6 @@ const TechnicalSkills = () => {
     {
       category: "Machine Learning & AI",
       icon: Brain,
-      iconColor: "text-purple-500",
       skills: [
         { name: "PyTorch", primary: true },
         { name: "TensorFlow", primary: true },
@@ -53,7 +57,6 @@ const TechnicalSkills = () => {
     {
       category: "Web & Mobile",
       icon: Globe,
-      iconColor: "text-green-500",
       skills: [
         { name: "React", primary: false },
         { name: "Node.js", primary: false },
@@ -64,7 +67,6 @@ const TechnicalSkills = () => {
     {
       category: "Databases & Tools",
       icon: Database,
-      iconColor: "text-orange-500",
       skills: [
         { name: "MySQL", primary: false },
         { name: "MongoDB", primary: false },
@@ -75,57 +77,44 @@ const TechnicalSkills = () => {
   ];
 
   return (
-    <section
-      id="skills"
-      ref={sectionRef}
-      className="py-12 md:py-20 px-4 relative animate-on-scroll"
-    >
-      <div className="w-full md:w-[80%] max-w-none mx-auto">
+    <section id="skills" ref={sectionRef} className="py-16 md:py-24 px-4 relative animate-on-scroll">
+      <div className="w-full md:w-[82%] max-w-none mx-auto">
 
-        {/* Section Header */}
-        <div className="text-center mb-8 md:mb-16 animate-on-scroll">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-3 md:mb-4">
-            Technical Skills
-          </h2>
-          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-            Technologies and tools I work with
-          </p>
+        {/* Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <div className="flex justify-center">
+            <span className="section-chip">Toolkit</span>
+          </div>
+          <h2 className="section-title mb-3">Technical Skills</h2>
+          <p className="section-subtitle">Technologies and tools I work with</p>
         </div>
 
-        {/* Skills Grid */}
-        <div
-          ref={cardRef}
-          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 animate-on-scroll"
-        >
-          {skillCategories.map((category, index) => (
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
+          {skillCategories.map((cat, index) => (
             <div
               key={index}
-              className="group bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-4 md:p-6 hover:border-primary/30 hover:bg-card/80 transition-all duration-300 z-10"
+              ref={el => { cardRefs.current[index] = el; }}
+              className="teal-card shimmer group p-5 md:p-6"
+              style={{ opacity: 0, transform: 'translateY(20px)', transition: `opacity 0.5s ease, transform 0.5s ease, box-shadow 0.35s ease` }}
             >
-              {/* Icon + Category */}
+              {/* Icon + title */}
               <div className="flex items-center gap-3 mb-5">
-                <div className={`w-9 h-9 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center shrink-0 ${category.iconColor}`}>
-                  <category.icon className="w-4 h-4" />
+                <div className="icon-box">
+                  <cat.icon size={17} />
                 </div>
-                <h4 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
-                  {category.category}
+                <h4 className="font-display font-semibold text-sm group-hover:text-primary transition-colors duration-300"
+                  style={{ color: 'hsl(var(--foreground))' }}>
+                  {cat.category}
                 </h4>
               </div>
 
-              {/* Skills */}
+              {/* Tags */}
               <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, idx) => (
-                  <Badge
-                    key={idx}
-                    variant="secondary"
-                    className={`text-xs px-2.5 py-1 border transition-colors duration-300 ${
-                      skill.primary
-                        ? 'bg-primary/10 text-primary border-primary/20 hover:bg-primary/20'
-                        : 'bg-card/80 text-muted-foreground border-border/50 hover:border-primary/20 hover:text-foreground'
-                    }`}
-                  >
-                    {skill.name}
-                  </Badge>
+                {cat.skills.map((skill, idx) => (
+                  skill.primary
+                    ? <span key={idx} className="teal-badge">{skill.name}</span>
+                    : <span key={idx} className="muted-badge">{skill.name}</span>
                 ))}
               </div>
             </div>
@@ -134,12 +123,12 @@ const TechnicalSkills = () => {
 
         {/* Legend */}
         <div className="flex items-center justify-center gap-6 mt-8">
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span className="inline-block w-3 h-3 rounded-full bg-primary/40 border border-primary/40"></span>
+          <div className="flex items-center gap-2 font-mono text-xs" style={{ color: 'var(--text-secondary)' }}>
+            <span className="inline-block w-2.5 h-2.5 rounded-full" style={{ background: 'color-mix(in srgb, var(--teal) 50%, transparent)', border: '1px solid var(--teal)' }}></span>
             Actively used in research
           </div>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span className="inline-block w-3 h-3 rounded-full bg-border/80 border border-border"></span>
+          <div className="flex items-center gap-2 font-mono text-xs" style={{ color: 'var(--text-secondary)' }}>
+            <span className="inline-block w-2.5 h-2.5 rounded-full" style={{ background: 'hsl(var(--muted) / 0.6)', border: '1px solid var(--border-color)' }}></span>
             General proficiency
           </div>
         </div>
