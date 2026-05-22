@@ -78,16 +78,16 @@ const TechnicalSkills = () => {
     <section
       id="skills"
       ref={sectionRef}
-      className="py-20 px-4 relative animate-on-scroll"
+      className="py-12 md:py-20 px-4 relative animate-on-scroll"
     >
-      <div className="w-[80%] max-w-none mx-auto">
+      <div className="w-full md:w-[80%] max-w-none mx-auto">
 
         {/* Section Header */}
-        <div className="text-center mb-16 animate-on-scroll">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+        <div className="text-center mb-8 md:mb-16 animate-on-scroll">
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-3 md:mb-4">
             Technical Skills
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
             Technologies and tools I work with
           </p>
         </div>
@@ -95,12 +95,12 @@ const TechnicalSkills = () => {
         {/* Skills Grid */}
         <div
           ref={cardRef}
-          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 animate-on-scroll"
+          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 animate-on-scroll"
         >
           {skillCategories.map((category, index) => (
             <div
               key={index}
-              className="group bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 hover:border-primary/30 hover:bg-card/80 transition-all duration-300"
+              className="group bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-4 md:p-6 hover:border-primary/30 hover:bg-card/80 transition-all duration-300 z-10"
             >
               {/* Icon + Category */}
               <div className="flex items-center gap-3 mb-5">

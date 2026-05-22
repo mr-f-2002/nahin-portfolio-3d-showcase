@@ -104,27 +104,27 @@ const AboutFlashcards = () => {
     <section
       id="about"
       ref={aboutRef}
-      className="py-20 px-4 relative"
+      className="py-12 md:py-20 px-4 relative"
     >
-      <div className="w-[80%] max-w-none mx-auto">
+      <div className="w-full md:w-[80%] max-w-none mx-auto">
 
         {/* Section Header */}
-        <div className="text-center mb-16 animate-on-scroll">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+        <div className="text-center mb-8 md:mb-16 animate-on-scroll">
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-3 md:mb-4">
             About Me
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
             Educator · Researcher · ML Specialist
           </p>
         </div>
 
         {/* Flashcards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6">
           {whoIAmFlashcards.map((card, index) => (
             <div
               key={index}
               ref={(el) => addToWhoIAmRefs(el, index)}
-              className={`group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 hover:border-primary/30 hover:bg-card/80 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 ${
+              className={`group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-4 md:p-6 hover:border-primary/30 hover:bg-card/80 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 z-10 ${
                 index <= activeWhoIAmIndex
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-8'
@@ -136,7 +136,7 @@ const AboutFlashcards = () => {
               </div>
 
               {/* Badge */}
-              <span className="inline-flex items-center px-2.5 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full border border-primary/20 mb-4">
+              <span className="inline-flex flex-wrap max-w-full items-center px-2.5 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full border border-primary/20 mb-4 break-words">
                 {card.highlight}
               </span>
 

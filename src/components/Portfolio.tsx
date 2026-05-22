@@ -172,27 +172,27 @@ const Portfolio = () => {
     <section
       id="portfolio"
       ref={portfolioRef}
-      className="py-20 px-4 relative"
+      className="py-12 md:py-20 px-4 relative"
     >
-      <div className="w-[80%] max-w-none mx-auto">
+      <div className="w-full md:w-[80%] max-w-none mx-auto">
 
         {/* Section Header */}
-        <div className="text-center mb-16 animate-on-scroll">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+        <div className="text-center mb-8 md:mb-16 animate-on-scroll">
+          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-3 md:mb-4">
             Projects
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
             Selected work across research, web, mobile, and systems
           </p>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
           {displayedProjects.map((project, index) => (
             <div
               key={project.id}
               ref={(el) => addToProjectRefs(el, index)}
-              className="group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl flex flex-col overflow-hidden hover:border-primary/30 hover:bg-card/80 transition-all duration-300 transform"
+              className="group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl flex flex-col overflow-hidden hover:border-primary/30 hover:bg-card/80 transition-all duration-300 transform z-10"
             >
               {/* Image */}
               <div className="aspect-[4/3] relative overflow-hidden bg-secondary/10">
@@ -282,12 +282,12 @@ const Portfolio = () => {
         </div>
 
         {/* Show More / Less */}
-        <div className="flex justify-center mt-10">
+        <div className="flex justify-center mt-6 md:mt-10 px-4">
           {!showAll && projects.length > initialProjectCount && (
             <Button
               variant="outline"
               onClick={() => setShowAll(true)}
-              className="h-10 px-6 text-sm border-border/50 text-foreground hover:border-primary/30 hover:text-primary hover:bg-primary/5 transition-all duration-300 flex items-center gap-2"
+              className="h-10 px-6 text-sm border-border/50 text-foreground hover:border-primary/30 hover:text-primary hover:bg-primary/5 transition-all duration-300 flex items-center gap-2 w-full sm:w-auto justify-center"
             >
               <Zap className="w-4 h-4" />
               See All Projects
@@ -298,7 +298,7 @@ const Portfolio = () => {
             <Button
               variant="outline"
               onClick={() => setShowAll(false)}
-              className="h-10 px-6 text-sm border-border/50 text-foreground hover:border-primary/30 hover:text-primary hover:bg-primary/5 transition-all duration-300 flex items-center gap-2"
+              className="h-10 px-6 text-sm border-border/50 text-foreground hover:border-primary/30 hover:text-primary hover:bg-primary/5 transition-all duration-300 flex items-center gap-2 w-full sm:w-auto justify-center"
             >
               <Star className="w-4 h-4" />
               Show Less
