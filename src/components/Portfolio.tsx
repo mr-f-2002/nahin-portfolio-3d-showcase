@@ -1,5 +1,3 @@
-restyle this section to have smaller project image and more minimal design:
-
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, ChevronDown, ChevronUp, Code2, ShoppingCart, Heart, Pill, PaintBucket, BookOpen, Calendar, FlaskConical, Zap, Star } from 'lucide-react';
 
@@ -16,7 +14,7 @@ interface Project {
 }
 
 const projects: Project[] = [
-  { id: 1, title: "Librfda", description: "An anonymous blogging platform with embedded study tools for students — built to support collaborative and distraction-free academic engagement.", technologies: ["Java", "JavaFX", "FXML", "MySQL"], image: "https://i.postimg.cc/qMrDWbLc/libra.png", link: "https://github.com/mr-f-2002/libraRepos.git", icon: BookOpen, category: "Desktop App" },
+  { id: 1, title: "Libra", description: "An anonymous blogging platform with embedded study tools for students — built to support collaborative and distraction-free academic engagement.", technologies: ["Java", "JavaFX", "FXML", "MySQL"], image: "https://i.postimg.cc/qMrDWbLc/libra.png", link: "https://github.com/mr-f-2002/libraRepos.git", icon: BookOpen, category: "Desktop App" },
   { id: 2, title: "ShopSmart", description: "A full-stack e-commerce platform with location-based store filtering, product search, and a complete order management system.", technologies: ["JavaScript", "Node.js", "Express", "MySQL"], image: "https://i.postimg.cc/gjFtzNPW/shop-smart.png", link: "https://github.com/mr-f-2002/Shop-Smart", icon: ShoppingCart, category: "Web App" },
   { id: 3, title: "Crop Recommender", description: "An ML-based crop recommendation system that predicts the most suitable crop given soil and environmental conditions.", technologies: ["Python", "Scikit-Learn", "HTML", "CSS", "JavaScript"], image: "https://i.postimg.cc/NF6J5mgr/crop-recom.png", link: "https://github.com/mr-f-2002/Crop-Recommender.git", icon: FlaskConical, category: "Machine Learning", isResearch: true },
   { id: 4, title: "Fitify", description: "A health-tracking mobile app with personalised fitness recommendations and progress monitoring.", technologies: ["React Native", "Firebase"], image: "https://i.postimg.cc/Y9myBTZR/fitify.png", link: "https://github.com/mr-f-2002/Fitify.git", icon: Heart, category: "Mobile App" },
@@ -74,142 +72,106 @@ const Portfolio = () => {
         </div>
 
         {/* Grid */}
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-  {displayed.map((project) => (
-    <div
-      key={project.id}
-      className="project-card group flex overflow-hidden rounded-2xl transition-all duration-300"
-      style={{
-        opacity: 0,
-        transform: 'translateY(20px)',
-        transition:
-          'opacity 0.5s ease, transform 0.35s ease, border-color 0.3s ease',
-        background: 'hsl(var(--card))',
-        border: '1px solid hsl(var(--border))',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-2px)';
-        e.currentTarget.style.borderColor =
-          'color-mix(in srgb, var(--teal) 15%, var(--border-color))';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.borderColor = 'hsl(var(--border))';
-      }}
-    >
-      {/* LEFT: Small Thumbnail */}
-      <div className="relative w-32 sm:w-36 shrink-0">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover"
-        />
-
-        {/* Tiny research badge */}
-        {project.isResearch && (
-          <div className="absolute top-2 right-2">
-            <span
-              className="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-medium"
-              style={{
-                background: 'hsl(var(--background) / 0.92)',
-                color: 'var(--teal)',
-                border: '1px solid hsl(var(--border))',
-              }}
-            >
-              <FlaskConical size={10} />
-            </span>
-          </div>
-        )}
-      </div>
-
-      {/* RIGHT: Content */}
-      <div className="flex flex-col flex-1 p-4 min-w-0">
-        {/* Top row */}
-        <div className="flex items-start justify-between gap-3 mb-2">
-          <div className="flex items-center gap-2 min-w-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5">
+          {displayed.map((project) => (
             <div
-              className="w-7 h-7 rounded-md flex items-center justify-center shrink-0"
+              key={project.id}
+              className="project-card group flex flex-col overflow-hidden rounded-xl"
               style={{
-                background: 'hsl(var(--muted) / 0.15)',
-                color: 'var(--teal)',
+                opacity: 0,
+                transform: 'translateY(20px)',
+                transition: 'opacity 0.5s ease, transform 0.5s ease, box-shadow 0.35s ease, border-color 0.35s ease',
+                background: 'hsl(var(--card) / 0.6)',
+                border: '1px solid var(--border-color)',
+                backdropFilter: 'blur(12px)',
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.borderColor = 'color-mix(in srgb, var(--teal) 40%, var(--border-color))';
+                el.style.boxShadow = '0 8px 40px var(--teal-glow)';
+                el.style.transform = 'translateY(-4px)';
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.borderColor = 'var(--border-color)';
+                el.style.boxShadow = 'none';
+                el.style.transform = 'translateY(0)';
               }}
             >
-              <project.icon size={13} />
+              {/* Image */}
+              <div className="aspect-[4/3] relative overflow-hidden" style={{ background: 'hsl(var(--muted) / 0.2)' }}>
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: 'linear-gradient(to top, rgba(15,20,25,0.5), transparent)' }} />
+
+                {/* Badges — top left */}
+                <div className="absolute top-3 left-3 flex items-center gap-2 flex-wrap">
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-full font-mono text-xs"
+                    style={{ background: 'hsl(var(--background) / 0.85)', color: 'hsl(var(--foreground))', border: '1px solid var(--border-color)', backdropFilter: 'blur(8px)' }}>
+                    {project.category}
+                  </span>
+                  {project.isResearch && (
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-mono text-xs"
+                      style={{ background: 'color-mix(in srgb, var(--teal) 20%, transparent)', color: 'var(--teal)', border: '1px solid color-mix(in srgb, var(--teal) 35%, transparent)', backdropFilter: 'blur(8px)' }}>
+                      <FlaskConical size={11} /> Research
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="flex flex-col flex-1 p-5">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="icon-box w-7 h-7">
+                    <project.icon size={14} />
+                  </div>
+                  <h3 className="font-display font-semibold text-sm group-hover:text-primary transition-colors duration-300"
+                    style={{ color: 'hsl(var(--foreground))' }}>
+                    {project.title}
+                  </h3>
+                </div>
+
+                <p className="font-body text-sm leading-relaxed mb-4 line-clamp-3" style={{ color: 'var(--text-secondary)' }}>
+                  {project.description}
+                </p>
+
+                {/* Tech tags */}
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  {project.technologies.slice(0, 4).map((tech, i) => (
+                    <span key={i} className="teal-badge">{tech}</span>
+                  ))}
+                  {project.technologies.length > 4 && (
+                    <span className="muted-badge">+{project.technologies.length - 4}</span>
+                  )}
+                </div>
+
+                {/* Action */}
+                <div className="mt-auto">
+                  {project.link ? (
+                    <button
+                      onClick={() => window.open(project.link, '_blank', 'noopener,noreferrer')}
+                      className="btn-outline w-full text-sm justify-center"
+                      style={{ padding: '9px 16px' }}
+                    >
+                      <Code2 size={14} />
+                      View on GitHub
+                      <ArrowRight size={13} className="ml-auto transition-transform group-hover:translate-x-1" />
+                    </button>
+                  ) : (
+                    <button disabled className="w-full flex items-center justify-center gap-2 font-body text-sm py-2.5 rounded-lg"
+                      style={{ background: 'hsl(var(--muted) / 0.3)', color: 'var(--text-secondary)', border: '1px solid var(--border-color)', cursor: 'not-allowed' }}>
+                      <Calendar size={14} /> No Public Repo
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
-
-            <div className="min-w-0">
-              <h3
-                className="font-semibold text-sm truncate"
-                style={{ color: 'hsl(var(--foreground))' }}
-              >
-                {project.title}
-              </h3>
-
-              <span
-                className="text-[11px] uppercase tracking-wide"
-                style={{ color: 'var(--text-secondary)' }}
-              >
-                {project.category}
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Description */}
-        <p
-          className="text-sm leading-5 mb-3 line-clamp-2"
-          style={{ color: 'var(--text-secondary)' }}
-        >
-          {project.description}
-        </p>
-
-        {/* Tech */}
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {project.technologies.slice(0, 4).map((tech, i) => (
-            <span
-              key={i}
-              className="text-[10px] px-2 py-1 rounded-md"
-              style={{
-                background: 'hsl(var(--muted) / 0.12)',
-                color: 'var(--text-secondary)',
-                border: '1px solid hsl(var(--border))',
-              }}
-            >
-              {tech}
-            </span>
           ))}
         </div>
-
-        {/* Bottom */}
-        <div className="mt-auto flex items-center justify-between">
-          {project.link ? (
-            <button
-              onClick={() =>
-                window.open(project.link, '_blank', 'noopener,noreferrer')
-              }
-              className="flex items-center gap-2 text-sm font-medium transition-all"
-              style={{ color: 'hsl(var(--foreground))' }}
-            >
-              <Code2 size={13} />
-              View Project
-              <ArrowRight
-                size={12}
-                className="transition-transform group-hover:translate-x-1"
-              />
-            </button>
-          ) : (
-            <span
-              className="text-xs"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              No Public Repo
-            </span>
-          )}
-        </div>
-      </div>
-    </div>
-  ))}
-</div>
 
         {/* Show more / less */}
         <div className="flex justify-center mt-8 md:mt-12 px-4">
