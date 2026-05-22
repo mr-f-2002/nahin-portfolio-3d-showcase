@@ -98,11 +98,25 @@
   }
   
   .section-heading {
-    @apply text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-8 text-foreground relative inline-block after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-16 after:h-1 after:bg-primary after:rounded-full;
+    @apply text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-8 text-foreground relative inline-block after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-16 after:h-1 after:bg-primary after:rounded-full tracking-tight;
   }
   
   .section-subheading {
     @apply text-xl md:text-2xl font-display font-semibold mb-4 text-foreground;
+  }
+
+  .teal-glow {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+
+  .photo-glow {
+    box-shadow: 0 0 0 3px hsl(var(--primary) / 0.5), 0 0 40px hsl(var(--primary) / 0.25);
+    animation: photoPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes photoPulse {
+    0%, 100% { box-shadow: 0 0 0 3px hsl(var(--primary) / 0.5), 0 0 30px hsl(var(--primary) / 0.2); }
+    50% { box-shadow: 0 0 0 3px hsl(var(--primary) / 0.7), 0 0 50px hsl(var(--primary) / 0.4); }
   }
   
   .card-hover {
