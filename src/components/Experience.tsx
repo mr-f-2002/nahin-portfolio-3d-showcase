@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { Badge } from "@/components/ui/badge";
 import { Briefcase, FlaskConical } from 'lucide-react';
 
 interface Experience {
@@ -15,140 +14,120 @@ interface Experience {
   tags: string[];
 }
 
-const Experience = () => {
-  const experienceRef = useRef<HTMLElement>(null);
-  const elementsRef = useRef<(HTMLDivElement | null)[]>([]);
+const experiences: Experience[] = [
+  {
+    id: 0, role: "Lecturer", company: "United International University",
+    department: "Department of Computer Science & Engineering",
+    period: "February 2026 – Present", type: "academic", current: true,
+    description: "Currently serving as a Lecturer, delivering undergraduate CSE courses while pursuing active research in lightweight deep learning and cloud computing.",
+    responsibilities: [
+      "Conduct lectures, tutorials, and lab sessions for core CSE courses",
+      "Design course materials, assignments, and assessments aligned with learning outcomes",
+      "Supervise and mentor undergraduate student projects and research work",
+      "Pursue research in lightweight deep learning models for cloud workload forecasting",
+      "Participate in curriculum development and departmental academic activities"
+    ],
+    tags: ["Teaching", "Research", "Mentorship", "Machine Learning", "Cloud Computing"]
+  },
+  {
+    id: 1, role: "Lecturer", company: "Eastern University",
+    department: "Department of Computer Science & Engineering",
+    period: "October 2025 – February 2026", type: "academic", current: false,
+    description: "Began academic career as a Lecturer immediately after graduating from IUT. Delivered undergraduate courses and contributed to research and student mentorship.",
+    responsibilities: [
+      "Taught core undergraduate CSE courses including labs and tutorials",
+      "Designed and evaluated course assessments and learning materials",
+      "Mentored students on academic projects and coursework",
+      "Continued research work on cloud resource provisioning and ML-based forecasting"
+    ],
+    tags: ["Teaching", "Curriculum Design", "Research", "Mentorship"]
+  },
+  {
+    id: 2, role: "AI Engineering Intern", company: "Kernel Technologies Limited",
+    department: "",
+    period: "June 2024 – September 2024", type: "industry", current: false,
+    description: "4-month industry internship focused on building an AI-powered viva system for medical students using Retrieval Augmented Generation (RAG).",
+    responsibilities: [
+      "Implemented RAG pipelines to generate context-relevant questions from medical textbooks",
+      "Built a feedback system evaluating student answers against key concepts",
+      "Optimised the system to handle multiple medical specialties and textbook formats",
+      "Collaborated with medical subject matter experts to validate content accuracy"
+    ],
+    tags: ["RAG", "NLP", "Python", "PyTorch", "FastAPI"]
+  }
+];
+
+const ExperienceCard = ({ exp, cardIndex }: { exp: Experience; cardIndex: number }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('opacity-100', 'translate-y-0');
-            entry.target.classList.remove('opacity-0', 'translate-y-8');
+            setTimeout(() => {
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+            }, cardIndex * 100);
           }
         });
       },
       { threshold: 0.1 }
     );
+    observer.observe(el);
+    return () => observer.unobserve(el);
+  }, [cardIndex]);
 
-    if (experienceRef.current) observer.observe(experienceRef.current);
-    elementsRef.current.forEach((el) => { if (el) observer.observe(el); });
-
-    return () => {
-      if (experienceRef.current) observer.unobserve(experienceRef.current);
-      elementsRef.current.forEach((el) => { if (el) observer.unobserve(el); });
-      elementsRef.current = [];
-    };
-  }, []);
-
-  const addToRefs = (el: HTMLDivElement | null, index: number) => {
-    elementsRef.current[index] = el;
-  };
-
-  const experiences: Experience[] = [
-    {
-      id: 0,
-      role: "Lecturer",
-      company: "United International University",
-      department: "Department of Computer Science & Engineering",
-      period: "February 2026 – Present",
-      type: "academic",
-      current: true,
-      description:
-        "Currently serving as a Lecturer, delivering undergraduate CSE courses while pursuing active research in lightweight deep learning and cloud computing.",
-      responsibilities: [
-        "Conduct lectures, tutorials, and lab sessions for core CSE courses",
-        "Design course materials, assignments, and assessments aligned with learning outcomes",
-        "Supervise and mentor undergraduate student projects and research work",
-        "Pursue research in lightweight deep learning models for cloud workload forecasting",
-        "Participate in curriculum development and departmental academic activities"
-      ],
-      tags: ["Teaching", "Research", "Mentorship", "Machine Learning", "Cloud Computing"]
-    },
-    {
-      id: 1,
-      role: "Lecturer",
-      company: "Eastern University",
-      department: "Department of Computer Science & Engineering",
-      period: "October 2025 – February 2026",
-      type: "academic",
-      current: false,
-      description:
-        "Began academic career as a Lecturer immediately after graduating from IUT. Delivered undergraduate courses and contributed to research and student mentorship.",
-      responsibilities: [
-        "Taught core undergraduate CSE courses including labs and tutorials",
-        "Designed and evaluated course assessments and learning materials",
-        "Mentored students on academic projects and coursework",
-        "Continued research work on cloud resource provisioning and ML-based forecasting"
-      ],
-      tags: ["Teaching", "Curriculum Design", "Research", "Mentorship"]
-    },
-    {
-      id: 2,
-      role: "AI Engineering Intern",
-      company: "Kernel Technologies Limited",
-      department: "",
-      period: "June 2024 – September 2024",
-      type: "industry",
-      current: false,
-      description:
-        "4-month industry internship focused on building an AI-powered viva system for medical students using Retrieval Augmented Generation (RAG).",
-      responsibilities: [
-        "Implemented RAG pipelines to generate context-relevant questions from medical textbooks",
-        "Built a feedback system evaluating student answers against key concepts",
-        "Optimised the system to handle multiple medical specialties and textbook formats",
-        "Collaborated with medical subject matter experts to validate content accuracy"
-      ],
-      tags: ["RAG", "NLP", "Python", "PyTorch", "FastAPI"]
-    }
-  ];
-
-  const academicExperiences = experiences.filter(e => e.type === 'academic');
-  const industryExperiences = experiences.filter(e => e.type === 'industry');
-
-  const ExperienceCard = ({ exp, index }: { exp: Experience; index: number }) => (
+  return (
     <div
-      ref={(el) => addToRefs(el, index)}
-      className="group relative bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-4 md:p-8 hover:border-primary/30 hover:bg-card/80 transition-all duration-300 opacity-0 translate-y-8 z-10"
+      ref={cardRef}
+      className="subtle-card group p-5 md:p-7 shimmer"
+      style={{ opacity: 0, transform: 'translateY(20px)', transition: 'opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease' }}
     >
       {/* Current badge */}
       {exp.current && (
-        <div className="mb-3 sm:absolute sm:top-6 sm:right-6 sm:mb-0">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-medium rounded-full border border-green-500/20">
-            <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+        <div className="mb-3 md:mb-0 md:absolute md:top-6 md:right-6 relative">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-mono text-xs font-medium"
+            style={{ background: 'rgba(16,185,129,0.12)', color: '#10b981', border: '1px solid rgba(16,185,129,0.25)' }}>
+            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#10b981' }}></span>
             Current
           </span>
         </div>
       )}
 
-      <div className="flex items-start gap-3 md:gap-6">
-        {/* Index number */}
-        <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-lg text-primary font-bold text-base md:text-lg shrink-0 self-start">
-          {index + 1}
+      <div className="flex items-start gap-4 md:gap-5">
+        {/* Number badge */}
+        <div className="flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-xl font-mono font-bold text-base shrink-0"
+          style={{ background: 'color-mix(in srgb, var(--teal) 15%, transparent)', color: 'var(--teal)', border: '1px solid color-mix(in srgb, var(--teal) 30%, transparent)' }}>
+          {String(cardIndex + 1).padStart(2, '0')}
         </div>
 
         <div className="flex-1 min-w-0">
-          <h4 className="text-base md:text-xl font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-300">
+          <h4 className="font-display font-semibold text-base md:text-lg mb-0.5 group-hover:text-primary transition-colors duration-300"
+            style={{ color: 'hsl(var(--foreground))' }}>
             {exp.role}
           </h4>
-          <p className="text-sm md:text-base font-medium text-foreground/80">
+          <p className="font-body font-medium text-sm md:text-base mb-0.5" style={{ color: 'var(--teal)' }}>
             {exp.company}
           </p>
           {exp.department && (
-            <p className="text-sm text-muted-foreground mb-1">{exp.department}</p>
+            <p className="font-body text-sm mb-1" style={{ color: 'var(--text-secondary)' }}>{exp.department}</p>
           )}
-          <p className="text-sm text-muted-foreground mb-4">{exp.period}</p>
+          <p className="font-mono text-xs mb-4" style={{ color: 'var(--text-secondary)' }}>{exp.period}</p>
 
-          <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-4">
+          <p className="font-body text-sm md:text-base leading-relaxed mb-4" style={{ color: 'hsl(var(--foreground) / 0.7)' }}>
             {exp.description}
           </p>
 
-          <h5 className="text-sm md:text-base font-medium text-primary mb-2">Key Responsibilities</h5>
-          <ul className="space-y-1.5 mb-5 pl-4">
+          <h5 className="font-mono text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: 'var(--teal)' }}>
+            Key Responsibilities
+          </h5>
+          <ul className="space-y-2 mb-5 pl-0">
             {exp.responsibilities.map((item, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm md:text-base text-muted-foreground">
-                <span className="mt-2 w-1.5 h-1.5 bg-primary/50 rounded-full shrink-0"></span>
+              <li key={i} className="flex items-start gap-2.5 font-body text-sm" style={{ color: 'var(--text-secondary)' }}>
+                <span className="mt-2 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'var(--teal)', opacity: 0.6 }}></span>
                 <span className="flex-1">{item}</span>
               </li>
             ))}
@@ -157,64 +136,67 @@ const Experience = () => {
           {/* Tags */}
           <div className="flex flex-wrap gap-2">
             {exp.tags.map((tag, i) => (
-              <Badge
-                key={i}
-                variant="secondary"
-                className="text-xs px-2.5 py-0.5 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors duration-300"
-              >
-                {tag}
-              </Badge>
+              <span key={i} className="teal-badge">{tag}</span>
             ))}
           </div>
         </div>
       </div>
     </div>
   );
+};
+
+const SectionLabel = ({ icon: Icon, label }: { icon: any; label: string }) => (
+  <div className="flex items-center gap-3 mb-6">
+    <div className="icon-box"><Icon size={16} /></div>
+    <h3 className="font-display font-semibold text-lg" style={{ color: 'hsl(var(--foreground))' }}>{label}</h3>
+    <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, var(--border-color), transparent)' }}></div>
+  </div>
+);
+
+const Experience = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('active')),
+      { threshold: 0.05 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
+  }, []);
+
+  const academic = experiences.filter(e => e.type === 'academic');
+  const industry = experiences.filter(e => e.type === 'industry');
 
   return (
-    <section
-      id="experience"
-      ref={experienceRef}
-      className="py-12 md:py-20 px-4 relative"
-    >
-      <div className="w-full md:w-[80%] max-w-none mx-auto">
+    <section id="experience" ref={sectionRef} className="py-16 md:py-24 px-4 relative animate-on-scroll">
+      <div className="w-full md:w-[82%] max-w-none mx-auto">
 
-        {/* Section Header */}
-        <div className="text-center mb-8 md:mb-16 animate-on-scroll">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-3 md:mb-4">
-            Experience
-          </h2>
-          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-            Academic career and industry exposure
-          </p>
+        {/* Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <div className="flex justify-center">
+            <span className="section-chip">Career</span>
+          </div>
+          <h2 className="section-title mb-3">Experience</h2>
+          <p className="section-subtitle">Academic career and industry exposure</p>
         </div>
 
-        {/* Academic Experience */}
-        <div className="mb-8 md:mb-14">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-8 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center">
-              <FlaskConical className="w-4 h-4 text-primary" />
-            </div>
-            <h3 className="text-xl font-semibold text-foreground">Academic</h3>
-          </div>
-          <div className="space-y-6">
-            {academicExperiences.map((exp, index) => (
-              <ExperienceCard key={exp.id} exp={exp} index={index} />
+        {/* Academic */}
+        <div className="mb-10 md:mb-14">
+          <SectionLabel icon={FlaskConical} label="Academic" />
+          <div className="space-y-5">
+            {academic.map((exp, i) => (
+              <ExperienceCard key={exp.id} exp={exp} cardIndex={i} />
             ))}
           </div>
         </div>
 
-        {/* Industry Experience */}
+        {/* Industry */}
         <div>
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-8 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center">
-              <Briefcase className="w-4 h-4 text-primary" />
-            </div>
-            <h3 className="text-xl font-semibold text-foreground">Industry</h3>
-          </div>
-          <div className="space-y-6">
-            {industryExperiences.map((exp, index) => (
-              <ExperienceCard key={exp.id} exp={exp} index={academicExperiences.length + index} />
+          <SectionLabel icon={Briefcase} label="Industry" />
+          <div className="space-y-5">
+            {industry.map((exp, i) => (
+              <ExperienceCard key={exp.id} exp={exp} cardIndex={academic.length + i} />
             ))}
           </div>
         </div>
