@@ -1,41 +1,39 @@
-
 import { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
 import { ArrowUp } from 'lucide-react';
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
-
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    const toggle = () => setIsVisible(window.scrollY > 300);
+    window.addEventListener('scroll', toggle);
+    return () => window.removeEventListener('scroll', toggle);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
   return (
-    <div className={`fixed bottom-8 right-8 z-50 transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}>
-      <Button
-        onClick={scrollToTop}
-        size="icon"
-        className="rounded-full shadow-lg hover:shadow-primary/20 hover:scale-110 transition-all duration-300 bg-primary text-primary-foreground"
+    <div
+      className="fixed bottom-7 right-7 z-50 transition-all duration-500"
+      style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(16px)', pointerEvents: isVisible ? 'auto' : 'none' }}
+    >
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300"
+        style={{
+          background: 'linear-gradient(135deg, var(--teal), var(--teal-deep))',
+          color: 'hsl(var(--primary-foreground))',
+          boxShadow: '0 4px 20px var(--teal-glow)',
+        }}
+        onMouseEnter={e => {
+          (e.currentTarget as HTMLElement).style.transform = 'scale(1.1) translateY(-2px)';
+          (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 28px var(--teal-glow)';
+        }}
+        onMouseLeave={e => {
+          (e.currentTarget as HTMLElement).style.transform = 'scale(1) translateY(0)';
+          (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 20px var(--teal-glow)';
+        }}
       >
-        <ArrowUp size={18} />
-        <span className="sr-only">Scroll to top</span>
-      </Button>
+        <ArrowUp size={17} />
+      </button>
     </div>
   );
 };
