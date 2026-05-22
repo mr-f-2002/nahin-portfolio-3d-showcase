@@ -114,7 +114,8 @@ export default {
 			},
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
-				display: ['Poppins', 'sans-serif']
+				display: ['Syne', 'sans-serif'],
+				mono: ['"JetBrains Mono"', 'monospace']
 			}
 		}
 	},
