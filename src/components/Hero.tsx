@@ -1,7 +1,26 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Download, GraduationCap, Building2 } from 'lucide-react';
 
 const Hero = () => {
+  const heroRef = useRef<HTMLElement>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      },
+      { threshold: 0.1 }
+    );
+
+    const el = heroRef.current;
+    if (el) observer.observe(el);
+
+    return () => {
+      if (el) observer.unobserve(el);
+    };
+  }, []);
+
   const highlights = [
     { icon: Building2, label: "Lecturer at UIU" },
     { icon: GraduationCap, label: "IUT Graduate, 2025" },
@@ -10,132 +29,122 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-center pt-24 pb-16 px-5 md:px-4 overflow-hidden"
+      ref={heroRef}
+      className="animate-on-scroll min-h-screen flex items-center px-6 md:px-12 lg:px-16 py-20"
     >
-      {/* Spotlight */}
-      <div className="hero-spotlight" />
+      <div className="w-full max-w-7xl mx-auto">
 
-      {/* Subtle blob accents — desktop only */}
-      <div className="hidden md:block absolute right-0 top-1/4 w-96 h-96 rounded-full pointer-events-none z-0"
-        style={{ background: 'radial-gradient(circle, rgba(0,212,170,0.06) 0%, transparent 70%)' }} />
-      <div className="hidden md:block absolute left-0 bottom-1/4 w-80 h-80 rounded-full pointer-events-none z-0"
-        style={{ background: 'radial-gradient(circle, rgba(0,212,170,0.04) 0%, transparent 70%)' }} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
-      <div className="w-full md:w-[82%] max-w-none mx-auto relative z-10">
-        <div className="grid md:grid-cols-5 gap-8 md:gap-16 items-center">
+          {/* LEFT TEXT (slightly larger now) */}
+          <div>
 
-          {/* ── Text content ── */}
-          <div className="md:col-span-3 order-2 md:order-1 text-center md:text-left">
-
-            {/* Role badge */}
-            <div className="hero-badge flex justify-center md:justify-start mb-6">
-              <span className="section-chip">
-                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: 'var(--teal)' }}></span>
-                Lecturer &amp; Researcher ·-· CSE
-              </span>
+            {/* intro */}
+            <div className="flex items-center gap-2 font-handwriting text-base text-muted-foreground text-lg mb-5">
+              <span className="w-2 h-2 rounded-full bg-primary"></span>
+              Lecturer & Researcher · CSE
             </div>
 
-            {/* Greeting */}
-            <p className="hero-greeting font-body text-xl md:text-2xl mb-2" style={{ color: 'var(--text-secondary)' }}>
-              Hi, I'm
-            </p>
+            {/* NAME */}
+            <div className="mb-5">
 
-            {/* Name */}
-            <h1 className="hero-name font-display font-bold mb-4" style={{ fontSize: 'clamp(2.4rem, 6vw, 4rem)', letterSpacing: '-0.03em', lineHeight: 1.08 }}>
-              <span className="gradient-text">Nahin F. Siddiqui</span>
-              <div className="teal-divider mt-3 mx-auto md:mx-0"></div>
-            </h1>
+              <span className="block font-handwriting text-lg text-muted-foreground mb-2">
+                Hi, I'm
+              </span>
 
-            {/* Subtitle */}
-            <h2 className="hero-subtitle font-body text-base md:text-lg mb-6 mt-4 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <h1 className="font-handwriting font-bold text-5xl md:text-7xl text-foreground leading-tight">
+                Nahin F. Siddiqui
+              </h1>
+
+              <div className="w-24 h-[2px] bg-primary mt-4"></div>
+            </div>
+
+            {/* role */}
+            <p className="font-handwriting text-xl text-muted-foreground mb-6">
               Lecturer, Dept. of CSE · United International University
-            </h2>
-
-            {/* Bio */}
-            <p className="hero-bio font-body text-sm md:text-base max-w-lg mx-auto md:mx-0 leading-relaxed mb-8" style={{ color: 'hsl(var(--foreground) / 0.75)' }}>
-              Computer Science graduate of Islamic University of Technology, now
-              contributing to academia as a full-time lecturer and researcher.
-              My work focuses on lightweight deep learning and cloud computing —
-              with a long-term commitment to research and teaching.
             </p>
 
-            {/* Highlight chips */}
-            <div className="hero-chips flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 mb-8 md:mb-10 items-center md:items-start justify-center md:justify-start">
+            {/* bio (slightly larger) */}
+            <p className="font-serif text-lg leading-relaxed text-muted-foreground max-w-xl mb-8">
+              Computer Science graduate of Islamic University of Technology, working in academia
+              as a lecturer and researcher focusing on lightweight deep learning systems and
+              efficient cloud computing models.
+            </p>
+
+            {/* highlights */}
+            <div className="flex flex-wrap gap-3 mb-8">
               {highlights.map((item) => (
-                <div
+                <span
                   key={item.label}
-                  className="inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-body"
-                  style={{
-                    background: 'hsl(var(--card) / 0.7)',
-                    border: '1px solid var(--border-color)',
-                    color: 'hsl(var(--foreground) / 0.85)',
-                    backdropFilter: 'blur(8px)',
-                  }}
+                  className="flex items-center gap-2 px-4 py-2 border border-border rounded-full font-handwriting text-sm text-muted-foreground"
                 >
-                  <item.icon size={14} style={{ color: 'var(--teal)' }} className="shrink-0" />
-                  <span className="font-mono text-xs">{item.label}</span>
-                </div>
+                  <item.icon className="w-4 h-4 text-primary" />
+                  {item.label}
+                </span>
               ))}
             </div>
 
-            {/* CTA Buttons */}
-            <div className="hero-buttons flex flex-col sm:flex-row flex-wrap gap-3 w-full">
-              <a href="#publications" className="btn-primary w-full sm:w-auto">
-                View Publications <ArrowRight size={15} />
+            {/* buttons */}
+            <div className="flex flex-wrap gap-3">
+
+              <a
+                href="#publications"
+                className="px-5 py-2.5 bg-primary text-primary-foreground font-handwriting text-base rounded-md flex items-center gap-2 hover:opacity-90 transition"
+              >
+                View Publications <ArrowRight size={14} />
               </a>
-              <a href="#contact" className="btn-outline w-full sm:w-auto">
-                Contact Me
+
+              <a
+                href="#contact"
+                className="px-5 py-2.5 border border-border text-foreground font-handwriting text-base rounded-md hover:border-primary transition"
+              >
+                Contact
               </a>
-              <a href="/assets/cv.pdf" download className="btn-outline w-full sm:w-auto">
-                <Download size={14} /> Download CV
+
+              <a
+                href="/assets/cv.pdf"
+                download
+                className="px-5 py-2.5 border border-border text-foreground font-handwriting text-base rounded-md flex items-center gap-2 hover:border-primary transition"
+              >
+                <Download size={14} />
+                CV
               </a>
+
             </div>
           </div>
 
-          {/* ── Photo ── */}
-          <div className="md:col-span-2 order-1 md:order-2 flex justify-center mb-4 md:mb-0">
-            <div className="hero-photo relative">
-              {/* Outer ring */}
-              <div
-                className="relative rounded-full"
-                style={{
-                  padding: '4px',
-                  background: 'linear-gradient(135deg, var(--teal), transparent, var(--teal-deep))',
-                }}
-              >
-                <div
-                  className="w-[190px] h-[190px] md:w-[300px] md:h-[300px] rounded-full overflow-hidden photo-glow"
-                  style={{ background: 'hsl(var(--card))' }}
-                >
-                  <img
-                    src="/assets/nahin.png"
-                    alt="Nahin F. Siddiqui"
-                    className="w-full h-full object-cover object-center rounded-full"
-                    loading="eager"
-                    onError={(e) => { (e.target as HTMLImageElement).src = '/assets/avatar.png'; }}
-                  />
-                </div>
+          {/* RIGHT IMAGE (smaller + cleaner frame) */}
+          <div className="flex justify-center lg:justify-end">
+
+            <div className="relative">
+
+              {/* FRAME (no white fill anymore) */}
+              <div className="w-[240px] sm:w-[280px] md:w-[320px] lg:w-[340px] aspect-[3/4] overflow-hidden rounded-lg border border-border bg-transparent relative">
+
+                {!imageLoaded && (
+                  <div className="w-full h-full bg-muted animate-pulse" />
+                )}
+
+                <img
+                  src="/assets/nahin.png"
+                  alt="Nahin F. Siddiqui"
+                  className={`w-full h-full object-cover transition-opacity duration-500 ${
+                    imageLoaded ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  onLoad={() => setImageLoaded(true)}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/assets/avatar.png';
+                  }}
+                />
+
+                {/* TOP LEFT SMALL CIRCLE ACCENT */}
+                <div className="absolute top-2 left-2 w-3 h-3 rounded-full border border-primary bg-background"></div>
+
               </div>
 
-              {/* Floating accent dots — desktop only */}
-              <div className="hidden md:block absolute -bottom-5 -right-5 w-14 h-14 rounded-full opacity-20 animate-pulse"
-                style={{ background: 'var(--teal)' }}></div>
-              <div className="hidden md:block absolute -top-5 -left-5 w-10 h-10 rounded-full opacity-15"
-                style={{ background: 'var(--teal-deep)' }}></div>
+              {/* subtle corner accent */}
+              <div className="absolute -bottom-4 -right-4 w-16 h-16 border-r border-b border-primary rounded-br-md"></div>
 
-              {/* Status chip overlapping photo */}
-              <div
-                className="absolute -bottom-3 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:-right-6 md:bottom-8 flex items-center gap-2 px-3 py-1.5 rounded-full font-mono text-xs whitespace-nowrap"
-                style={{
-                  background: 'hsl(var(--card))',
-                  border: '1px solid var(--border-color)',
-                  color: 'var(--teal)',
-                  boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
-                }}
-              >
-                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: 'var(--teal)' }}></span>
-                Open to collaborate
-              </div>
             </div>
           </div>
 
