@@ -10,37 +10,38 @@
 ========================= */
 @layer base {
   :root {
-  /* Dark Ash Base */
-  --background: 220 12% 12%;
-  --foreground: 40 20% 92%;
+    /* Dark Ash Base */
+    --background: 220 12% 12%;
+    --foreground: 40 20% 92%;
 
-  --card: 220 10% 14%;
-  --card-foreground: 40 20% 92%;
+    --card: 220 10% 14%;
+    --card-foreground: 40 20% 92%;
 
-  --popover: 220 10% 14%;
-  --popover-foreground: 40 20% 92%;
+    --popover: 220 10% 14%;
+    --popover-foreground: 40 20% 92%;
 
-  --primary: 38 35% 75%; /* warm ink highlight */
-  --primary-foreground: 220 12% 12%;
+    --primary: 38 35% 75%;
+    /* warm ink highlight */
+    --primary-foreground: 220 12% 12%;
 
-  --secondary: 220 10% 18%;
-  --secondary-foreground: 40 20% 92%;
+    --secondary: 220 10% 18%;
+    --secondary-foreground: 40 20% 92%;
 
-  --muted: 220 8% 22%;
-  --muted-foreground: 80 10% 80%;
+    --muted: 220 8% 22%;
+    --muted-foreground: 80 10% 80%;
 
-  --accent: 38 25% 65%;
-  --accent-foreground: 220 12% 12%;
+    --accent: 38 25% 65%;
+    --accent-foreground: 220 12% 12%;
 
-  --destructive: 0 60% 45%;
-  --destructive-foreground: 40 20% 92%;
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 40 20% 92%;
 
-  --border: 220 8% 25%;
-  --input: 220 8% 25%;
-  --ring: 38 35% 75%;
+    --border: 220 8% 25%;
+    --input: 220 8% 25%;
+    --ring: 38 35% 75%;
 
-  --radius: 0.5rem;
-}
+    --radius: 0.5rem;
+  }
 
   .dark {
     --background: 25 20% 10%;
@@ -70,35 +71,35 @@
   }
 
   .light {
-  /* Warm paper background */
-  --background: 38 35% 92%;
-  --foreground: 25 30% 18%;
+    /* Warm paper background */
+    --background: 38 35% 92%;
+    --foreground: 25 30% 18%;
 
-  --card: 38 30% 95%;
-  --card-foreground: 25 30% 18%;
+    --card: 38 30% 95%;
+    --card-foreground: 25 30% 18%;
 
-  --popover: 38 30% 96%;
-  --popover-foreground: 25 30% 18%;
+    --popover: 38 30% 96%;
+    --popover-foreground: 25 30% 18%;
 
-  --primary: 25 35% 28%;
-  --primary-foreground: 38 35% 92%;
+    --primary: 25 35% 28%;
+    --primary-foreground: 38 35% 92%;
 
-  --secondary: 38 25% 90%;
-  --secondary-foreground: 40 10% 10%;
+    --secondary: 38 25% 90%;
+    --secondary-foreground: 40 10% 10%;
 
-  --muted: 38 20% 85%;
-  --muted-foreground: 20 15% 40%;
+    --muted: 38 20% 85%;
+    --muted-foreground: 20 15% 40%;
 
-  --accent: 25 25% 40%;
-  --accent-foreground: 38 35% 92%;
+    --accent: 25 25% 40%;
+    --accent-foreground: 38 35% 92%;
 
-  --destructive: 0 60% 45%;
-  --destructive-foreground: 38 35% 92%;
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 38 35% 92%;
 
-  --border: 30 20% 78%;
-  --input: 30 20% 78%;
-  --ring: 25 35% 28%;
-}
+    --border: 30 20% 78%;
+    --input: 30 20% 78%;
+    --ring: 25 35% 28%;
+  }
 
   * {
     @apply border-border;
@@ -123,6 +124,7 @@
     }
   }
 }
+
 @layer base {
   :root {
     --text-xs: 0.75rem;
@@ -136,137 +138,163 @@
     --text-4xl: 3rem;
     --text-5xl: 3.5rem;
   }
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    :root {
+      --text-base: 0.95rem;
+      --text-lg: 1.1rem;
+      --text-xl: 1.3rem;
+      --text-2xl: 1.4rem;
+      --text-3xl: 1.6rem;
+      --text-4xl: 1.9rem;
+    --text-5xl: 3rem;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    :root {
+      --text-base: 0.9rem;
+      --text-lg: 1rem;
+      --text-xl: 1.2rem;
+      --text-2xl: 1.3rem;
+      --text-3xl: 1.5rem;
+      --text-4xl: 1.8rem;
+    --text-5xl: 2.5rem;
+    }
+  }
 }
 
-/* =========================
+  /* =========================
    COMPONENTS
 ========================= */
-@layer components {
+  @layer components {
 
-  .nav-link {
-    @apply relative font-medium text-foreground transition-colors duration-300;
+    .nav-link {
+      @apply relative font-medium text-foreground transition-colors duration-300;
+    }
+
+    .section-heading {
+      font-family: 'Caveat', cursive;
+      @apply text-3xl md:text-5xl font-normal mb-8 text-foreground relative inline-block;
+    }
+
+    .section-subheading {
+      font-family: 'Cormorant Garamond', serif;
+      @apply text-xl md:text-2xl font-medium mb-4 text-foreground;
+    }
+
+    .card-hover {
+      @apply transition-colors duration-300 hover:border-primary/40;
+    }
+
+    .glass-effect {
+      @apply backdrop-blur-sm bg-background/60 border border-border;
+    }
+
+    .modern-card {
+      @apply bg-card border border-border/70 shadow-none;
+    }
+
+    .teal-glow {
+      box-shadow: 0 1px 0 hsl(var(--border));
+    }
+
+    .photo-glow {
+      box-shadow: 0 2px 8px hsl(var(--border) / 0.4);
+      animation: none;
+    }
   }
 
-  .section-heading {
-    font-family: 'Caveat', cursive;
-    @apply text-3xl md:text-5xl font-normal mb-8 text-foreground relative inline-block;
-  }
-
-  .section-subheading {
-    font-family: 'Cormorant Garamond', serif;
-    @apply text-xl md:text-2xl font-medium mb-4 text-foreground;
-  }
-
-  .card-hover {
-    @apply transition-colors duration-300 hover:border-primary/40;
-  }
-
-  .glass-effect {
-    @apply backdrop-blur-sm bg-background/60 border border-border;
-  }
-
-  .modern-card {
-    @apply bg-card border border-border/70 shadow-none;
-  }
-
-  .teal-glow {
-    box-shadow: 0 1px 0 hsl(var(--border));
-  }
-
-  .photo-glow {
-    box-shadow: 0 2px 8px hsl(var(--border) / 0.4);
-    animation: none;
-  }
-}
-
-/* =========================
+  /* =========================
    ANIMATIONS
 ========================= */
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
-}
-
-.animate-on-scroll.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.animate-delay-100 {
-  transition-delay: 100ms;
-}
-
-.animate-delay-200 {
-  transition-delay: 200ms;
-}
-
-.animate-delay-300 {
-  transition-delay: 300ms;
-}
-
-.animate-delay-400 {
-  transition-delay: 400ms;
-}
-
-.animate-delay-500 {
-  transition-delay: 500ms;
-}
-
-@keyframes fadeIn {
-  0% {
+  .animate-on-scroll {
     opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
   }
 
-  100% {
+  .animate-on-scroll.active {
     opacity: 1;
+    transform: translateY(0);
   }
-}
 
-.animate-fadeIn {
-  animation: fadeIn 0.5s ease forwards;
-}
+  .animate-delay-100 {
+    transition-delay: 100ms;
+  }
 
-/* =========================
+  .animate-delay-200 {
+    transition-delay: 200ms;
+  }
+
+  .animate-delay-300 {
+    transition-delay: 300ms;
+  }
+
+  .animate-delay-400 {
+    transition-delay: 400ms;
+  }
+
+  .animate-delay-500 {
+    transition-delay: 500ms;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  /* =========================
    BACKGROUND CANVAS
 ========================= */
-canvas {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: -1;
-}
+  canvas {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
 
-/* =========================
+  /* =========================
    SHIMMER EFFECT (SOFTENED)
 ========================= */
-.shimmer {
-  position: relative;
-  overflow: hidden;
-}
-
-.shimmer::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(to bottom right,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(0, 0, 0, 0.03) 50%,
-      rgba(255, 255, 255, 0) 100%);
-  transform: rotate(25deg);
-  animation: shimmer 7s infinite linear;
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%) rotate(25deg);
+  .shimmer {
+    position: relative;
+    overflow: hidden;
   }
 
-  100% {
-    transform: translateX(100%) rotate(25deg);
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to bottom right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(0, 0, 0, 0.03) 50%,
+        rgba(255, 255, 255, 0) 100%);
+    transform: rotate(25deg);
+    animation: shimmer 7s infinite linear;
   }
-}
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%) rotate(25deg);
+    }
+
+    100% {
+      transform: translateX(100%) rotate(25deg);
+    }
+  }
