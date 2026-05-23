@@ -87,14 +87,14 @@ const Hero = () => {
             <div className="flex flex-wrap justify-center lg:justify-start gap-3">
 
               <a
-                href="#publications"
+                href="/research"
                 className="px-5 py-2.5 bg-primary text-primary-foreground font-handwriting text-base rounded-md flex items-center gap-2 hover:opacity-90 transition"
               >
                 View Publications <ArrowRight size={14} />
               </a>
 
               <a
-                href="#contact"
+                href="/contact"
                 className="px-5 py-2.5 border border-border text-foreground font-handwriting text-base rounded-md hover:border-primary transition"
               >
                 Contact
