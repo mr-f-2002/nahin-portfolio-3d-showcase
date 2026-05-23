@@ -25,11 +25,10 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 border-b border-border transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 w-full z-50 border-b border-border transition-all duration-300 ${isScrolled
           ? 'bg-background/80 backdrop-blur-md'
           : 'bg-background'
-      }`}
+        }`}
       style={{ height: 72 }}
     >
       <div className="w-[85%] mx-auto h-full flex items-center justify-between">
@@ -65,13 +64,25 @@ const Navbar = () => {
           </button>
         </nav>
 
-        {/* Mobile button */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden w-9 h-9 border border-border rounded-md flex items-center justify-center text-muted-foreground"
-        >
-          {isMenuOpen ? <X size={16} /> : <Menu size={16} />}
-        </button>
+        {/* Mobile actions */}
+        <div className="md:hidden flex items-center gap-2">
+
+          {/* Theme toggle */}
+          <button
+            onClick={toggleTheme}
+            className="w-9 h-9 border border-border rounded-md flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-all"
+          >
+            <Sun size={16} />
+          </button>
+
+          {/* Hamburger */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="w-9 h-9 border border-border rounded-md flex items-center justify-center text-muted-foreground"
+          >
+            {isMenuOpen ? <X size={16} /> : <Menu size={16} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
