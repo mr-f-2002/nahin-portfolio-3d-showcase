@@ -117,21 +117,21 @@ const Hero = () => {
             <div className="relative">
 
               {/* Image Frame */}
-              <div className="w-[48vw] max-w-[180px] aspect-square sm:w-[42vw] sm:max-w-[220px] md:w-[280px] md:aspect-[3/4] lg:w-[340px] overflow-hidden rounded-lg border border-border bg-transparent relative">
+              <div className="w-[48vw] max-w-[150px] sm:w-[42vw] sm:max-w-[350px] md:w-[380px] md:aspect-[3/4] lg:w-[450px] overflow-hidden rounded-lg bg-transparent relative">
 
                 {!imageLoaded && (
                   <div className="w-full h-full bg-muted animate-pulse" />
                 )}
 
                 <img
-                  src="/assets/nahin.png"
+                  src="/assets/dp-nahin.png"
                   alt="Nahin F. Siddiqui"
                   className={`w-full h-full object-cover transition-opacity duration-500 ${
                     imageLoaded ? 'opacity-100' : 'opacity-0'
                   }`}
                   onLoad={() => setImageLoaded(true)}
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/assets/avatar.png';
+                    (e.target as HTMLImageElement).src = '/assets/dp-nahin.jpg';
                   }}
                 />
 
@@ -140,7 +140,7 @@ const Hero = () => {
               </div>
 
               {/* Corner Accent */}
-              <div className="absolute -bottom-4 -right-4 w-16 h-16 border-r border-b border-primary rounded-br-md"></div>
+              <div className="absolute -bottom-4 -right-4 w-[16vw] h-[16vw] max-w-16 max-h-16 border-r border-b border-primary rounded-br-md"></div>
 
             </div>
           </div>
