@@ -33,21 +33,19 @@ const Hero = () => {
       className="animate-on-scroll min-h-screen flex items-center px-6 md:px-12 lg:px-16 py-20"
     >
       <div className="w-full max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+          {/* TEXT */}
+          <div className="order-2 lg:order-1 text-center lg:text-left">
 
-          {/* LEFT TEXT (slightly larger now) */}
-          <div>
-
-            {/* intro */}
-            <div className="flex items-center gap-2 font-handwriting text-base text-muted-foreground text-lg mb-5">
+            {/* Intro */}
+            <div className="flex items-center justify-center lg:justify-start gap-2 font-handwriting text-lg text-muted-foreground mb-5">
               <span className="w-2 h-2 rounded-full bg-primary"></span>
               Lecturer & Researcher · CSE
             </div>
 
-            {/* NAME */}
+            {/* Name */}
             <div className="mb-5">
-
               <span className="block font-handwriting text-lg text-muted-foreground mb-2">
                 Hi, I'm
               </span>
@@ -56,23 +54,24 @@ const Hero = () => {
                 Nahin F. Siddiqui
               </h1>
 
-              <div className="w-24 h-[2px] bg-primary mt-4"></div>
+              <div className="w-24 h-[2px] bg-primary mt-4 mx-auto lg:mx-0"></div>
             </div>
 
-            {/* role */}
+            {/* Role */}
             <p className="font-handwriting text-xl text-muted-foreground mb-6">
               Lecturer, Dept. of CSE · United International University
             </p>
 
-            {/* bio (slightly larger) */}
-            <p className="font-serif text-lg leading-relaxed text-muted-foreground max-w-xl mb-8">
-              Computer Science graduate of Islamic University of Technology, working in academia
-              as a lecturer and researcher focusing on lightweight deep learning systems and
-              efficient cloud computing models.
+            {/* Bio */}
+            <p className="font-serif text-lg leading-relaxed text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8">
+              Computer Science graduate of Islamic University of Technology,
+              working in academia as a lecturer and researcher focusing on
+              lightweight deep learning systems and efficient cloud computing
+              models.
             </p>
 
-            {/* highlights */}
-            <div className="flex flex-wrap gap-3 mb-8">
+            {/* Highlights */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-8">
               {highlights.map((item) => (
                 <span
                   key={item.label}
@@ -84,8 +83,8 @@ const Hero = () => {
               ))}
             </div>
 
-            {/* buttons */}
-            <div className="flex flex-wrap gap-3">
+            {/* Buttons */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3">
 
               <a
                 href="#publications"
@@ -113,13 +112,12 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* RIGHT IMAGE (smaller + cleaner frame) */}
-          <div className="flex justify-center lg:justify-end">
-
+          {/* IMAGE */}
+          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
             <div className="relative">
 
-              {/* FRAME (no white fill anymore) */}
-              <div className="w-[240px] sm:w-[280px] md:w-[320px] lg:w-[340px] aspect-[3/4] overflow-hidden rounded-lg border border-border bg-transparent relative">
+              {/* Image Frame */}
+              <div className="w-[48vw] max-w-[180px] aspect-square sm:w-[42vw] sm:max-w-[220px] md:w-[280px] md:aspect-[3/4] lg:w-[340px] overflow-hidden rounded-lg border border-border bg-transparent relative">
 
                 {!imageLoaded && (
                   <div className="w-full h-full bg-muted animate-pulse" />
@@ -137,12 +135,11 @@ const Hero = () => {
                   }}
                 />
 
-                {/* TOP LEFT SMALL CIRCLE ACCENT */}
+                {/* Top Left Accent */}
                 <div className="absolute top-2 left-2 w-3 h-3 rounded-full border border-primary bg-background"></div>
-
               </div>
 
-              {/* subtle corner accent */}
+              {/* Corner Accent */}
               <div className="absolute -bottom-4 -right-4 w-16 h-16 border-r border-b border-primary rounded-br-md"></div>
 
             </div>
