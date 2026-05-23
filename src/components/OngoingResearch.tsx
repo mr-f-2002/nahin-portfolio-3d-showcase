@@ -55,7 +55,7 @@ const OngoingResearch = () => {
             </div>
           ))}
         </div>
-      </section>
+      </div>
     </section>
   );
 };
